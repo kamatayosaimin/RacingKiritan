@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class LoadController : MonoBehaviour
 {
-    [SerializeField] private UnityEngine.UI.Slider _slider;
+    [SerializeField] private LoadUI _uiPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -20,10 +20,9 @@ public class LoadController : MonoBehaviour
     public void LoadScene(string sceneName)
     {
         AsyncOperation load = SceneManager.LoadSceneAsync(sceneName);
+        LoadUI uI = Instantiate(_uiPrefab);
 
-        gameObject.SetActive(true);
-
-        StartCoroutine(LoadState(load));
+        StartCoroutine(LoadState(load, uI));
     }
 
     public void Reload()
@@ -31,11 +30,11 @@ public class LoadController : MonoBehaviour
         LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    IEnumerator LoadState(AsyncOperation load)
+    IEnumerator LoadState(AsyncOperation load, LoadUI uI)
     {
         while (true)
         {
-            _slider.value = load.progress;
+            uI.SetSliderValue(load.progress);
 
             yield return null;
         }
