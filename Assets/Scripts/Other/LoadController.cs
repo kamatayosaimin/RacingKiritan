@@ -20,9 +20,9 @@ public class LoadController : MonoBehaviour
     public void LoadScene(string sceneName)
     {
         AsyncOperation load = SceneManager.LoadSceneAsync(sceneName);
-        LoadUI uI = Instantiate(_uiPrefab);
+        LoadUI ui = Instantiate(_uiPrefab);
 
-        StartCoroutine(LoadState(load, uI));
+        StartCoroutine(LoadState(load, ui));
     }
 
     public void Reload()
@@ -30,11 +30,11 @@ public class LoadController : MonoBehaviour
         LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    IEnumerator LoadState(AsyncOperation load, LoadUI uI)
+    IEnumerator LoadState(AsyncOperation load, LoadUI ui)
     {
         while (true)
         {
-            uI.SetSliderValue(load.progress);
+            ui.SetSliderValue(load.progress);
 
             yield return null;
         }

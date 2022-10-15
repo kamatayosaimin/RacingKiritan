@@ -7,6 +7,14 @@ public abstract class SceneBehaviour : MonoBehaviour
     [SerializeField] private bool _commentReset;
     private AtsumaruManager _atsumaruManager;
 
+    protected virtual string SceneName
+    {
+        get
+        {
+            return UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        }
+    }
+
     public AtsumaruManager AtsumaruManager
     {
         get
@@ -28,9 +36,7 @@ public abstract class SceneBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        string sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-
-        _atsumaruManager.Comment.ChangeScene(sceneName, _commentReset);
+        _atsumaruManager.Comment.ChangeScene(SceneName, _commentReset);
 
         StartChild();
     }

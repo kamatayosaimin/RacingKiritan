@@ -5,6 +5,14 @@ using UnityEngine;
 public class PlayScene : SceneBehaviour
 {
 
+    protected override string SceneName
+    {
+        get
+        {
+            return base.SceneName;
+        }
+    }
+
     //// Start is called before the first frame update
     //void Start()
     //{
