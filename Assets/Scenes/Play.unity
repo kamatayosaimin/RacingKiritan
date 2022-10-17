@@ -423,6 +423,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _commentReset: 0
+  _corePrefab: {fileID: 3807631186764386908, guid: 7cb4b80e3d804524db41abd52d940bab, type: 3}
 --- !u!114 &873682295
 MonoBehaviour:
   m_ObjectHideFlags: 0

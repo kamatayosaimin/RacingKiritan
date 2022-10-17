@@ -6,6 +6,7 @@ public abstract class SceneBehaviour : MonoBehaviour
 {
     [SerializeField] private bool _commentReset;
     private AtsumaruManager _atsumaruManager;
+    [SerializeField] private Core _corePrefab;
 
     protected virtual string SceneName
     {
@@ -29,6 +30,9 @@ public abstract class SceneBehaviour : MonoBehaviour
     void Awake()
     {
         _atsumaruManager = GetComponent<AtsumaruManager>();
+
+        if (!Core.Instance)
+            Instantiate(_corePrefab);
 
         AwakeChild();
     }
