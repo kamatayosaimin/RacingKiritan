@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,26 +30,47 @@ public abstract class SceneBehaviour : MonoBehaviour
 
     void Awake()
     {
-        _atsumaruManager = GetComponent<AtsumaruManager>();
-
         if (!Core.Instance)
             Instantiate(_corePrefab);
 
-        AwakeChild();
+        try
+        {
+            _atsumaruManager = GetComponent<AtsumaruManager>();
+
+            AwakeChild();
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        _atsumaruManager.Comment.ChangeScene(SceneName, _commentReset);
+        try
+        {
+            _atsumaruManager.Comment.ChangeScene(SceneName, _commentReset);
 
-        StartChild();
+            StartChild();
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        UpdateChild();
+        try
+        {
+            UpdateChild();
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
     }
 
     protected virtual void AwakeChild()
