@@ -25,6 +25,6 @@ MonoBehaviour:
     _mufflerClip: {fileID: 0}
     _buppiganPrefab: {fileID: 0}
   _pitchData:
-    _enginePitchMultipler: 0
-    _squealExtremumPitch: 0
-    _squealAsymptotePitch: 0
+    _enginePitchMultipler: 0.25
+    _squealExtremumPitch: 1
+    _squealAsymptotePitch: 2
