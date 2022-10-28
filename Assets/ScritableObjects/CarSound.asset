@@ -13,17 +13,19 @@ MonoBehaviour:
   m_Name: CarSound
   m_EditorClassIdentifier: 
   _playerClipData:
-    _engineClip: {fileID: 0}
-    _turboClip: {fileID: 0}
+    _engineClip: {fileID: 8300000, guid: 73ba32ee1c1afef4fb07dc6bddbe60dc, type: 3}
+    _turboClip: {fileID: 8300000, guid: 02d0b34b693ebd340bb2b447239acce9, type: 3}
+    _revLimitClip: {fileID: 8300000, guid: d74e2790fa864f64780aab642793a5c5, type: 3}
     _squealClip: {fileID: 0}
     _mufflerClip: {fileID: 0}
-    _buppiganPrefab: {fileID: 0}
+    _buppiganPrefab: {fileID: 8616150624613552500, guid: 1c22b66583fa01540944d44f7f6e874a, type: 3}
   _enemyClipData:
-    _engineClip: {fileID: 0}
-    _turboClip: {fileID: 0}
+    _engineClip: {fileID: 8300000, guid: 9157f33ae2549c2498e03d39b184f9a8, type: 3}
+    _turboClip: {fileID: 8300000, guid: 30afa632e1d6df2449ecdfe1102d775d, type: 3}
+    _revLimitClip: {fileID: 8300000, guid: 51eefce89795fda4598cfd460a73979a, type: 3}
     _squealClip: {fileID: 0}
     _mufflerClip: {fileID: 0}
-    _buppiganPrefab: {fileID: 0}
+    _buppiganPrefab: {fileID: 614281382460678057, guid: 5a011512038a06f45912b9f1f1d2874a, type: 3}
   _pitchData:
     _enginePitchMultipler: 0.25
     _squealExtremumPitch: 1

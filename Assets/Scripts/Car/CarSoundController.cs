@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CarSoundController : MonoBehaviour
 {
-    [SerializeField] private AudioSource _engineSound, _turboSound;
+    [SerializeField] private AudioSource _engineSound, _turboSound, _revLimitSound;
     private AudioSource _tireFLSound, _tireFRSound, _tireRLSound, _tireRRSound, _buppiganPrefab;
     [SerializeField] private AudioSource[] _mufflerSounds;
     private CarSoundClipData _clipData;
