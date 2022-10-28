@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class DRunScene : SceneBehaviour
 {
+    [SerializeField] private Vector3 _cameraOffset;
+    [SerializeField] private Camera _camera;
+    [SerializeField] private CarController _carController;
+    [SerializeField] private CarSoundContent _soundContent;
 
     //// Start is called before the first frame update
     //void Start()
@@ -17,6 +21,7 @@ public class DRunScene : SceneBehaviour
 
     protected override void StartChild()
     {
+        _carController.InitSound(_soundContent.PlayerClipData, _soundContent.PitchData);
     }
 
     protected override void UpdateChild()

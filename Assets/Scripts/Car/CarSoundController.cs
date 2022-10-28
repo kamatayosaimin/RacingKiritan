@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,6 @@ public class CarSoundController : MonoBehaviour
     [SerializeField] private AudioSource _engineSound, _turboSound, _revLimitSound;
     private AudioSource _tireFLSound, _tireFRSound, _tireRLSound, _tireRRSound, _buppiganPrefab;
     [SerializeField] private AudioSource[] _mufflerSounds;
-    private CarSoundClipData _clipData;
     private CarSoundPitchData _pitchData;
 
     // Start is called before the first frame update
@@ -22,19 +22,52 @@ public class CarSoundController : MonoBehaviour
 
     public void InitTireSounds(AudioSource fl, AudioSource fr, AudioSource rl, AudioSource rr)
     {
-        _tireFLSound = fl;
-        _tireFRSound = fr;
-        _tireRLSound = rl;
-        _tireRRSound = rr;
+        try
+        {
+            _tireFLSound = fl;
+            _tireFRSound = fr;
+            _tireRLSound = rl;
+            _tireRRSound = rr;
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
     }
 
     public void InitClipData(CarSoundClipData clipData)
     {
-        _clipData = clipData;
+        try
+        {
+            _engineSound.clip = clipData.EngineClip;
+
+            _turboSound.clip = clipData.TurboClip;
+
+            if (_revLimitSound)
+                _revLimitSound.clip = clipData.RevLimitClip;
+
+            _tireFLSound.clip = _tireFRSound.clip = _tireRLSound.clip = _tireRRSound.clip = clipData.SquealClip;
+
+            _buppiganPrefab = clipData.BuppiganPrefab;
+
+            for (int i = 0; i < _mufflerSounds.Length; i++)
+                _mufflerSounds[i].clip = clipData.MufflerClip;
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
     }
 
     public void InitPitchData(CarSoundPitchData pitchData)
     {
-        _pitchData = pitchData;
+        try
+        {
+            _pitchData = pitchData;
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
     }
 }

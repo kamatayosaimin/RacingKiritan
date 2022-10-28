@@ -1640,6 +1640,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _commentReset: 0
   _corePrefab: {fileID: 3807631186764386908, guid: 7cb4b80e3d804524db41abd52d940bab, type: 3}
+  _cameraOffset: {x: 0, y: 2, z: -10}
+  _camera: {fileID: 1687009380}
+  _carController: {fileID: 2007744790}
+  _soundContent: {fileID: 11400000, guid: 871c08a398b3e2e4eb1bc05d625f659d, type: 2}
 --- !u!114 &873682295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3592,7 +3596,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687009378}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 20, y: 2, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4514,6 +4518,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4750e14729db3cf45b611ac02fc43dfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _wheelColliderFL: {fileID: 1345261505}
+  _wheelColliderFR: {fileID: 2073959568}
+  _wheelColliderRL: {fileID: 840907892}
+  _wheelColliderRR: {fileID: 2021196723}
 --- !u!1 &2021196721
 GameObject:
   m_ObjectHideFlags: 0
