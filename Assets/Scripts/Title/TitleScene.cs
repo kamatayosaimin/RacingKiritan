@@ -22,22 +22,4 @@ public class TitleScene : SceneBehaviour
     protected override void UpdateChild()
     {
     }
-
-    public void GOIS()
-    {
-        try
-        {
-            TitleScene gois = null;
-
-            gois.SUZUI();
-        }
-        catch (System.Exception e)
-        {
-            ErrorManager.Instance.AddException(e);
-        }
-    }
-
-    void SUZUI()
-    {
-    }
 }
