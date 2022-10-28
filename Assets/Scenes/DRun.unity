@@ -4312,6 +4312,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2007744787}
   - component: {fileID: 2007744788}
+  - component: {fileID: 2007744790}
+  - component: {fileID: 2007744789}
   m_Layer: 0
   m_Name: Test_AE86
   m_TagString: Untagged
@@ -4355,6 +4357,34 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2007744789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007744786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecbcc98d728e3bf46ad56831c60e0a98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _engineSound: {fileID: 1429793492}
+  _turboSound: {fileID: 619085246}
+  _mufflerSounds:
+  - {fileID: 1570798617}
+--- !u!114 &2007744790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007744786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4750e14729db3cf45b611ac02fc43dfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2021196721
 GameObject:
   m_ObjectHideFlags: 0
