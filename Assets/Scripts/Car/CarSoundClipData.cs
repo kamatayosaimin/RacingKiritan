@@ -5,7 +5,11 @@ using UnityEngine;
 [System.Serializable]
 public class CarSoundClipData
 {
-    [SerializeField] private AudioClip _engineClip, _turboClip, _revLimitClip, _squealClip, _mufflerClip;
+    [SerializeField] private AudioClip _engineClip;
+    [SerializeField] private AudioClip _turboClip;
+    [SerializeField] private AudioClip _revLimitClip;
+    [SerializeField] private AudioClip _squealClip;
+    [SerializeField] private AudioClip _mufflerClip;
     [SerializeField] private AudioSource _buppiganPrefab;
 
     public AudioClip EngineClip

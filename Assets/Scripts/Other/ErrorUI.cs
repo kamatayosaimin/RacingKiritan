@@ -8,7 +8,8 @@ public class ErrorUI : MonoBehaviour
 {
     private int _index;
     private Exception[] _exceptions;
-    [SerializeField] private TextMeshProUGUI _headerText, _messageText;
+    [SerializeField] private TextMeshProUGUI _headerText;
+    [SerializeField] private TextMeshProUGUI _messageText;
 
     // Start is called before the first frame update
     void Start()

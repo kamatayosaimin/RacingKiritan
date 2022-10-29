@@ -7,7 +7,10 @@ using UnityEngine;
 public class CarController : MonoBehaviour
 {
     private Rigidbody _rigidbody;
-    [SerializeField] private WheelCollider _wheelColliderFL, _wheelColliderFR, _wheelColliderRL, _wheelColliderRR;
+    [SerializeField] private WheelCollider _wheelColliderFL;
+    [SerializeField] private WheelCollider _wheelColliderFR;
+    [SerializeField] private WheelCollider _wheelColliderRL;
+    [SerializeField] private WheelCollider _wheelColliderRR;
     private CarSoundController _soundController;
 
     void Awake()

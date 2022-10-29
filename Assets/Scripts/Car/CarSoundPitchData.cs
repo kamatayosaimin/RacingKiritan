@@ -5,7 +5,9 @@ using UnityEngine;
 [System.Serializable]
 public class CarSoundPitchData
 {
-    [SerializeField] private float _enginePitchMultipler, _squealExtremumPitch, _squealAsymptotePitch;
+    [SerializeField] private float _enginePitchMultipler;
+    [SerializeField] private float _squealExtremumPitch;
+    [SerializeField] private float _squealAsymptotePitch;
 
     public float EnginePitchMultipler
     {

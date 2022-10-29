@@ -31,7 +31,8 @@ public class Gradation : BaseMeshEffect
 
     private bool _isUpdated;
     [SerializeField] private GradiationType _type;
-    [SerializeField] private Color _startColor = Color.white, _endColor = Color.white;
+    [SerializeField] private Color _startColor = Color.white;
+    [SerializeField] private Color _endColor = Color.white;
 
     public GradiationType Type
     {
