@@ -8,6 +8,7 @@ public class CarData : ScriptableObject
 {
     [Range(1f, 6000f)][SerializeField] private int _finalGear = 3000;
     [Range(1f, 6000f)][SerializeField] private int[] _gearRatio = DefaultGearRatio;
+    [SerializeField] private float _weightDownValue;
     [SerializeField] private float _brakeTorque;
     [SerializeField] private float _tunedBrakeTorque;
     [SerializeField] private float _tunedBrakeWeight;
@@ -36,6 +37,14 @@ public class CarData : ScriptableObject
         get
         {
             return _gearRatio;
+        }
+    }
+
+    public float WeightDownValue
+    {
+        get
+        {
+            return _weightDownValue;
         }
     }
 
