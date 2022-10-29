@@ -20,14 +20,14 @@ public class CarSoundController : MonoBehaviour
     {
     }
 
-    public void InitTireSounds(AudioSource fl, AudioSource fr, AudioSource rl, AudioSource rr)
+    public void InitTireSounds(Dictionary<string, AudioSource> soundDictionary)
     {
         try
         {
-            _tireFLSound = fl;
-            _tireFRSound = fr;
-            _tireRLSound = rl;
-            _tireRRSound = rr;
+            _tireFLSound = soundDictionary[CarWheelPosition.FL];
+            _tireFRSound = soundDictionary[CarWheelPosition.FR];
+            _tireRLSound = soundDictionary[CarWheelPosition.RL];
+            _tireRRSound = soundDictionary[CarWheelPosition.RR];
         }
         catch (Exception e)
         {

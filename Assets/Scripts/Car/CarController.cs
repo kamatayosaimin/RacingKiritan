@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CarController : MonoBehaviour
@@ -39,12 +40,7 @@ public class CarController : MonoBehaviour
             if (!_soundController)
                 return;
 
-            AudioSource flSound = GetTireSound(_wheelColliderFL),
-                frSound = GetTireSound(_wheelColliderFR),
-                rlSound = GetTireSound(_wheelColliderRL),
-                rrSound = GetTireSound(_wheelColliderRR);
-
-            _soundController.InitTireSounds(flSound, frSound, rlSound, rrSound);
+            _soundController.InitTireSounds(GetTireSoundDictionary());
             _soundController.InitClipData(clipData);
             _soundController.InitPitchData(pitchData);
         }
@@ -54,8 +50,64 @@ public class CarController : MonoBehaviour
         }
     }
 
-    AudioSource GetTireSound(WheelCollider wheelCollider)
+    public float GetTotalMass()
     {
-        return wheelCollider.GetComponent<AudioSource>();
+        float mass = _rigidbody.mass;
+
+        mass += GetAllWheelColliders().Sum(wc => wc.mass);
+
+        return mass;
+    }
+
+    Dictionary<string, AudioSource> GetTireSoundDictionary()
+    {
+        return GetWheelColliderDictionary().ToDictionary(p => p.Key, p => p.Value.GetComponent<AudioSource>());
+    }
+
+    Dictionary<string, WheelCollider> GetWheelColliderDictionary()
+    {
+        Dictionary<string, WheelCollider> dictionary = new Dictionary<string, WheelCollider>();
+
+        dictionary.Add(CarWheelPosition.FL, _wheelColliderFL);
+        dictionary.Add(CarWheelPosition.FR, _wheelColliderFR);
+        dictionary.Add(CarWheelPosition.RL, _wheelColliderRL);
+        dictionary.Add(CarWheelPosition.RR, _wheelColliderRR);
+
+        return dictionary;
+    }
+
+    WheelCollider[] GetFrontWheelColliders()
+    {
+        WheelCollider[] wheelColliders = new[]
+        {
+            _wheelColliderFL,
+            _wheelColliderFR
+        };
+
+        return wheelColliders;
+    }
+
+    WheelCollider[] GetRearWheelColliders()
+    {
+        WheelCollider[] wheelColliders = new[]
+        {
+            _wheelColliderRL,
+            _wheelColliderRR
+        };
+
+        return wheelColliders;
+    }
+
+    WheelCollider[] GetAllWheelColliders()
+    {
+        WheelCollider[] wheelColliders = new[]
+        {
+            _wheelColliderFL,
+            _wheelColliderFR,
+            _wheelColliderRL,
+            _wheelColliderRR
+        };
+
+        return wheelColliders;
     }
 }
