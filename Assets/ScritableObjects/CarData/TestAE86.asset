@@ -22,6 +22,7 @@ MonoBehaviour:
   _tunedSuspensionDamper: 4500
   _carName: Test_AE86
   _aspirationType: 0
+  _driveType: 1
   _tuneDatas:
   - _subTune: 0
     _engineTorqueCurve:

@@ -16,6 +16,7 @@ public class CarData : ScriptableObject
     [SerializeField] private float _tunedSuspensionDamper = 4500f;
     [SerializeField] private string _carName;
     [SerializeField] private CarAspirationType _aspirationType;
+    [SerializeField] private CarDriveTypeStatus _driveType;
     [SerializeField] private CarTuneData[] _tuneDatas = new CarTuneData[21];
     [SerializeField]
     private CarWheelFrictionData _tunedForwardFriction
