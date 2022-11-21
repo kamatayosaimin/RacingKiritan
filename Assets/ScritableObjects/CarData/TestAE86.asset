@@ -16,8 +16,6 @@ MonoBehaviour:
   _gearRatio: c80d0000e607000068050000e80300005d030000
   _weightDownValue: 60
   _brakeTorque: 500
-  _tunedBrakeTorque: 1000
-  _tunedBrakeWeight: 20
   _tunedSusupensionSpring: 35000
   _tunedSuspensionDamper: 4500
   _carName: Test_AE86
@@ -102,35 +100,35 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
+  - _subTune: 0
+    _engineTorqueCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - _subTune: 0
+    _engineTorqueCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - _subTune: 0
+    _engineTorqueCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - _subTune: 0
+    _engineTorqueCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
   - _subTune: 5
-    _engineTorqueCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  - _subTune: 0
-    _engineTorqueCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  - _subTune: 6
-    _engineTorqueCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  - _subTune: 0
-    _engineTorqueCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  - _subTune: 7
     _engineTorqueCurve:
       serializedVersion: 2
       m_Curve: []

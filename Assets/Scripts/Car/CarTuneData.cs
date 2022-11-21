@@ -6,7 +6,7 @@ using UnityEngine;
 public class CarTuneData
 {
     [SerializeField] private CarSubTune _subTune;
-    [SerializeField][RangeCurve(0f, 0f, 12000f, 100f)] private AnimationCurve _engineTorqueCurve;
+    [SerializeField][RangeCurve(0f, 0f, 15000f, 200f)] private AnimationCurve _engineTorqueCurve;
 
     public CarSubTune SubTune
     {

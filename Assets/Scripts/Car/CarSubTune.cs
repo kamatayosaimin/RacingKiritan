@@ -9,7 +9,5 @@ public enum CarSubTune
     EngineChange,
     Tire,
     Suspension,
-    LSD,
-    Brake,
     WeightDown
 }
