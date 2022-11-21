@@ -21,7 +21,14 @@ public class DRunScene : SceneBehaviour
 
     protected override void StartChild()
     {
-        _carController.InitSound(_soundContent.PlayerClipData, _soundContent.PitchData);
+        try
+        {
+            _carController.InitSound(_soundContent.PlayerClipData, _soundContent.PitchData);
+        }
+        catch (System.Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
     }
 
     protected override void UpdateChild()
