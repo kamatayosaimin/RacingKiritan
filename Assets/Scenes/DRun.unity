@@ -361,7 +361,7 @@ GameObject:
   m_Component:
   - component: {fileID: 276408952}
   m_Layer: 0
-  m_Name: RL
+  m_Name: RR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4518,6 +4518,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4750e14729db3cf45b611ac02fc43dfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _tireFL: {fileID: 495477907}
+  _tireFR: {fileID: 750173322}
+  _tireRL: {fileID: 1947019710}
+  _tireRR: {fileID: 276408952}
   _wheelColliderFL: {fileID: 1345261505}
   _wheelColliderFR: {fileID: 2073959568}
   _wheelColliderRL: {fileID: 840907892}
