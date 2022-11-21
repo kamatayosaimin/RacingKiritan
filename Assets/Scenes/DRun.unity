@@ -375,7 +375,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 276408951}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.6725006, y: 0.3302, z: -1.2}
+  m_LocalPosition: {x: 0.6725006, y: 0.2946, z: -1.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1701131480}
@@ -411,7 +411,7 @@ Transform:
   m_GameObject: {fileID: 279376554}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6604, y: 0.0635, z: 0.6604}
+  m_LocalScale: {x: 0.5892, y: 0.0635, z: 0.5892}
   m_Children: []
   m_Father: {fileID: 1947019710}
   m_RootOrder: 0
@@ -489,7 +489,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 288116900}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.4802, z: 0}
+  m_LocalPosition: {x: 0, y: 0.4446, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1240573245}
@@ -631,7 +631,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 495477906}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.6774998, y: 0.3302, z: 1.2}
+  m_LocalPosition: {x: -0.6774998, y: 0.2946, z: 1.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1546929486}
@@ -1046,7 +1046,7 @@ Transform:
   m_GameObject: {fileID: 653508876}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1397, y: 0.6604, z: 0.1}
+  m_LocalScale: {x: 0.1397, y: 0.5892, z: 0.1}
   m_Children: []
   m_Father: {fileID: 1947019710}
   m_RootOrder: 1
@@ -1219,7 +1219,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 750173321}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.6774998, y: 0.3302, z: 1.2}
+  m_LocalPosition: {x: 0.6774998, y: 0.2946, z: 1.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1565658018}
@@ -1361,7 +1361,7 @@ WheelCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 840907890}
   m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 0.3302
+  m_Radius: 0.2946
   m_SuspensionSpring:
     spring: 35000
     damper: 4500
@@ -1523,6 +1523,7 @@ GameObject:
   - component: {fileID: 873682291}
   - component: {fileID: 873682290}
   - component: {fileID: 873682289}
+  - component: {fileID: 873682296}
   - component: {fileID: 873682293}
   - component: {fileID: 873682295}
   - component: {fileID: 873682294}
@@ -1643,6 +1644,7 @@ MonoBehaviour:
   _cameraOffset: {x: 0, y: 2, z: -10}
   _camera: {fileID: 1687009380}
   _carController: {fileID: 2007744790}
+  _carData: {fileID: 11400000, guid: cf89a935c49a6274a89e33c1e175334b, type: 2}
   _soundContent: {fileID: 11400000, guid: 871c08a398b3e2e4eb1bc05d625f659d, type: 2}
 --- !u!114 &873682295
 MonoBehaviour:
@@ -1657,6 +1659,136 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uiPrefab: {fileID: 7191609511427042764, guid: f1264d5848333614eabced64a9aba3b8, type: 3}
+--- !u!114 &873682296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 873682288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 5cef33749bbb4254795920c474949cf7, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0a6461ea-5aed-4b3d-aad8-51056d0ea04a
+    m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 776f09db-d74d-40a3-98f3-fe876690e919
+    m_ActionName: Player/Look[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: dfecd2cc-e45d-4b77-9ecb-5137b5117701
+    m_ActionName: Player/Fire[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 75c518ea-f72d-4598-a7b8-4b80e3574ceb
+    m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fb8eb836-b526-4b94-8de1-e11ea127323d
+    m_ActionName: UI/Submit[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 486bae10-10ae-4110-ae88-3f2279ee3729
+    m_ActionName: UI/Cancel[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 304bdc62-7e00-4a6a-b156-1232ac75247d
+    m_ActionName: UI/Point[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c05ff9d8-531c-4156-a188-7303ed1dad46
+    m_ActionName: UI/Click[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a9db88dc-24be-4c4b-a149-08a6c4fdf087
+    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 495a14a2-a44a-466b-be91-74051d319ecd
+    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 430636ff-cac6-46fd-ac3d-0735369489cb
+    m_ActionName: UI/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9fecbfce-d597-4341-a3e5-37cbfe3ccd7f
+    m_ActionName: UI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ae97a8f4-e2ac-46e0-97f3-b93d0d5ad2d7
+    m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 63dc58d3-37da-41df-b4be-b7c71d49aa03
+    m_ActionName: DebugCar/New action
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f82f235d-4307-47cb-ab28-06fdc21f05ef
+    m_ActionName: DebugCar/Accel[/XInputControllerWindows/rightTrigger,/Keyboard/w,/Keyboard/upArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 50a6dc60-5afe-4627-a83b-0b94eac43e80
+    m_ActionName: DebugCar/Brake[/XInputControllerWindows/leftTrigger,/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4270abba-262e-403a-9e83-6525d2f1b0c4
+    m_ActionName: DebugCar/Rear[/XInputControllerWindows/buttonNorth,/Keyboard/s,/Keyboard/downArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f2b743bd-245b-442b-afcf-512aaf4acf1c
+    m_ActionName: Car/Steering[/XInputControllerWindows/dpad/x,/XInputControllerWindows/leftStick/x,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1f18c782-0598-44ad-9a01-94f14a4bef73
+    m_ActionName: Car/Accel[/XInputControllerWindows/rightTrigger,/Keyboard/w,/Keyboard/upArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: cb7fee05-f252-4e76-9b58-1c656f353940
+    m_ActionName: Car/Brake[/XInputControllerWindows/leftTrigger,/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b953608b-f15d-4afc-b037-417b2006fbcf
+    m_ActionName: Car/Rear[/XInputControllerWindows/buttonNorth,/Keyboard/s,/Keyboard/downArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8e4ef5db-44da-4b23-9224-2fe5f369a8f8
+    m_ActionName: Car/ShiftDown[/XInputControllerWindows/buttonSouth,/Keyboard/z]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a9b617ba-5d0a-4727-b75d-3fe4000fd9f2
+    m_ActionName: Car/ShiftUp[/XInputControllerWindows/buttonEast,/Keyboard/x]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 78a9df46-ee53-4127-9f89-c06b562643a4
+    m_ActionName: DebugCar/ShiftDown[/XInputControllerWindows/buttonSouth,/Keyboard/z]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 57b0a688-5fad-4cc0-8980-dc1f46a0953d
+    m_ActionName: DebugCar/ShiftUp[/XInputControllerWindows/buttonEast,/Keyboard/x]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Car
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &888783852
 GameObject:
   m_ObjectHideFlags: 0
@@ -2311,7 +2443,7 @@ WheelCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1345261503}
   m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 0.3302
+  m_Radius: 0.2946
   m_SuspensionSpring:
     spring: 35000
     damper: 4500
@@ -2807,7 +2939,7 @@ Transform:
   m_GameObject: {fileID: 1514205424}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1397, y: 0.1, z: 0.6604}
+  m_LocalScale: {x: 0.1397, y: 0.1, z: 0.5892}
   m_Children: []
   m_Father: {fileID: 1947019710}
   m_RootOrder: 2
@@ -2888,7 +3020,7 @@ Transform:
   m_GameObject: {fileID: 1546929485}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6604, y: 0.0635, z: 0.6604}
+  m_LocalScale: {x: 0.5892, y: 0.0635, z: 0.5892}
   m_Children: []
   m_Father: {fileID: 495477907}
   m_RootOrder: 0
@@ -2969,7 +3101,7 @@ Transform:
   m_GameObject: {fileID: 1565658017}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6604, y: 0.0635, z: 0.6604}
+  m_LocalScale: {x: 0.5892, y: 0.0635, z: 0.5892}
   m_Children: []
   m_Father: {fileID: 750173322}
   m_RootOrder: 0
@@ -3272,7 +3404,7 @@ Transform:
   m_GameObject: {fileID: 1586921281}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1397, y: 0.6604, z: 0.1}
+  m_LocalScale: {x: 0.1397, y: 0.5892, z: 0.1}
   m_Children: []
   m_Father: {fileID: 750173322}
   m_RootOrder: 1
@@ -3629,7 +3761,7 @@ Transform:
   m_GameObject: {fileID: 1701131479}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6604, y: 0.0635, z: 0.6604}
+  m_LocalScale: {x: 0.5892, y: 0.0635, z: 0.5892}
   m_Children: []
   m_Father: {fileID: 276408952}
   m_RootOrder: 0
@@ -3900,7 +4032,7 @@ Transform:
   m_GameObject: {fileID: 1799147826}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1397, y: 0.1, z: 0.6604}
+  m_LocalScale: {x: 0.1397, y: 0.1, z: 0.5892}
   m_Children: []
   m_Father: {fileID: 276408952}
   m_RootOrder: 2
@@ -4266,7 +4398,7 @@ Transform:
   m_GameObject: {fileID: 1921691007}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1397, y: 0.6604, z: 0.1}
+  m_LocalScale: {x: 0.1397, y: 0.5892, z: 0.1}
   m_Children: []
   m_Father: {fileID: 495477907}
   m_RootOrder: 1
@@ -4347,7 +4479,7 @@ Transform:
   m_GameObject: {fileID: 1922028473}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1397, y: 0.6604, z: 0.1}
+  m_LocalScale: {x: 0.1397, y: 0.5892, z: 0.1}
   m_Children: []
   m_Father: {fileID: 276408952}
   m_RootOrder: 1
@@ -4425,7 +4557,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1947019709}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.6725006, y: 0.3302, z: -1.2}
+  m_LocalPosition: {x: -0.6725006, y: 0.2946, z: -1.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 279376555}
@@ -4518,6 +4650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4750e14729db3cf45b611ac02fc43dfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _centerOfMass: {fileID: 614154345}
   _tireFL: {fileID: 495477907}
   _tireFR: {fileID: 750173322}
   _tireRL: {fileID: 1947019710}
@@ -4566,7 +4699,7 @@ WheelCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2021196721}
   m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 0.3302
+  m_Radius: 0.2946
   m_SuspensionSpring:
     spring: 35000
     damper: 4500
@@ -4945,7 +5078,7 @@ WheelCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2073959566}
   m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 0.3302
+  m_Radius: 0.2946
   m_SuspensionSpring:
     spring: 35000
     damper: 4500
@@ -5090,7 +5223,7 @@ Transform:
   m_GameObject: {fileID: 2076195793}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1397, y: 0.1, z: 0.6604}
+  m_LocalScale: {x: 0.1397, y: 0.1, z: 0.5892}
   m_Children: []
   m_Father: {fileID: 495477907}
   m_RootOrder: 2
@@ -5171,7 +5304,7 @@ Transform:
   m_GameObject: {fileID: 2096025954}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1397, y: 0.1, z: 0.6604}
+  m_LocalScale: {x: 0.1397, y: 0.1, z: 0.5892}
   m_Children: []
   m_Father: {fileID: 750173322}
   m_RootOrder: 2

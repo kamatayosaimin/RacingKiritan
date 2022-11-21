@@ -6,7 +6,20 @@ using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
+    private int _shiftIndex = 0;
+    private float _inputMotor;
+    private float _inputBrake;
+    private float _inputSteering;
+    private float _engineRpm;
+    private float _brakeTorque;
+    private float _steering;
+    private float _finalGear;
+    private float[] _gearRatio;
+    private CarAspirationType _aspirationType;
+    private CarDriveType _driveType;
+    private AnimationCurve _engineTorqueCurve;
     private Rigidbody _rigidbody;
+    [SerializeField] private Transform _centerOfMass;
     [SerializeField] private Transform _tireFL;
     [SerializeField] private Transform _tireFR;
     [SerializeField] private Transform _tireRL;
@@ -16,6 +29,11 @@ public class CarController : MonoBehaviour
     [SerializeField] private WheelCollider _wheelColliderRL;
     [SerializeField] private WheelCollider _wheelColliderRR;
     private CarSoundController _soundController;
+
+    /// <summary>
+    /// ÉzÉCÅ[Éãíºåa(2) * íPà í≤êÆåWêî(60 / 1000)
+    /// </summary>
+    private const float WheelRateMultiple = 0.12f;
 
     void Awake()
     {
@@ -33,11 +51,63 @@ public class CarController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        try
+        {
+            _rigidbody.centerOfMass = _centerOfMass.localPosition;
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+    }
+
+    public void InitData(CarData data, int tuneLevel)
+    {
+        try
+        {
+            _brakeTorque = data.BrakeTorque;
+            _steering = data.Steering;
+            _finalGear = data.FinalGear / 1000f;
+            _gearRatio = data.GearRatio.Select(r => r / 1000f).ToArray();
+            _driveType = GetDriveType(data.DriveType);
+            _engineTorqueCurve = data.GetEngineTorqueCurve(tuneLevel);
+
+            CarSubTune[] subTunes = data.GetSubTunes(tuneLevel);
+
+            _aspirationType = GetAspirationType(data.AspirationType, subTunes);
+
+            WheelCollider[] wheelColliders = GetAllWheelColliders();
+
+            if (IsTuned(subTunes, CarSubTune.Tire))
+                foreach (var wc in wheelColliders)
+                {
+                    wc.forwardFriction = data.TunedForwardFriction;
+                    wc.sidewaysFriction = data.TunedSidewaysFriction;
+                }
+
+            if (IsTuned(subTunes, CarSubTune.Suspension))
+                foreach (var wc in wheelColliders)
+                {
+                    JointSpring spring = wc.suspensionSpring;
+
+                    spring.spring = data.TunedSusupensionSpring;
+                    spring.damper = data.TunedSuspensionDamper;
+
+                    wc.suspensionSpring = spring;
+                }
+
+            if (IsTuned(subTunes, CarSubTune.WeightDown))
+                _rigidbody.mass -= data.WeightDownValue;
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
     }
 
     public void InitSound(CarSoundClipData clipData, CarSoundPitchData pitchData)
@@ -57,6 +127,21 @@ public class CarController : MonoBehaviour
         }
     }
 
+    public void SetInputMotor(float motor)
+    {
+        _inputMotor = motor;
+    }
+
+    public void SetInputBrake(float brake)
+    {
+        _inputBrake = brake;
+    }
+
+    public void SetInputSteering(float steering)
+    {
+        _inputSteering = steering;
+    }
+
     public float GetTotalMass()
     {
         float mass = _rigidbody.mass;
@@ -64,6 +149,56 @@ public class CarController : MonoBehaviour
         mass += GetAllWheelColliders().Sum(wc => wc.mass);
 
         return mass;
+    }
+
+    /// <summary>
+    /// É^ÉCÉÑâ~é¸ * íPà í≤êÆåWêî
+    /// </summary>
+    /// <returns></returns>
+    float GetWheelRate()
+    {
+        float radiusAverage = GetAllWheelColliders().Average(wc => wc.radius);
+
+        return Mathf.PI * radiusAverage * WheelRateMultiple;
+    }
+
+    bool IsTuned(CarSubTune[] subTunes, CarSubTune target)
+    {
+        return subTunes.Any(t => t == target);
+    }
+
+    CarAspirationType GetAspirationType(CarAspirationType type, CarSubTune[] subTunes)
+    {
+        switch (type)
+        {
+            case CarAspirationType.NA:
+                bool isTuned = subTunes.Any(t => t == CarSubTune.Turbo || t == CarSubTune.EngineChange);
+
+                return isTuned ? CarAspirationType.Turbo : CarAspirationType.NA;
+            case CarAspirationType.Turbo:
+                return CarAspirationType.Turbo;
+            default:
+                throw new ArgumentException();
+        }
+    }
+
+    CarDriveType GetDriveType(CarDriveTypeStatus status)
+    {
+        switch (status)
+        {
+            case CarDriveTypeStatus.FF:
+                return CarDriveType.Front;
+            case CarDriveTypeStatus.FR:
+                return CarDriveType.Rear;
+            case CarDriveTypeStatus.MR:
+                return CarDriveType.Rear;
+            case CarDriveTypeStatus.RR:
+                return CarDriveType.Rear;
+            case CarDriveTypeStatus.FourWD:
+                return CarDriveType.FourWheelDrive;
+            default:
+                throw new ArgumentException();
+        }
     }
 
     Dictionary<CarWheelPosition, AudioSource> GetTireSoundDictionary()

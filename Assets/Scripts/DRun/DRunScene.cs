@@ -7,6 +7,7 @@ public class DRunScene : SceneBehaviour
     [SerializeField] private Vector3 _cameraOffset;
     [SerializeField] private Camera _camera;
     [SerializeField] private CarController _carController;
+    [SerializeField] private CarData _carData;
     [SerializeField] private CarSoundContent _soundContent;
 
     //// Start is called before the first frame update

@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _finalGear: 4300
   _gearRatio: c80d0000e607000068050000e80300005d030000
-  _weightDownValue: 60
   _brakeTorque: 500
+  _steering: 15
+  _weightDownValue: 60
   _tunedSusupensionSpring: 35000
   _tunedSuspensionDamper: 4500
   _carName: Test_AE86
