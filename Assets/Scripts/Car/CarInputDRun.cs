@@ -2,16 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CarInputDRun : MonoBehaviour
+public class CarInputDRun : CarInputPlayer
 {
+    private float _steering;
 
-    // Start is called before the first frame update
-    void Start()
+    public override float Steering
+    {
+        get
+        {
+            return _steering;
+        }
+    }
+
+    //// Start is called before the first frame update
+    //void Start()
+    //{
+    //}
+
+    //// Update is called once per frame
+    //void Update()
+    //{
+    //}
+
+    protected override void StartChild()
     {
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void UpdateChild()
     {
     }
 }

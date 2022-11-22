@@ -7,9 +7,6 @@ using UnityEngine;
 public class CarController : MonoBehaviour
 {
     private int _shiftIndex = 0;
-    private float _inputMotor;
-    private float _inputBrake;
-    private float _inputSteering;
     private float _engineRpm;
     private float _brakeTorque;
     private float _steering;
@@ -28,6 +25,7 @@ public class CarController : MonoBehaviour
     [SerializeField] private WheelCollider _wheelColliderFR;
     [SerializeField] private WheelCollider _wheelColliderRL;
     [SerializeField] private WheelCollider _wheelColliderRR;
+    private CarInputBase _input;
     private CarSoundController _soundController;
 
     /// <summary>
@@ -110,6 +108,11 @@ public class CarController : MonoBehaviour
         }
     }
 
+    public void InitInput(CarInputBase input)
+    {
+        _input = input;
+    }
+
     public void InitSound(CarSoundClipData clipData, CarSoundPitchData pitchData)
     {
         try
@@ -125,21 +128,6 @@ public class CarController : MonoBehaviour
         {
             ErrorManager.Instance.AddException(e);
         }
-    }
-
-    public void SetInputMotor(float motor)
-    {
-        _inputMotor = motor;
-    }
-
-    public void SetInputBrake(float brake)
-    {
-        _inputBrake = brake;
-    }
-
-    public void SetInputSteering(float steering)
-    {
-        _inputSteering = steering;
     }
 
     public float GetTotalMass()

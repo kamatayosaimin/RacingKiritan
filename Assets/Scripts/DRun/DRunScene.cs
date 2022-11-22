@@ -8,6 +8,7 @@ public class DRunScene : SceneBehaviour
     [SerializeField] private Camera _camera;
     [SerializeField] private CarController _carController;
     [SerializeField] private CarData _carData;
+    private CarInputDRun _carInput;
     [SerializeField] private CarSoundContent _soundContent;
 
     //// Start is called before the first frame update
@@ -19,6 +20,11 @@ public class DRunScene : SceneBehaviour
     //void Update()
     //{
     //}
+
+    protected override void AwakeChild()
+    {
+        _carInput = _carController.gameObject.AddComponent<CarInputDRun>();
+    }
 
     protected override void StartChild()
     {
