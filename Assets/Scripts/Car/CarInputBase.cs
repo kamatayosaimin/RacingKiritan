@@ -48,6 +48,20 @@ public abstract class CarInputBase : MonoBehaviour
         }
     }
 
+    void Awake()
+    {
+        try
+        {
+            _controller = GetComponent<CarController>();
+
+            AwakeChild();
+        }
+        catch (System.Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
+    }
+
     //// Start is called before the first frame update
     //void Start()
     //{
@@ -58,8 +72,7 @@ public abstract class CarInputBase : MonoBehaviour
     //{
     //}
 
-    public void Init(CarController controller)
+    protected virtual void AwakeChild()
     {
-        _controller = controller;
     }
 }

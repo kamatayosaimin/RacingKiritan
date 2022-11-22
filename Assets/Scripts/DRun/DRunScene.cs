@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,7 +24,14 @@ public class DRunScene : SceneBehaviour
 
     protected override void AwakeChild()
     {
-        _carInput = _carController.gameObject.AddComponent<CarInputDRun>();
+        try
+        {
+            _carInput = _carController.gameObject.AddComponent<CarInputDRun>();
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
     }
 
     protected override void StartChild()
@@ -32,7 +40,7 @@ public class DRunScene : SceneBehaviour
         {
             _carController.InitSound(_soundContent.PlayerClipData, _soundContent.PitchData);
         }
-        catch (System.Exception e)
+        catch (Exception e)
         {
             ErrorManager.Instance.AddException(e);
         }

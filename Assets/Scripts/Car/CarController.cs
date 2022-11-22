@@ -110,7 +110,14 @@ public class CarController : MonoBehaviour
 
     public void InitInput(CarInputBase input)
     {
-        _input = input;
+        try
+        {
+            _input = input;
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
     }
 
     public void InitSound(CarSoundClipData clipData, CarSoundPitchData pitchData)
