@@ -10,6 +10,7 @@ public class CarController : MonoBehaviour
     private float _engineRpm;
     private float _brakeTorque;
     private float _steering;
+    private float _fourWDBalance;
     private float _finalGear;
     private float[] _gearRatio;
     private CarAspirationType _aspirationType;
@@ -70,6 +71,7 @@ public class CarController : MonoBehaviour
         {
             _brakeTorque = data.BrakeTorque;
             _steering = data.Steering;
+            _fourWDBalance = data.FourWDBalance / 100f;
             _finalGear = data.FinalGear / 1000f;
             _gearRatio = data.GearRatio.Select(r => r / 1000f).ToArray();
             _driveType = GetDriveType(data.DriveType);

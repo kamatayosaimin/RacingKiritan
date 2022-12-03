@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95c046d4b7806304484a1e0515e6305e, type: 3}
   m_Name: TestAE86
   m_EditorClassIdentifier: 
+  _fourWDBalance: 50
   _finalGear: 4300
   _gearRatio: c80d0000e607000068050000e80300005d030000
   _brakeTorque: 500

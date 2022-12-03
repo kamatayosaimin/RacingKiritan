@@ -6,6 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CarData", menuName = "GOIS/CarData")]
 public class CarData : ScriptableObject
 {
+    [Range(0f, 100f)][SerializeField] private int _fourWDBalance = 50;
     [Range(1f, 6000f)][SerializeField] private int _finalGear = 3000;
     [Range(1f, 6000f)][SerializeField] private int[] _gearRatio = DefaultGearRatio;
     [SerializeField] private float _brakeTorque;
@@ -23,6 +24,14 @@ public class CarData : ScriptableObject
     [SerializeField]
     private CarWheelFrictionData _tunedSidewaysFriction
         = CarWheelFrictionData.DefaultSidewaysFriction;
+
+    public int FourWDBalance
+    {
+        get
+        {
+            return _fourWDBalance;
+        }
+    }
 
     public int FinalGear
     {

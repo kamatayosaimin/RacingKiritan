@@ -38,6 +38,8 @@ public class DRunScene : SceneBehaviour
     {
         try
         {
+            _carController.InitData(_carData, 0);
+            _carController.InitInput(_carInput);
             _carController.InitSound(_soundContent.PlayerClipData, _soundContent.PitchData);
         }
         catch (Exception e)
