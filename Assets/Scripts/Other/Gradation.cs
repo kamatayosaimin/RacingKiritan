@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum GradiationType
+public enum GradationType
 {
     None,
     LeftToRight,
@@ -30,11 +30,11 @@ public class Gradation : BaseMeshEffect
     }
 
     private bool _isUpdated;
-    [SerializeField] private GradiationType _type;
+    [SerializeField] private GradationType _type;
     [SerializeField] private Color _startColor = Color.white;
     [SerializeField] private Color _endColor = Color.white;
 
-    public GradiationType Type
+    public GradationType Type
     {
         get
         {
@@ -108,7 +108,7 @@ public class Gradation : BaseMeshEffect
 
     public override void ModifyMesh(VertexHelper vh)
     {
-        if (!IsActive() || _type == GradiationType.None)
+        if (!IsActive() || _type == GradationType.None)
             return;
 
         GraphicType graphicType = GetGraphicType();
@@ -154,7 +154,7 @@ public class Gradation : BaseMeshEffect
 
         switch (_type)
         {
-            case GradiationType.LeftToRight:
+            case GradationType.LeftToRight:
                 colorTypes = new[]
                 {
                     ColorType.Start,
@@ -166,7 +166,7 @@ public class Gradation : BaseMeshEffect
                 };
 
                 return colorTypes;
-            case GradiationType.TopToBottom:
+            case GradationType.TopToBottom:
                 colorTypes = new[]
                 {
                     ColorType.End,
@@ -178,7 +178,7 @@ public class Gradation : BaseMeshEffect
                 };
 
                 return colorTypes;
-            case GradiationType.DownToTheRight:
+            case GradationType.DownToTheRight:
                 colorTypes = new[]
                 {
                     ColorType.Mid,
@@ -190,7 +190,7 @@ public class Gradation : BaseMeshEffect
                 };
 
                 return colorTypes;
-            case GradiationType.RisingToTheRight:
+            case GradationType.RisingToTheRight:
                 colorTypes = new[]
                 {
                     ColorType.Start,
@@ -213,7 +213,7 @@ public class Gradation : BaseMeshEffect
 
         switch (_type)
         {
-            case GradiationType.LeftToRight:
+            case GradationType.LeftToRight:
                 colorTypes = new[]
                 {
                     ColorType.Start,
@@ -225,7 +225,7 @@ public class Gradation : BaseMeshEffect
                 };
 
                 return colorTypes;
-            case GradiationType.TopToBottom:
+            case GradationType.TopToBottom:
                 colorTypes = new[]
                 {
                     ColorType.Start,
@@ -237,7 +237,7 @@ public class Gradation : BaseMeshEffect
                 };
 
                 return colorTypes;
-            case GradiationType.DownToTheRight:
+            case GradationType.DownToTheRight:
                 colorTypes = new[]
                 {
                     ColorType.Start,
@@ -249,7 +249,7 @@ public class Gradation : BaseMeshEffect
                 };
 
                 return colorTypes;
-            case GradiationType.RisingToTheRight:
+            case GradationType.RisingToTheRight:
                 colorTypes = new[]
                 {
                     ColorType.Mid,
