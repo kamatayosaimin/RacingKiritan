@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class DRunScene : SceneBehaviour
 {
@@ -21,6 +22,36 @@ public class DRunScene : SceneBehaviour
     //void Update()
     //{
     //}
+
+    public void OnSteering(InputAction.CallbackContext context)
+    {
+        Debug.Log($"Steering : {context.ReadValue<float>()}");
+    }
+
+    public void OnAccel(InputAction.CallbackContext context)
+    {
+        Debug.Log($"Accel : {context.ReadValue<float>()}");
+    }
+
+    public void OnBrake(InputAction.CallbackContext context)
+    {
+        Debug.Log($"Brake : {context.ReadValue<float>()}");
+    }
+
+    public void OnRear(InputAction.CallbackContext context)
+    {
+        Debug.Log($"Rear : {context.ReadValue<float>()}");
+    }
+
+    public void OnShiftDown(InputAction.CallbackContext context)
+    {
+        Debug.Log($"ShiftDown : {context.ReadValueAsButton()}");
+    }
+
+    public void OnShiftUp(InputAction.CallbackContext context)
+    {
+        Debug.Log($"ShiftUp : {context.ReadValueAsButton()}");
+    }
 
     protected override void AwakeChild()
     {
