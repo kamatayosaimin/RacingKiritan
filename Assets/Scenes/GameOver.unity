@@ -1417,6 +1417,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _commentReset: 0
   _corePrefab: {fileID: 3807631186764386908, guid: 7cb4b80e3d804524db41abd52d940bab, type: 3}
+  _nextSceneName: Menu
+  _kiritanName: "\u6771\u5317\u304D\u308A\u305F\u3093"
+  _manhuntName: "\u4EBA\u9593\u72E9\u308A<size=20>\u30DE\u30F3\u30CF\u30F3\u30C8</size>"
+  _nameText: {fileID: 1781287307}
+  _messageText: {fileID: 2003161144}
+  _voiceSound: {fileID: 635148555}
+  _messageDatas:
+  - _message: 
+    _speaker: 0
+    _clip: {fileID: 0}
 --- !u!1 &1149750395
 GameObject:
   m_ObjectHideFlags: 0
