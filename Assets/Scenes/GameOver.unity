@@ -1424,9 +1424,57 @@ MonoBehaviour:
   _messageText: {fileID: 2003161144}
   _voiceSound: {fileID: 635148555}
   _messageDatas:
-  - _message: 
-    _speaker: 0
-    _clip: {fileID: 0}
+  - _message: "\u3042\u3042\u2026\u3001\u8CA0\u3051\u3066\u3057\u307E\u3063\u305F\u2026\u3002"
+    _speaker: 1
+    _clip: {fileID: 8300000, guid: f6a9f5405f1a25e44bd006826ea967ca, type: 3}
+  - _message: "\u3050\u3059\u3093\u2026\u3001\u3050\u3059\u3093\u2026\u3002"
+    _speaker: 1
+    _clip: {fileID: 8300000, guid: 1495d6c8d5347284998fbe7c8c293b5b, type: 3}
+  - _message: "\u30AA\u30E9\u30A1\u30A1\u30F3\u3001\u3068\u3063\u3068\u3068\u964D\u308A\u3084\u304C\u308C!"
+    _speaker: 2
+    _clip: {fileID: 8300000, guid: d8529ef952af2994788456fe5b4687b5, type: 3}
+  - _message: "\u3072\u3044\u3063!"
+    _speaker: 1
+    _clip: {fileID: 8300000, guid: 9f9f50a86c721f140aef536c9513e1a0, type: 3}
+  - _message: "\u3054\u3001\u3054\u3081\u3093\u306A\u3055\u3044\u3086\u308B\u3057\u3066\u304F\u3060\u3055\u3044!"
+    _speaker: 1
+    _clip: {fileID: 8300000, guid: 9d5fc1739a93bfb4583debf3ad4cf045, type: 3}
+  - _message: "\u8CA0\u3051\u305F\u304B\u3089\u306B\u306F\u3069\u30FC\u306A\u308B\u304B\u308F\u304B\u3063\u3066\u3093\u3060\u308D\u306A\u3041?"
+    _speaker: 2
+    _clip: {fileID: 8300000, guid: 79a56321dcbf89d4cb62ac6689fce192, type: 3}
+  - _message: "\u4EBA\u9593\u72E9\u308A<size=20>\u30DE\u30F3\u30CF\u30F3\u30C8</size>\u3055\u2026\u3002"
+    _speaker: 2
+    _clip: {fileID: 8300000, guid: b438adbef1ab8d5439f430c0c7d1f9de, type: 3}
+  - _message: "\u307E\u3001\u307E\u3093\u306F\u3093\u3068?"
+    _speaker: 1
+    _clip: {fileID: 8300000, guid: d1a8f0ebfb3fa9947a6d0482ba29de7f, type: 3}
+  - _message: "\u4EBA\u9593\u72E9\u308A\u3001\u306B\u3043\u3093\u3052\u3047\u3093\u304C\u3041\u308A\u3043!\r\n\u304A\u307E\u3048\u306E\u547D\u3092\u3044\u305F\u3060\u304F\u306E\u3055!"
+    _speaker: 2
+    _clip: {fileID: 8300000, guid: 2d4ca654f21b2b64cae506ca2f78fcc5, type: 3}
+  - _message: "\u3072\u3048\u30FC\u30FC\u3063!"
+    _speaker: 1
+    _clip: {fileID: 8300000, guid: 9e3df173fe6a2e64f8f078f5e9e94457, type: 3}
+  - _message: "\u306A\u3001\u306A\u3093\u3067\u3082\u3057\u307E\u3059\u304B\u3089!\r\n\u30C9\u30EC\u30A4\u306B\u3059\u308B\u306A\u308A\u3001\u304D\u308A\u305F\u3093\u306E\u30AB\u30E9\u30C0\u3092\u30AA\u30E2\u30C1\u30E3\u306B\u3059\u308B\u306A\u308A\u3057\u3066\u3044\u3044\u3067\u3059\u304B\u3089!\r"
+    _speaker: 1
+    _clip: {fileID: 8300000, guid: 3ed28b2e133124046a4691e21d035b57, type: 3}
+  - _message: "\u2026\u305B\u3081\u3066\u547D\u3060\u3051\u306F\u30AB\u30F3\u30D9\u30F3\u3092!"
+    _speaker: 1
+    _clip: {fileID: 8300000, guid: 917eec7efb4ac9c47b7b7c9c63e656f5, type: 3}
+  - _message: "\u3084\u3001\u3060\u3001\u306D\u3002"
+    _speaker: 2
+    _clip: {fileID: 8300000, guid: b6477850a4bcd2e4990df7f132790754, type: 3}
+  - _message: "\u306B\u3043\u3093\u3052\u3047\u3093\u304C\u3041\u308A\u3043!"
+    _speaker: 2
+    _clip: {fileID: 8300000, guid: e6858ff216d505a43ae8f7711588e2d9, type: 3}
+  - _message: "\u3042\u30FC\u3063\u3001\u3042\u30FC\u3063!"
+    _speaker: 1
+    _clip: {fileID: 8300000, guid: 5929d93135de2b747b87f76f75585ae1, type: 3}
+  - _message: "\u304E\u3083\u3042\u3042\u3042\u3042\u3042\u30FC\u3063!"
+    _speaker: 1
+    _clip: {fileID: 8300000, guid: 278fa031f1641a549a9702643b65c55d, type: 3}
+  - _message: "\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u3063!"
+    _speaker: 1
+    _clip: {fileID: 8300000, guid: f9994634adc040a44ad1fd706330e387, type: 3}
 --- !u!1 &1149750395
 GameObject:
   m_ObjectHideFlags: 0
