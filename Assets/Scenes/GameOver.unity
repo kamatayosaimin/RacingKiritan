@@ -362,8 +362,8 @@ RectTransform:
   m_Father: {fileID: 971265145}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0.2}
+  m_AnchorMin: {x: 0.1, y: 0}
+  m_AnchorMax: {x: 0.9, y: 0.2}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: -10}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1178,7 +1178,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 971265146}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1108001042}
+        m_TargetAssemblyTypeName: GameOverScene, Assembly-CSharp
+        m_MethodName: NextMessage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1010383586
 GameObject:
   m_ObjectHideFlags: 0
@@ -1286,6 +1298,7 @@ GameObject:
   - component: {fileID: 1108001038}
   - component: {fileID: 1108001037}
   - component: {fileID: 1108001036}
+  - component: {fileID: 1108001043}
   - component: {fileID: 1108001040}
   - component: {fileID: 1108001041}
   - component: {fileID: 1108001042}
@@ -1420,6 +1433,7 @@ MonoBehaviour:
   _nextSceneName: Menu
   _kiritanName: "\u6771\u5317\u304D\u308A\u305F\u3093"
   _manhuntName: "\u4EBA\u9593\u72E9\u308A<size=20>\u30DE\u30F3\u30CF\u30F3\u30C8</size>"
+  _animatorParamName: Index
   _nameText: {fileID: 1781287307}
   _messageText: {fileID: 2003161144}
   _voiceSound: {fileID: 635148555}
@@ -1475,6 +1489,25 @@ MonoBehaviour:
   - _message: "\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u3063!"
     _speaker: 1
     _clip: {fileID: 8300000, guid: f9994634adc040a44ad1fd706330e387, type: 3}
+--- !u!95 &1108001043
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1108001035}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 37035b4e13962364d87365dbc8eb7100, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1149750395
 GameObject:
   m_ObjectHideFlags: 0
@@ -1522,7 +1555,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1149750395}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
