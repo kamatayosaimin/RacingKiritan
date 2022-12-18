@@ -6,11 +6,15 @@ public class CarInputDRun : CarInputPlayer
 {
     private float _steering;
 
-    public override float Steering
+    public override float InputSteering
     {
         get
         {
             return _steering;
+        }
+        set
+        {
+            _steering = value;
         }
     }
 

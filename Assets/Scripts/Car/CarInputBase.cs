@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,37 +7,107 @@ public abstract class CarInputBase : MonoBehaviour
 {
     private float _motor;
     private float _brake;
+    private CarInputState _inputState;
     private CarController _controller;
 
-    public float Motor
+    public float InputMotor
     {
         get
         {
             return _motor;
         }
-        protected set
+        set
         {
             _motor = value;
         }
     }
 
-    public float Brake
+    public float CurrentMotor
+    {
+        get
+        {
+            switch (_inputState)
+            {
+                case CarInputState.Standby:
+                    return 0f;
+                case CarInputState.Playing:
+                    return _motor;
+                case CarInputState.Finished:
+                    return 0f;
+                default:
+                    throw new ArgumentException();
+            }
+        }
+    }
+
+    public float InputBrake
     {
         get
         {
             return _brake;
         }
-        protected set
+        set
         {
             _brake = value;
         }
     }
 
-    public virtual float Steering
+    public float CurrentBrake
+    {
+        get
+        {
+            switch (_inputState)
+            {
+                case CarInputState.Standby:
+                    return 1f;
+                case CarInputState.Playing:
+                    return _brake;
+                case CarInputState.Finished:
+                    return 0f;
+                default:
+                    throw new ArgumentException();
+            }
+        }
+    }
+
+    public virtual float InputSteering
     {
         get
         {
             return 0f;
+        }
+        set
+        {
+        }
+    }
+
+    public float CurrentSteering
+    {
+        get
+        {
+            switch (_inputState)
+            {
+                case CarInputState.Standby:
+                    return InputSteering;
+                case CarInputState.Playing:
+                    return InputSteering;
+                case CarInputState.Finished:
+                    return 0f;
+                default:
+                    throw new ArgumentException();
+            }
+        }
+    }
+
+    public CarInputState InputState
+    {
+        get
+        {
+            return _inputState;
+        }
+        set
+        {
+            _inputState = value;
         }
     }
 
