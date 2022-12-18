@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CarUIControllerDRun : CarUIControllerBase
 {
+    [SerializeField] private TMPro.TextMeshProUGUI _steeringText;
+    [SerializeField] private CarSlider _steeringSlider;
 
     // Start is called before the first frame update
     void Start()
