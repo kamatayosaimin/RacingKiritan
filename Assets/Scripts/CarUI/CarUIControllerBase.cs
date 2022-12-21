@@ -53,7 +53,7 @@ public class CarUIControllerBase : MonoBehaviour
         {
             int memoriCount = data.GetMeterMemoriCount(tuneLevel);
 
-            _meterScale = memoriCount * 1000f;
+            _meterScale = memoriCount * CarCommon.MeterMomoriScale;
 
             foreach (Transform c in _memoriImageParent)
                 Destroy(c.gameObject);
