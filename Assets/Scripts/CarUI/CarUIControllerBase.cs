@@ -7,10 +7,9 @@ using UnityEngine.UI;
 
 public class CarUIControllerBase : MonoBehaviour
 {
-    private int _memoriCount = MemoriMax;
-    private int _redZoneIndex = 10;
     [SerializeField] private float _memoriTextOffset;
     [SerializeField] private float _memoriImageOffset;
+    private float _meterScale;
     [SerializeField] private string _inputStyle = "0.000";
     [SerializeField] private Color _warningLampOffColor = Color.white;
     [SerializeField] private Color _warningLampOnColor = Color.white;
@@ -31,8 +30,6 @@ public class CarUIControllerBase : MonoBehaviour
     [SerializeField] private CarSlider _brakeSlider;
     [SerializeField] private CarSlider _accelSlider;
 
-    private const int MemoriMax = 15;
-
     void Awake()
     {
         _warningLampImages = _warningLampParent.GetComponentsInChildren<Image>();
@@ -49,6 +46,39 @@ public class CarUIControllerBase : MonoBehaviour
     //void Update()
     //{
     //}
+
+    public void Init(CarData data, int tuneLevel)
+    {
+        try
+        {
+            int memoriCount = data.GetMeterMemoriCount(tuneLevel);
+
+            _meterScale = memoriCount * 1000f;
+
+            foreach (Transform c in _memoriImageParent)
+                Destroy(c.gameObject);
+
+            foreach (Transform c in _memoriTextParent)
+                Destroy(c.gameObject);
+
+            for (int i = 0; i <= memoriCount; i++)
+            {
+                string name = i.ToString();
+                Quaternion rotation = GetMemoriRotation(i, memoriCount);
+
+                MemoriImageInstantiate(name, rotation);
+                MemoriTextInstantiate(name, rotation);
+            }
+
+            float redZone = data.GetRedZone(tuneLevel);
+
+            _redZoneImage.fillAmount = Mathf.InverseLerp(_meterScale, 0f, redZone) * 0.75f;
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
+    }
 
     public void SetAccelText(float value)
     {
@@ -102,8 +132,54 @@ public class CarUIControllerBase : MonoBehaviour
     {
     }
 
+    void MemoriImageInstantiate(string name, Quaternion rotation)
+    {
+        try
+        {
+            Image instance = Instantiate(_memoriImagePrefab, Vector3.zero, rotation, _memoriImageParent);
+
+            instance.name = name;
+            instance.rectTransform.anchoredPosition3D = rotation * Vector3.up * _memoriImageOffset;
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
+    }
+
+    void MemoriTextInstantiate(string name, Quaternion rotation)
+    {
+        try
+        {
+            TextMeshProUGUI instance = Instantiate(
+                _memoriTextPrefab,
+                Vector3.zero,
+                Quaternion.identity,
+                _memoriTextParent
+                );
+
+            instance.name = name;
+            instance.text = name;
+            instance.rectTransform.anchoredPosition3D = rotation * Vector3.up * _memoriTextOffset;
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
+    }
+
     protected string GetInputString(float value)
     {
         return value.ToString(_inputStyle);
+    }
+
+    Quaternion GetMemoriRotation(int index, int count)
+    {
+        float t = index / (float)count;
+        Vector3 eulerAngles = Vector3.zero;
+
+        eulerAngles.z = Mathf.Lerp(180f, -90f, t);
+
+        return Quaternion.Euler(eulerAngles);
     }
 }

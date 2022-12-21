@@ -187,9 +187,13 @@ public class DRunScene : SceneBehaviour
     {
         try
         {
-            _carController.InitData(_carData, 0);
+            int tuneLevel = 0;
+
+            _carController.InitData(_carData, tuneLevel);
             _carController.InitInput(_carInput);
             _carController.InitSound(_soundContent.PlayerClipData, _soundContent.PitchData);
+
+            _uiController.Init(_carData, tuneLevel);
         }
         catch (Exception e)
         {

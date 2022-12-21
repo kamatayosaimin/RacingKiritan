@@ -142,6 +142,16 @@ public class CarData : ScriptableObject
         }
     }
 
+    public int GetMeterMemoriCount(int tuneLevel)
+    {
+        return _tuneDatas[tuneLevel].MeterMemoriCount;
+    }
+
+    public float GetRedZone(int tuneLevel)
+    {
+        return _tuneDatas[tuneLevel].RedZone;
+    }
+
     public CarSubTune[] GetSubTunes(int tuneLevel)
     {
         return _tuneDatas.Take(tuneLevel + 1).Select(d => d.SubTune).Where(t => t != CarSubTune.None).ToArray();

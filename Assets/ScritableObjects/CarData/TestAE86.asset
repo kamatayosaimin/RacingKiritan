@@ -24,7 +24,9 @@ MonoBehaviour:
   _aspirationType: 0
   _driveType: 1
   _tuneDatas:
-  - _subTune: 0
+  - _meterMemoriCount: 8
+    _redZone: 6500
+    _subTune: 0
     _engineTorqueCurve:
       serializedVersion: 2
       m_Curve:
@@ -67,140 +69,180 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  - _subTune: 1
+  - _meterMemoriCount: 15
+    _redZone: 0
+    _subTune: 1
     _engineTorqueCurve:
       serializedVersion: 2
       m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  - _subTune: 3
+  - _meterMemoriCount: 15
+    _redZone: 0
+    _subTune: 3
     _engineTorqueCurve:
       serializedVersion: 2
       m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  - _subTune: 0
+  - _meterMemoriCount: 15
+    _redZone: 0
+    _subTune: 0
     _engineTorqueCurve:
       serializedVersion: 2
       m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  - _subTune: 4
+  - _meterMemoriCount: 15
+    _redZone: 0
+    _subTune: 4
     _engineTorqueCurve:
       serializedVersion: 2
       m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  - _subTune: 0
+  - _meterMemoriCount: 15
+    _redZone: 0
+    _subTune: 0
     _engineTorqueCurve:
       serializedVersion: 2
       m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  - _subTune: 0
+  - _meterMemoriCount: 15
+    _redZone: 0
+    _subTune: 0
     _engineTorqueCurve:
       serializedVersion: 2
       m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  - _subTune: 0
+  - _meterMemoriCount: 15
+    _redZone: 0
+    _subTune: 0
     _engineTorqueCurve:
       serializedVersion: 2
       m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  - _subTune: 0
+  - _meterMemoriCount: 15
+    _redZone: 0
+    _subTune: 0
     _engineTorqueCurve:
       serializedVersion: 2
       m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  - _subTune: 0
+  - _meterMemoriCount: 15
+    _redZone: 0
+    _subTune: 0
     _engineTorqueCurve:
       serializedVersion: 2
       m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  - _subTune: 5
+  - _meterMemoriCount: 15
+    _redZone: 0
+    _subTune: 5
     _engineTorqueCurve:
       serializedVersion: 2
       m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  - _subTune: 0
+  - _meterMemoriCount: 15
+    _redZone: 0
+    _subTune: 0
     _engineTorqueCurve:
       serializedVersion: 2
       m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  - _subTune: 0
+  - _meterMemoriCount: 15
+    _redZone: 0
+    _subTune: 0
     _engineTorqueCurve:
       serializedVersion: 2
       m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  - _subTune: 0
+  - _meterMemoriCount: 15
+    _redZone: 0
+    _subTune: 0
     _engineTorqueCurve:
       serializedVersion: 2
       m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  - _subTune: 0
+  - _meterMemoriCount: 15
+    _redZone: 0
+    _subTune: 0
     _engineTorqueCurve:
       serializedVersion: 2
       m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  - _subTune: 0
+  - _meterMemoriCount: 15
+    _redZone: 0
+    _subTune: 0
     _engineTorqueCurve:
       serializedVersion: 2
       m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  - _subTune: 0
+  - _meterMemoriCount: 15
+    _redZone: 0
+    _subTune: 0
     _engineTorqueCurve:
       serializedVersion: 2
       m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  - _subTune: 0
+  - _meterMemoriCount: 15
+    _redZone: 0
+    _subTune: 0
     _engineTorqueCurve:
       serializedVersion: 2
       m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  - _subTune: 0
+  - _meterMemoriCount: 15
+    _redZone: 0
+    _subTune: 0
     _engineTorqueCurve:
       serializedVersion: 2
       m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  - _subTune: 0
+  - _meterMemoriCount: 15
+    _redZone: 0
+    _subTune: 0
     _engineTorqueCurve:
       serializedVersion: 2
       m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  - _subTune: 0
+  - _meterMemoriCount: 15
+    _redZone: 0
+    _subTune: 0
     _engineTorqueCurve:
       serializedVersion: 2
       m_Curve: []
