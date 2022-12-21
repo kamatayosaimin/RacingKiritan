@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -10,6 +11,7 @@ public class CarUIControllerBase : MonoBehaviour
     private int _redZoneIndex = 10;
     [SerializeField] private float _memoriTextOffset;
     [SerializeField] private float _memoriImageOffset;
+    [SerializeField] private string _inputStyle = "0.000";
     [SerializeField] private Color _memoriColorWhite = Color.white;
     [SerializeField] private Color _memoriColorRed = Color.white;
     [SerializeField] private Color _warningLampOffColor = Color.white;
@@ -49,7 +51,60 @@ public class CarUIControllerBase : MonoBehaviour
     //{
     //}
 
+    public void SetAccelText(float value)
+    {
+        try
+        {
+            _accelText.text = GetInputString(value);
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
+    }
+
+    public void SetBrakeText(float value)
+    {
+        try
+        {
+            _brakeText.text = GetInputString(value);
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
+    }
+
+    public void SetAccelSliderValue(float value)
+    {
+        try
+        {
+            _accelSlider.value = value;
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
+    }
+
+    public void SetBrakeSliderValue(float value)
+    {
+        try
+        {
+            _brakeSlider.value = value;
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
+    }
+
     protected virtual void AwakeChild()
     {
+    }
+
+    protected string GetInputString(float value)
+    {
+        return value.ToString(_inputStyle);
     }
 }

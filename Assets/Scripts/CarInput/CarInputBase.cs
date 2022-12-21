@@ -7,6 +7,8 @@ public abstract class CarInputBase : MonoBehaviour
 {
     private float _motor;
     private float _brake;
+    private bool _isShiftDown;
+    private bool _isShiftUp;
     private CarInputState _inputState;
     private CarController _controller;
 
@@ -108,6 +110,30 @@ public abstract class CarInputBase : MonoBehaviour
         set
         {
             _inputState = value;
+        }
+    }
+
+    public bool IsShiftDown
+    {
+        get
+        {
+            return _isShiftDown;
+        }
+        set
+        {
+            _isShiftDown = value;
+        }
+    }
+
+    public bool IsShiftUp
+    {
+        get
+        {
+            return _isShiftUp;
+        }
+        set
+        {
+            _isShiftUp = value;
         }
     }
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,5 +16,29 @@ public class CarUIControllerDRun : CarUIControllerBase
     // Update is called once per frame
     void Update()
     {
+    }
+
+    public void SetSteeringText(float value)
+    {
+        try
+        {
+            _steeringText.text = GetInputString(value);
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
+    }
+
+    public void SetSteeringSliderValue(float value)
+    {
+        try
+        {
+            _steeringSlider.value = value;
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
     }
 }

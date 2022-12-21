@@ -12,6 +12,7 @@ public class DRunScene : SceneBehaviour
     [SerializeField] private CarData _carData;
     private CarInputDRun _carInput;
     [SerializeField] private CarSoundContent _soundContent;
+    private CarUIControllerDRun _uiController;
 
     //// Start is called before the first frame update
     //void Start()
@@ -23,34 +24,164 @@ public class DRunScene : SceneBehaviour
     //{
     //}
 
+    public void SetAccel(float value)
+    {
+        try
+        {
+            _carInput.InputMotor = value;
+
+            _uiController.SetAccelText(value);
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
+    }
+
+    public void SetBrake(float value)
+    {
+        try
+        {
+            _carInput.InputBrake = value;
+
+            _uiController.SetBrakeText(value);
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
+    }
+
+    public void SetSteering(float value)
+    {
+        try
+        {
+            _carInput.InputSteering = value;
+
+            _uiController.SetSteeringText(value);
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
+    }
+
+    public void SetBack(float value)
+    {
+        try
+        {
+            _carInput.InputMotor = -value;
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
+    }
+
+    public void SetShiftDown()
+    {
+        try
+        {
+            _carInput.IsShiftDown = true;
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
+    }
+
+    public void SetShiftUp()
+    {
+        try
+        {
+            _carInput.IsShiftUp = true;
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
+    }
+
     public void OnSteering(InputAction.CallbackContext context)
     {
-        Debug.Log($"Steering : {context.ReadValue<float>()}");
+        try
+        {
+            float value = context.ReadValue<float>();
+
+            _uiController.SetSteeringSliderValue(value);
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
     }
 
     public void OnAccel(InputAction.CallbackContext context)
     {
-        Debug.Log($"Accel : {context.ReadValue<float>()}");
+        try
+        {
+            float value = context.ReadValue<float>();
+
+            _uiController.SetAccelSliderValue(value);
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
     }
 
     public void OnBrake(InputAction.CallbackContext context)
     {
-        Debug.Log($"Brake : {context.ReadValue<float>()}");
+        try
+        {
+            float value = context.ReadValue<float>();
+
+            _uiController.SetBrakeSliderValue(value);
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
     }
 
     public void OnRear(InputAction.CallbackContext context)
     {
-        Debug.Log($"Rear : {context.ReadValue<float>()}");
+        try
+        {
+            float value = context.ReadValue<float>();
+
+            SetBack(value);
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
     }
 
     public void OnShiftDown(InputAction.CallbackContext context)
     {
-        Debug.Log($"ShiftDown : {context.ReadValueAsButton()}");
+        try
+        {
+            if (context.ReadValueAsButton())
+                _carInput.IsShiftDown = true;
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
     }
 
     public void OnShiftUp(InputAction.CallbackContext context)
     {
-        Debug.Log($"ShiftUp : {context.ReadValueAsButton()}");
+        try
+        {
+            if (context.ReadValueAsButton())
+                _carInput.IsShiftUp = true;
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
     }
 
     protected override void AwakeChild()
@@ -58,6 +189,7 @@ public class DRunScene : SceneBehaviour
         try
         {
             _carInput = _carController.gameObject.AddComponent<CarInputDRun>();
+            _uiController = GetComponent<CarUIControllerDRun>();
         }
         catch (Exception e)
         {
