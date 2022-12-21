@@ -144,7 +144,7 @@ public class DRunScene : SceneBehaviour
         }
     }
 
-    public void OnRear(InputAction.CallbackContext context)
+    public void OnBack(InputAction.CallbackContext context)
     {
         try
         {

@@ -804,7 +804,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Rear",
+                    "name": "Back",
                     "type": "Value",
                     "id": "b953608b-f15d-4afc-b037-417b2006fbcf",
                     "expectedControlType": "Axis",
@@ -993,7 +993,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Rear",
+                    "action": "Back",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1004,7 +1004,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Rear",
+                    "action": "Back",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -1015,7 +1015,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Rear",
+                    "action": "Back",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -1026,7 +1026,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Rear",
+                    "action": "Back",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
