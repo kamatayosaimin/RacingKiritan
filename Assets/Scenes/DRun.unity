@@ -2399,6 +2399,7 @@ GameObject:
   - component: {fileID: 417269641}
   - component: {fileID: 417269640}
   - component: {fileID: 417269642}
+  - component: {fileID: 417269643}
   m_Layer: 5
   m_Name: Down
   m_TagString: Untagged
@@ -2508,6 +2509,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &417269643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 417269638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ControlPath: <Gamepad>/buttonSouth
 --- !u!1 &471843873
 GameObject:
   m_ObjectHideFlags: 0
@@ -2662,6 +2676,7 @@ GameObject:
   - component: {fileID: 515323143}
   - component: {fileID: 515323142}
   - component: {fileID: 515323144}
+  - component: {fileID: 515323145}
   m_Layer: 5
   m_Name: Up
   m_TagString: Untagged
@@ -2771,6 +2786,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &515323145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515323140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ControlPath: <Gamepad>/buttonEast
 --- !u!1 &527700717
 GameObject:
   m_ObjectHideFlags: 0
@@ -6462,6 +6490,7 @@ GameObject:
   - component: {fileID: 1138055825}
   - component: {fileID: 1138055824}
   - component: {fileID: 1138055823}
+  - component: {fileID: 1138055826}
   m_Layer: 5
   m_Name: Back
   m_TagString: Untagged
@@ -6571,6 +6600,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1138055821}
   m_CullTransparentMesh: 1
+--- !u!114 &1138055826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1138055821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ControlPath: <Gamepad>/buttonNorth
 --- !u!1 &1143812605
 GameObject:
   m_ObjectHideFlags: 0

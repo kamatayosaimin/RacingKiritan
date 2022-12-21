@@ -66,18 +66,6 @@ public class DRunScene : SceneBehaviour
         }
     }
 
-    public void SetBack(float value)
-    {
-        try
-        {
-            _carInput.InputMotor = -value;
-        }
-        catch (Exception e)
-        {
-            ErrorManager.Instance.AddException(e);
-        }
-    }
-
     public void SetShiftDown()
     {
         try
@@ -148,9 +136,7 @@ public class DRunScene : SceneBehaviour
     {
         try
         {
-            float value = context.ReadValue<float>();
-
-            SetBack(value);
+            _carInput.InputMotor = -context.ReadValue<float>();
         }
         catch (Exception e)
         {
