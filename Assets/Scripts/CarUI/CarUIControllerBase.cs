@@ -12,8 +12,6 @@ public class CarUIControllerBase : MonoBehaviour
     [SerializeField] private float _memoriTextOffset;
     [SerializeField] private float _memoriImageOffset;
     [SerializeField] private string _inputStyle = "0.000";
-    [SerializeField] private Color _memoriColorWhite = Color.white;
-    [SerializeField] private Color _memoriColorRed = Color.white;
     [SerializeField] private Color _warningLampOffColor = Color.white;
     [SerializeField] private Color _warningLampOnColor = Color.white;
     [SerializeField] private TextMeshProUGUI _speedText;
@@ -26,6 +24,7 @@ public class CarUIControllerBase : MonoBehaviour
     [SerializeField] private RectTransform _memoriTextParent;
     [SerializeField] private RectTransform _warningLampParent;
     [SerializeField] private Image _meterImage;
+    [SerializeField] private Image _redZoneImage;
     [SerializeField] private Image _memoriImagePrefab;
     private Image[] _warningLampImages;
     [SerializeField] private Slider _speedSlider;
