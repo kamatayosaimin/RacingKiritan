@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(CanvasRenderer))]
-public class UILine : Graphic
+public class UILine : MaskableGraphic
 {
     [SerializeField] private float _width;
     [SerializeField] private bool _loop;
