@@ -77,14 +77,9 @@ public class UILine : Graphic
 
         float x = 1f;
         float y = -distance.x / distance.y;
+        Vector2 offset = new Vector2(x, y).normalized * halfWidth;
 
-        if (distance.y > 0f)
-        {
-            x = -x;
-            y = -y;
-        }
-
-        return new Vector2(x, y).normalized * halfWidth;
+        return distance.y > 0f ? -offset : offset;
     }
 
     Vector2 GetIntersection(Vector2 position0a, Vector2 position0b, Vector2 position1a, Vector2 position1b)
