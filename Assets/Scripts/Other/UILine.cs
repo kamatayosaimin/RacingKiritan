@@ -11,6 +11,42 @@ public class UILine : MaskableGraphic
     [SerializeField] private float _width;
     [SerializeField] private Vector2[] _positions;
 
+    public int CornerVeritices
+    {
+        get
+        {
+            return _cornerVertices;
+        }
+        set
+        {
+            _cornerVertices = value;
+        }
+    }
+
+    public float Width
+    {
+        get
+        {
+            return _width;
+        }
+        set
+        {
+            _width = value;
+        }
+    }
+
+    public Vector2[] Positions
+    {
+        get
+        {
+            return _positions;
+        }
+        set
+        {
+            _positions = value;
+        }
+    }
+
     // Start is called before the first frame update
     protected override void Start()
     {
