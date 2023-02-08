@@ -1,18 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(CanvasRenderer))]
 public class UILine : MaskableGraphic
 {
+    [SerializeField] private int _cornerVertices;
     [SerializeField] private float _width;
-    [SerializeField] private bool _loop;
     [SerializeField] private Vector2[] _positions;
-
-    [SerializeField] private Vector2 _position0;
-    [SerializeField] private Vector2 _position1;
-    [SerializeField] private Vector2 _position2;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -27,77 +24,126 @@ public class UILine : MaskableGraphic
 
     protected override void OnPopulateMesh(VertexHelper vh)
     {
+        Vector2 pivot = rectTransform.pivot;
+        Vector2 size = rectTransform.rect.size;
+        Vector2 origin = Vector2.Scale(-pivot, size); //RectTransformの左下隅を原点とする
+
         vh.Clear();
 
-        Vector2 offset0 = GetOffset(_position0, _position1);
-        Vector2 offset1 = GetOffset(_position1, _position2);
-        Vector2 vertexPosition0a = _position0 - offset0;
-        Vector2 vertexPosition0b = _position0 + offset0;
-        Vector2 vertexPosition1a = _position1 - offset0;
-        Vector2 vertexPosition1b = _position1 + offset0;
-        Vector2 vertexPosition1A = _position1 - offset1;
-        Vector2 vertexPosition1B = _position1 + offset1;
-        Vector2 vertexPosition2a = _position2 - offset1;
-        Vector2 vertexPosition2b = _position2 + offset1;
-        Vector2 vertexPosition1IA
-            = GetIntersection(vertexPosition0a, vertexPosition1a, vertexPosition1A, vertexPosition2a);
-        Vector2 vertexPosition1IB
-            = GetIntersection(vertexPosition0b, vertexPosition1b, vertexPosition1B, vertexPosition2b);
+        int cornerCount = _positions.Length;
 
-        AddVert(vh, vertexPosition0a);
-        AddVert(vh, vertexPosition0b);
-        AddVert(vh, vertexPosition1IA);
-        AddVert(vh, vertexPosition1IB);
-        AddVert(vh, vertexPosition2a);
-        AddVert(vh, vertexPosition2b);
+        if (cornerCount < 2)
+            return;
 
-        vh.AddTriangle(0, 1, 2);
-        vh.AddTriangle(1, 2, 3);
-        vh.AddTriangle(2, 3, 4);
-        vh.AddTriangle(3, 4, 5);
+        int segmentCount = cornerCount - 1;
+
+        for (int i = 0; i < segmentCount; i++)
+        {
+            Vector2 a = origin + _positions[i];
+            Vector2 b = origin + _positions[i + 1];
+
+            AddSegment(vh, a, b, color, _width);
+
+            if (i < (segmentCount - 1))
+            {
+                Vector2 c = origin + _positions[i + 2];
+                Vector2 tangentFrom = (b - a).normalized;
+                Vector2 tangentTo = (c - b).normalized;
+
+                int tangentCount = _cornerVertices + 1;
+                float tangentAngle = -Vector2.SignedAngle(tangentFrom, tangentTo) * Mathf.Deg2Rad;
+                Vector2[] tangents = Enumerable.Range(0, tangentCount)
+                    .Select(index =>
+                    {
+                        float angle = Mathf.Lerp(0.0f, tangentAngle, index / (tangentCount - 1.0f));
+                        float cosAngle = Mathf.Cos(angle);
+                        float sinAngle = Mathf.Sin(angle);
+
+                        return new Vector2(
+                            (cosAngle * tangentFrom.x) + (sinAngle * tangentFrom.y),
+                            (cosAngle * tangentFrom.y) - (sinAngle * tangentFrom.x));
+                    })
+                    .ToArray();
+
+                for (int j = 0; j < _cornerVertices; j++)
+                    AddJoint(vh, b, tangents[j], tangents[j + 1], color, _width);
+            }
+        }
     }
 
-    void AddVert(VertexHelper vh, Vector2 position)
+    //p点に接続部を追加
+    //tangentFromは入っていく線分の向き
+    //tangentToは出ていく線分の向き
+    private static void AddJoint(
+        VertexHelper vh,
+        Vector2 p,
+        Vector2 tangentFrom,
+        Vector2 tangentTo,
+        Color color,
+        float width)
     {
+        float halfWidth = width / 2;
+        Vector2 dFrom = new Vector2(-tangentFrom.y, tangentFrom.x) * halfWidth;
+        Vector2 dTo = new Vector2(-tangentTo.y, tangentTo.x) * halfWidth;
+
+        int offset = vh.currentVertCount;
+        UIVertex vertex = UIVertex.simpleVert;
+
+        vertex.position = p - dFrom;
+        vertex.color = color;
+
+        vh.AddVert(vertex);
+
+        vertex.position = p + dFrom;
+
+        vh.AddVert(vertex);
+
+        vertex.position = p + dTo;
+
+        vh.AddVert(vertex);
+
+        vertex.position = p - dTo;
+
+        vh.AddVert(vertex);
+
+        vh.AddTriangle(offset + 0, offset + 1, offset + 2);
+        vh.AddTriangle(offset + 2, offset + 3, offset + 0);
+    }
+
+    //a、b点間に線分を追加
+    private static void AddSegment(
+        VertexHelper vh,
+        Vector2 a,
+        Vector2 b,
+        Color color,
+        float width)
+    {
+        Vector2 tangent = (b - a).normalized;
+        Vector2 normal = new Vector2(-tangent.y, tangent.x);
+        Vector2 dA = width * 0.5f * normal;
+        Vector2 dB = width * 0.5f * normal;
+
+        int offset = vh.currentVertCount;
         UIVertex vertex = UIVertex.simpleVert;
 
         vertex.color = color;
-        vertex.position = position;
+        vertex.position = a - dA;
 
         vh.AddVert(vertex);
-    }
 
-    Vector2 GetOffset(Vector2 position0, Vector2 position1)
-    {
-        float halfWidth = _width / 2f;
-        Vector2 distance = position1 - position0;
+        vertex.position = a + dA;
 
-        if (distance.y == 0f)
-            return Vector2.up * halfWidth;
+        vh.AddVert(vertex);
 
-        float x = 1f;
-        float y = -distance.x / distance.y;
-        Vector2 offset = new Vector2(x, y).normalized * halfWidth;
+        vertex.position = b + dB;
 
-        return distance.y > 0f ? -offset : offset;
-    }
+        vh.AddVert(vertex);
 
-    Vector2 GetIntersection(Vector2 position0a, Vector2 position0b, Vector2 position1a, Vector2 position1b)
-    {
-        float s1 = ((position1b.x - position1a.x) * (position0a.y - position1a.y)
-            - (position1b.y - position1a.y) * (position0a.x - position1a.x))
-            / 2f;
-        float s2 = ((position1b.x - position1a.x) * (position1a.y - position0b.y)
-            - (position1b.y - position1a.y) * (position1a.x - position0b.x))
-            / 2f;
-        float st = s1 + s2;
+        vertex.position = b - dB;
 
-        if (st == 0f)
-            return position0a;
+        vh.AddVert(vertex);
 
-        float x = position0a.x + (position0b.x - position0a.x) * s1 / st;
-        float y = position0a.y + (position0b.y - position0a.y) * s1 / st;
-
-        return new Vector2(x, y);
+        vh.AddTriangle(offset + 0, offset + 1, offset + 2);
+        vh.AddTriangle(offset + 2, offset + 3, offset + 0);
     }
 }
