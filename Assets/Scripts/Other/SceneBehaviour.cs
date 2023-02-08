@@ -6,7 +6,6 @@ using UnityEngine;
 public abstract class SceneBehaviour : MonoBehaviour
 {
     [SerializeField] private bool _commentReset;
-    private AtsumaruManager _atsumaruManager;
     [SerializeField] private Core _corePrefab;
 
     protected virtual string SceneName
@@ -14,14 +13,6 @@ public abstract class SceneBehaviour : MonoBehaviour
         get
         {
             return UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-        }
-    }
-
-    public AtsumaruManager AtsumaruManager
-    {
-        get
-        {
-            return _atsumaruManager;
         }
     }
 
@@ -35,8 +26,6 @@ public abstract class SceneBehaviour : MonoBehaviour
 
         try
         {
-            _atsumaruManager = GetComponent<AtsumaruManager>();
-
             AwakeChild();
         }
         catch (Exception e)
@@ -50,8 +39,6 @@ public abstract class SceneBehaviour : MonoBehaviour
     {
         try
         {
-            _atsumaruManager.Comment.ChangeScene(SceneName, _commentReset);
-
             StartChild();
         }
         catch (Exception e)

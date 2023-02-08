@@ -100,17 +100,6 @@
         "com.unity.modules.imgui": "1.0.0"
       }
     },
-    "jp.sinoa.rpgatsumaruapiforunity": {
-      "version": "2.0.1",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.modules.audio": "1.0.0",
-        "com.unity.modules.imageconversion": "1.0.0",
-        "com.unity.modules.jsonserialize": "1.0.0"
-      },
-      "url": "https://registry.npmjs.org"
-    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,
