@@ -9,8 +9,14 @@ public class CarUIControllerBase : MonoBehaviour
 {
     [SerializeField] private float _memoriTextOffset;
     [SerializeField] private float _memoriImageOffset;
+    [SerializeField] private float _powerLineScale = 1f;
+    [SerializeField] private float _torqueLineScale = 1f;
+    [SerializeField] private float _rpmLineScale = 1f;
+    [SerializeField] private float _lineRpmSpan = 100f;
     private float _meterScale;
     [SerializeField] private string _inputStyle = "0.000";
+    [SerializeField] private string _powerFormat = "{0:#} PS / {1} rpm";
+    [SerializeField] private string _torqueFormat = "{0:#.#} kgm / {1} rpm";
     [SerializeField] private Color _warningLampOffColor = Color.white;
     [SerializeField] private Color _warningLampOnColor = Color.white;
     [SerializeField] private TextMeshProUGUI _speedText;
@@ -18,10 +24,13 @@ public class CarUIControllerBase : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _brakeText;
     [SerializeField] private TextMeshProUGUI _accelText;
     [SerializeField] private TextMeshProUGUI _memoriTextPrefab;
+    [SerializeField] private TextMeshProUGUI _powerText;
+    [SerializeField] private TextMeshProUGUI _torqueText;
     [SerializeField] private Gradient _speedGradient;
     [SerializeField] private RectTransform _memoriImageParent;
     [SerializeField] private RectTransform _memoriTextParent;
     [SerializeField] private RectTransform _warningLampParent;
+    [SerializeField] private RectTransform _rpmLineTransform;
     [SerializeField] private Image _meterImage;
     [SerializeField] private Image _redZoneImage;
     [SerializeField] private Image _memoriImagePrefab;
@@ -29,6 +38,8 @@ public class CarUIControllerBase : MonoBehaviour
     [SerializeField] private Slider _speedSlider;
     [SerializeField] private CarSlider _brakeSlider;
     [SerializeField] private CarSlider _accelSlider;
+    [SerializeField] private UILine _powerLine;
+    [SerializeField] private UILine _torqueLine;
 
     void Awake()
     {
@@ -51,28 +62,8 @@ public class CarUIControllerBase : MonoBehaviour
     {
         try
         {
-            int memoriCount = data.GetMeterMemoriCount(tuneLevel);
-
-            _meterScale = memoriCount * CarCommon.MeterMomoriScale;
-
-            foreach (Transform c in _memoriImageParent)
-                Destroy(c.gameObject);
-
-            foreach (Transform c in _memoriTextParent)
-                Destroy(c.gameObject);
-
-            for (int i = 0; i <= memoriCount; i++)
-            {
-                string name = i.ToString();
-                Quaternion rotation = GetMemoriRotation(i, memoriCount);
-
-                MemoriImageInstantiate(name, rotation);
-                MemoriTextInstantiate(name, rotation);
-            }
-
-            float redZone = data.GetRedZone(tuneLevel);
-
-            _redZoneImage.fillAmount = Mathf.InverseLerp(_meterScale, 0f, redZone) * 0.75f;
+            InitMeter(data, tuneLevel);
+            InitEngineSpec(data, tuneLevel);
         }
         catch (Exception e)
         {
@@ -130,6 +121,103 @@ public class CarUIControllerBase : MonoBehaviour
 
     protected virtual void AwakeChild()
     {
+    }
+
+    void InitMeter(CarData data, int tuneLevel)
+    {
+        try
+        {
+            int memoriCount = data.GetMeterMemoriCount(tuneLevel);
+
+            _meterScale = memoriCount * CarCommon.MeterMomoriScale;
+
+            foreach (Transform c in _memoriImageParent)
+                Destroy(c.gameObject);
+
+            foreach (Transform c in _memoriTextParent)
+                Destroy(c.gameObject);
+
+            for (int i = 0; i <= memoriCount; i++)
+            {
+                string name = i.ToString();
+                Quaternion rotation = GetMemoriRotation(i, memoriCount);
+
+                MemoriImageInstantiate(name, rotation);
+                MemoriTextInstantiate(name, rotation);
+            }
+
+            float redZone = data.GetRedZone(tuneLevel);
+
+            _redZoneImage.fillAmount = Mathf.InverseLerp(_meterScale, 0f, redZone) * 0.75f;
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
+    }
+
+    void InitEngineSpec(CarData data, int tuneLevel)
+    {
+        try
+        {
+            float maxPowerValue = 0f;
+            float maxPowerRpm = 0f;
+            float maxTorqueValue = 0f;
+            float maxTorqueRpm = 0f;
+            List<Vector2> powerPositionList = new List<Vector2>();
+            List<Vector2> torquePositionList = new List<Vector2>();
+            AnimationCurve torqueCurve = data.GetEngineTorqueCurve(tuneLevel);
+
+            Keyframe[] keys = torqueCurve.keys;
+            Action<float> arg = t =>
+            {
+                float torque = torqueCurve.Evaluate(t);
+                Vector2 torquePosition = Vector2.zero;
+
+                torquePosition.x = t * _rpmLineScale;
+                torquePosition.y = torque * _torqueLineScale;
+
+                torquePositionList.Add(torquePosition);
+
+                if (torque > maxTorqueValue)
+                {
+                    maxTorqueValue = torque;
+                    maxTorqueRpm = t;
+                }
+
+                //Torque * rpm * PowerRate(Mathf.PI * 2 / 4500)
+                float power = torque * t * CarCommon.PowerRate;
+                Vector2 powerPosition = Vector2.zero;
+
+                powerPosition.x = torquePosition.x;
+                powerPosition.y = power * _powerLineScale;
+
+                powerPositionList.Add(powerPosition);
+
+                if (power > maxPowerValue)
+                {
+                    maxPowerValue = power;
+                    maxPowerRpm = t;
+                }
+            };
+
+            for (float t = keys[0].time; t < keys[keys.Length - 1].time; t += _lineRpmSpan)
+                arg(t);
+
+            arg(keys[keys.Length - 1].time);
+
+            _powerLine.Positions = powerPositionList.ToArray();
+
+            _torqueLine.Positions = torquePositionList.ToArray();
+
+            _powerText.text = string.Format(_powerFormat, maxPowerValue, maxPowerRpm);
+
+            _torqueText.text = string.Format(_torqueFormat, maxTorqueValue, maxTorqueRpm);
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
     }
 
     void MemoriImageInstantiate(string name, Quaternion rotation)

@@ -6,9 +6,9 @@ using UnityEngine;
 public class CarTuneData
 {
     [Range(1f, CarCommon.MeterMemoriCount)][SerializeField] private int _meterMemoriCount = CarCommon.MeterMemoriCount;
-    [Range(0f, 15000f)][SerializeField] private float _redZone;
+    [Range(0f, CarCommon.MaxRpm)][SerializeField] private float _redZone;
     [SerializeField] private CarSubTune _subTune;
-    [SerializeField][RangeCurve(0f, 0f, 15000f, 200f)] private AnimationCurve _engineTorqueCurve;
+    [SerializeField][RangeCurve(0f, 0f, CarCommon.MaxRpm, 200f)] private AnimationCurve _engineTorqueCurve;
 
     public int MeterMemoriCount
     {

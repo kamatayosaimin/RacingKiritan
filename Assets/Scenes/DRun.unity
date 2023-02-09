@@ -7032,7 +7032,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _memoriTextOffset: 67.5
   _memoriImageOffset: 100
+  _powerLineScale: 0.13
+  _torqueLineScale: 1.3
+  _rpmLineScale: 0.01
+  _lineRpmSpan: 100
   _inputStyle: 0.000
+  _powerFormat: '{0:#} PS / {1} rpm'
+  _torqueFormat: '{0:#.#} kgm / {1} rpm'
   _warningLampOffColor: {r: 0.5, g: 0, b: 0.12549019, a: 1}
   _warningLampOnColor: {r: 1, g: 0, b: 0.2509804, a: 1}
   _speedText: {fileID: 401338110}
@@ -7040,6 +7046,8 @@ MonoBehaviour:
   _brakeText: {fileID: 2098695247}
   _accelText: {fileID: 1914989270}
   _memoriTextPrefab: {fileID: 8610396417111503835, guid: 52fc6f91431a9af4f9e8ca4de1ecf31b, type: 3}
+  _powerText: {fileID: 1152650661}
+  _torqueText: {fileID: 448983822}
   _speedGradient:
     serializedVersion: 2
     key0: {r: 1, g: 0, b: 0, a: 1}
@@ -7072,12 +7080,15 @@ MonoBehaviour:
   _memoriImageParent: {fileID: 972067172}
   _memoriTextParent: {fileID: 1028822892}
   _warningLampParent: {fileID: 1089221528}
+  _rpmLineTransform: {fileID: 358714739}
   _meterImage: {fileID: 1510183668}
   _redZoneImage: {fileID: 1435763229}
   _memoriImagePrefab: {fileID: 4269895988891907248, guid: 2b135c7e873cf9f4f9b6d21ad2c972ff, type: 3}
   _speedSlider: {fileID: 1637482485}
   _brakeSlider: {fileID: 379609021}
   _accelSlider: {fileID: 170426237}
+  _powerLine: {fileID: 1044588411}
+  _torqueLine: {fileID: 1089834643}
   _steeringText: {fileID: 670130989}
   _steeringSlider: {fileID: 1930752609}
 --- !u!1 &885127386
