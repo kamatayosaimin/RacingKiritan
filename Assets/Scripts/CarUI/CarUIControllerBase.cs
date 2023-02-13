@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CarUIControllerBase : MonoBehaviour
+public abstract class CarUIControllerBase : MonoBehaviour
 {
     [SerializeField] private float _memoriTextOffset;
     [SerializeField] private float _memoriImageOffset;
