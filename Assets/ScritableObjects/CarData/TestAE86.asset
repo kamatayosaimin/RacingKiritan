@@ -17,6 +17,7 @@ MonoBehaviour:
   _gearRatio: c80d0000e607000068050000e80300005d030000
   _brakeTorque: 500
   _steering: 15
+  _downForce: 1
   _weightDownValue: 60
   _tunedSusupensionSpring: 35000
   _tunedSuspensionDamper: 4500

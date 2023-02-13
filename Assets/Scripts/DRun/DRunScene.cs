@@ -24,6 +24,15 @@ public class DRunScene : SceneBehaviour
     //{
     //}
 
+    void LateUpdate()
+    {
+        Transform cameraTransform = _camera.transform;
+        Transform carTransform = _carController.transform;
+
+        cameraTransform.rotation = carTransform.rotation;
+        cameraTransform.position = carTransform.position + cameraTransform.rotation * _cameraOffset;
+    }
+
     public void SetAccel(float value)
     {
         try
@@ -187,6 +196,8 @@ public class DRunScene : SceneBehaviour
     {
         try
         {
+            _carInput.InputState = CarInputState.Playing;
+
             int tuneLevel = 0;
 
             _carController.InitData(_carData, tuneLevel);

@@ -7,11 +7,17 @@ using UnityEngine;
 public class CarController : MonoBehaviour
 {
     private int _shiftIndex = 0;
+    private float _speed;
     private float _engineRpm;
+    private float _engineRpmMin;
+    private float _engineRpmMax;
     private float _brakeTorque;
     private float _steering;
+    private float _downForce;
     private float _fourWDBalance;
     private float _finalGear;
+    private float _wheelRate;
+    private float _reverseSpeedLimit;
     private float[] _gearRatio;
     private CarAspirationType _aspirationType;
     private CarDriveType _driveType;
@@ -29,10 +35,29 @@ public class CarController : MonoBehaviour
     private CarInputBase _input;
     private CarSoundController _soundController;
 
-    /// <summary>
-    /// ホイール直径(2) * 単位調整係数(60 / 1000)
-    /// </summary>
-    private const float WheelRateMultiple = 0.12f;
+    public int ShiftIndex
+    {
+        get
+        {
+            return _shiftIndex;
+        }
+    }
+
+    public float Speed
+    {
+        get
+        {
+            return _speed;
+        }
+    }
+
+    public float EngineRpm
+    {
+        get
+        {
+            return _engineRpm;
+        }
+    }
 
     void Awake()
     {
@@ -60,6 +85,104 @@ public class CarController : MonoBehaviour
         }
     }
 
+    void FixedUpdate()
+    {
+        try
+        {
+            if (_input.IsShiftDown && _input.IsShiftUp)
+                _input.IsShiftDown = _input.IsShiftUp = false;
+            else
+            {
+                if (_input.IsShiftDown)
+                {
+                    _input.IsShiftDown = false;
+
+                    if (_shiftIndex > 0)
+                        _shiftIndex--;
+                }
+
+                if (_input.IsShiftUp)
+                {
+                    _input.IsShiftUp = false;
+
+                    if (_shiftIndex >= 0 && _shiftIndex < _gearRatio.Length - 1)
+                        _shiftIndex++;
+                }
+            }
+
+            float inputMotor = _input.CurrentMotor;
+            float inputBrake = _input.CurrentBrake;
+            float inputSteering = _input.CurrentSteering;
+            float velocity = _rigidbody.velocity.magnitude;
+
+            _speed = velocity * CarCommon.SpeedToKmH;
+
+            if (_speed < _reverseSpeedLimit)
+            {
+                if (_shiftIndex >= 0 && inputMotor < 0f)
+                    _shiftIndex = -1;
+
+                if (_shiftIndex == -1 && inputMotor > 0f)
+                    _shiftIndex = 0;
+            }
+
+            _engineRpm = WheelRpmToEngineRpm();
+
+            float motorTorque = GetMotorTorqueNM(inputMotor);
+            WheelCollider[] frontWheelColliders = GetFrontWheelColliders();
+            WheelCollider[] rearWheelColliders = GetRearWheelColliders();
+
+            switch (_driveType)
+            {
+                case CarDriveType.Front:
+                    SetWheelMotorTwoWD(motorTorque, frontWheelColliders);
+
+                    break;
+                case CarDriveType.Rear:
+                    SetWheelMotorTwoWD(motorTorque, rearWheelColliders);
+
+                    break;
+                case CarDriveType.FourWheelDrive:
+                    float frontMotorTorque;
+                    float rearMotorTorque = motorTorque * _fourWDBalance;
+
+                    frontMotorTorque = motorTorque - rearMotorTorque;
+
+                    float frontTorque = frontMotorTorque / frontWheelColliders.Length;
+                    float rearTorque = rearMotorTorque / rearWheelColliders.Length;
+
+                    foreach (var wc in frontWheelColliders)
+                        wc.motorTorque = frontTorque;
+
+                    foreach (var wc in rearWheelColliders)
+                        wc.motorTorque = rearTorque;
+
+                    break;
+                default:
+                    throw new ArgumentException();
+            }
+
+            float brakeTorque = _brakeTorque * inputBrake;
+            WheelCollider[] allWheelColliders = GetAllWheelColliders();
+
+            foreach (var wc in allWheelColliders)
+                wc.brakeTorque = brakeTorque;
+
+            float steering = _steering * inputSteering;
+
+            foreach (var wc in frontWheelColliders)
+                wc.steerAngle = steering;
+
+            Vector3 downForce = Vector3.down * (_downForce * velocity);
+
+            _rigidbody.AddForce(downForce);
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -71,11 +194,24 @@ public class CarController : MonoBehaviour
         {
             _brakeTorque = data.BrakeTorque;
             _steering = data.Steering;
+            _downForce = data.DownForce;
             _fourWDBalance = data.FourWDBalance / 100f;
             _finalGear = data.FinalGear / 1000f;
+            _wheelRate = GetWheelRate();
             _gearRatio = data.GearRatio.Select(r => r / 1000f).ToArray();
             _driveType = GetDriveType(data.DriveType);
             _engineTorqueCurve = data.GetEngineTorqueCurve(tuneLevel);
+
+            Keyframe[] keys = _engineTorqueCurve.keys;
+
+            _engineRpmMin = keys[0].time;
+            _engineRpmMax = keys[keys.Length - 1].time;
+
+            CarManager carManager = CarManager.Instance;
+
+            _reverseSpeedLimit = carManager.ReverseSpeedLimit;
+
+            _rigidbody.mass += carManager.DriverWeight;
 
             CarSubTune[] subTunes = data.GetSubTunes(tuneLevel);
 
@@ -139,6 +275,14 @@ public class CarController : MonoBehaviour
         }
     }
 
+    void SetWheelMotorTwoWD(float motorTorque, WheelCollider[] wheelColliders)
+    {
+        float torque = motorTorque / wheelColliders.Length;
+
+        foreach (var wc in wheelColliders)
+            wc.motorTorque = torque;
+    }
+
     public float GetTotalMass()
     {
         float mass = _rigidbody.mass;
@@ -149,6 +293,75 @@ public class CarController : MonoBehaviour
     }
 
     /// <summary>
+    /// WheelCollider の平均 rpm からエンジン rpm を算出
+    /// </summary>
+    /// <returns></returns>
+    float WheelRpmToEngineRpm()
+    {
+        float rpm = GetWheelRpmAverage() * GetGearRatio() * _finalGear;
+
+        return GetEngineRpm(rpm);
+    }
+
+    /// <summary>
+    /// 車速からエンジン rpm を算出
+    /// </summary>
+    /// <returns></returns>
+    float SpeedToEngineRpm()
+    {
+        float rpm = _speed * GetGearRatio() * _finalGear / _wheelRate;
+
+        return GetEngineRpm(rpm);
+    }
+
+    float GetWheelRpmAverage()
+    {
+        Func<WheelCollider, float> selector = wc => Mathf.Abs(wc.rpm);
+
+        return GetAllWheelColliders().Average(selector);
+    }
+
+    float GetEngineRpm(float rpm)
+    {
+        return Mathf.Max(rpm, _engineRpmMin);
+    }
+
+    /// <summary>
+    /// 軸トルク. 単位は N・m
+    /// </summary>
+    /// <param name="inputMotor"></param>
+    /// <returns></returns>
+    float GetMotorTorqueNM(float inputMotor)
+    {
+        return GetMotorTorqueKgM(inputMotor) * CarCommon.NMToKgM;
+    }
+
+    /// <summary>
+    /// 軸トルク. 単位は kg・m
+    /// </summary>
+    /// <param name="inputMotor"></param>
+    /// <returns></returns>
+    float GetMotorTorqueKgM(float inputMotor)
+    {
+        return GetEngineTorque(inputMotor) * GetGearRatio() * _finalGear;
+    }
+
+    /// <summary>
+    /// エンジントルク
+    /// </summary>
+    /// <param name="inputMotor"></param>
+    /// <returns></returns>
+    float GetEngineTorque(float inputMotor)
+    {
+        return _engineRpm > _engineRpmMax ? 0f : _engineTorqueCurve.Evaluate(_engineRpm) * inputMotor;
+    }
+
+    float GetGearRatio()
+    {
+        return _shiftIndex >= 0 ? _gearRatio[_shiftIndex] : _gearRatio[0];
+    }
+
+    /// <summary>
     /// タイヤ円周 * 単位調整係数
     /// </summary>
     /// <returns></returns>
@@ -156,7 +369,7 @@ public class CarController : MonoBehaviour
     {
         float radiusAverage = GetAllWheelColliders().Average(wc => wc.radius);
 
-        return Mathf.PI * radiusAverage * WheelRateMultiple;
+        return Mathf.PI * radiusAverage * CarCommon.WheelRateMultiple;
     }
 
     bool IsTuned(CarSubTune[] subTunes, CarSubTune target)
