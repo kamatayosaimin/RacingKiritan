@@ -62,7 +62,7 @@ public class UILine : MaskableGraphic
     {
         Vector2 pivot = rectTransform.pivot;
         Vector2 size = rectTransform.rect.size;
-        Vector2 origin = Vector2.Scale(-pivot, size); //RectTransform�̍����������_�Ƃ���
+        Vector2 origin = Vector2.Scale(-pivot, size); //RectTransformの左下隅を原点とする
 
         vh.Clear();
 
@@ -107,9 +107,9 @@ public class UILine : MaskableGraphic
         }
     }
 
-    //p�_�ɐڑ�����ǉ�
-    //tangentFrom�͓����Ă��������̌���
-    //tangentTo�͏o�Ă��������̌���
+    //p点に接続部を追加
+    //tangentFromは入っていく線分の向き
+    //tangentToは出ていく線分の向き
     private static void AddJoint(
         VertexHelper vh,
         Vector2 p,
@@ -146,7 +146,7 @@ public class UILine : MaskableGraphic
         vh.AddTriangle(offset + 2, offset + 3, offset + 0);
     }
 
-    //a�Ab�_�Ԃɐ�����ǉ�
+    //a、b点間に線分を追加
     private static void AddSegment(
         VertexHelper vh,
         Vector2 a,

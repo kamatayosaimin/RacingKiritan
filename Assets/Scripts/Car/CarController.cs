@@ -293,7 +293,7 @@ public class CarController : MonoBehaviour
     }
 
     /// <summary>
-    /// WheelCollider ‚Ì•½‹Ï rpm ‚©‚çƒGƒ“ƒWƒ“ rpm ‚ğZo
+    /// WheelCollider ã®å¹³å‡ rpm ã‹ã‚‰ã‚¨ãƒ³ã‚¸ãƒ³ rpm ã‚’ç®—å‡º
     /// </summary>
     /// <returns></returns>
     float WheelRpmToEngineRpm()
@@ -304,7 +304,7 @@ public class CarController : MonoBehaviour
     }
 
     /// <summary>
-    /// Ô‘¬‚©‚çƒGƒ“ƒWƒ“ rpm ‚ğZo
+    /// è»Šé€Ÿã‹ã‚‰ã‚¨ãƒ³ã‚¸ãƒ³ rpm ã‚’ç®—å‡º
     /// </summary>
     /// <returns></returns>
     float SpeedToEngineRpm()
@@ -327,7 +327,7 @@ public class CarController : MonoBehaviour
     }
 
     /// <summary>
-    /// ²ƒgƒ‹ƒN. ’PˆÊ‚Í NEm
+    /// è»¸ãƒˆãƒ«ã‚¯. å˜ä½ã¯ Nãƒ»m
     /// </summary>
     /// <param name="inputMotor"></param>
     /// <returns></returns>
@@ -337,7 +337,7 @@ public class CarController : MonoBehaviour
     }
 
     /// <summary>
-    /// ²ƒgƒ‹ƒN. ’PˆÊ‚Í kgEm
+    /// è»¸ãƒˆãƒ«ã‚¯. å˜ä½ã¯ kgãƒ»m
     /// </summary>
     /// <param name="inputMotor"></param>
     /// <returns></returns>
@@ -347,7 +347,7 @@ public class CarController : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒGƒ“ƒWƒ“ƒgƒ‹ƒN
+    /// ã‚¨ãƒ³ã‚¸ãƒ³ãƒˆãƒ«ã‚¯
     /// </summary>
     /// <param name="inputMotor"></param>
     /// <returns></returns>
@@ -362,7 +362,7 @@ public class CarController : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒ^ƒCƒ„‰~ü * ’PˆÊ’²®ŒW”
+    /// ã‚¿ã‚¤ãƒ¤å††å‘¨ * å˜ä½èª¿æ•´ä¿‚æ•°
     /// </summary>
     /// <returns></returns>
     float GetWheelRate()

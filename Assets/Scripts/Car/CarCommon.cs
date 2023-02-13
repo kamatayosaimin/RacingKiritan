@@ -9,11 +9,11 @@ public static class CarCommon
     /// </summary>
     public const float SpeedToKmH = 3.6f;
     /// <summary>
-    /// ƒgƒ‹ƒN‚ğ NEm ‚©‚ç kgEm ‚Ö•ÏŠ·
+    /// ãƒˆãƒ«ã‚¯ã‚’ Nãƒ»m ã‹ã‚‰ kgãƒ»m ã¸å¤‰æ›
     /// </summary>
     public const float NMToKgM = 9.806652f;
     /// <summary>
-    /// ƒzƒC[ƒ‹’¼Œa(2) * ’PˆÊ’²®ŒW”(60 / 1000)
+    /// ãƒ›ã‚¤ãƒ¼ãƒ«ç›´å¾„(2) * å˜ä½èª¿æ•´ä¿‚æ•°(60 / 1000)
     /// </summary>
     public const float WheelRateMultiple = 0.12f;
     public const int MeterMemoriCount = 15;
