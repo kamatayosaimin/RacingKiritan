@@ -116,6 +116,24 @@ public class CarController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        try
+        {
+            foreach (var wv in GetWheelValues())
+            {
+                Quaternion rotation;
+                Vector3 position;
+                Transform tire = wv.Tire;
+
+                wv.Collider.GetWorldPose(out position, out rotation);
+
+                tire.rotation = rotation;
+                tire.position = position;
+            }
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
     }
 
     public void InitData(CarData data, int tuneLevel)
@@ -561,5 +579,17 @@ public class CarController : MonoBehaviour
         };
 
         return wheelColliders;
+    }
+
+    CarWheelValue[] GetWheelValues()
+    {
+        List<CarWheelValue> list = new List<CarWheelValue>();
+
+        list.Add(new CarWheelValue(_wheelColliderFL, _tireFL));
+        list.Add(new CarWheelValue(_wheelColliderFR, _tireFR));
+        list.Add(new CarWheelValue(_wheelColliderRL, _tireRL));
+        list.Add(new CarWheelValue(_wheelColliderRR, _tireRR));
+
+        return list.ToArray();
     }
 }
