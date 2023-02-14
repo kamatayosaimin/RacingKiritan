@@ -7,13 +7,17 @@ using UnityEngine.UI;
 
 public abstract class CarUIControllerBase : MonoBehaviour
 {
+    private int _shiftIndex;
     [SerializeField] private float _memoriTextOffset;
     [SerializeField] private float _memoriImageOffset;
     [SerializeField] private float _powerLineScale = 1f;
     [SerializeField] private float _torqueLineScale = 1f;
     [SerializeField] private float _rpmLineScale = 1f;
     [SerializeField] private float _lineRpmSpan = 100f;
+    [SerializeField][Range(0f, 1f)] private float _meterAmountMax;
     private float _meterScale;
+    [SerializeField] private string _reverseValue = "R";
+    [SerializeField] private string _speedStyle = "0";
     [SerializeField] private string _inputStyle = "0.000";
     [SerializeField] private string _powerFormat = "{0:#} PS / {1} rpm";
     [SerializeField] private string _torqueFormat = "{0:#.#} kgm / {1} rpm";
@@ -40,28 +44,70 @@ public abstract class CarUIControllerBase : MonoBehaviour
     [SerializeField] private CarSlider _accelSlider;
     [SerializeField] private UILine _powerLine;
     [SerializeField] private UILine _torqueLine;
+    private CarController _playerCarController;
+
+    protected abstract void StartChild();
+    protected abstract void UpdateChild();
 
     void Awake()
     {
-        _warningLampImages = _warningLampParent.GetComponentsInChildren<Image>();
+        try
+        {
+            _warningLampImages = _warningLampParent.GetComponentsInChildren<Image>();
 
-        AwakeChild();
+            AwakeChild();
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
     }
 
-    //// Start is called before the first frame update
-    //void Start()
-    //{
-    //}
-
-    //// Update is called once per frame
-    //void Update()
-    //{
-    //}
-
-    public void Init(CarData data, int tuneLevel)
+    // Start is called before the first frame update
+    void Start()
     {
         try
         {
+            StartChild();
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        try
+        {
+            int shiftIndex = _playerCarController.ShiftIndex;
+
+            _speedText.text = _playerCarController.Speed.ToString(_speedStyle);
+
+            if (shiftIndex != _shiftIndex)
+            {
+                _shiftIndex = shiftIndex;
+
+                _shiftText.text = shiftIndex >= 0 ? (shiftIndex + 1).ToString() : _reverseValue;
+            }
+
+            _meterImage.fillAmount = GetMeterAmount(0f, _meterScale, _playerCarController.EngineRpm);
+
+            UpdateChild();
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
+    }
+
+    public void Init(CarController playerCar, CarData data, int tuneLevel)
+    {
+        try
+        {
+            _playerCarController = playerCar;
+
             InitMeter(data, tuneLevel);
             InitEngineSpec(data, tuneLevel);
         }
@@ -148,7 +194,7 @@ public abstract class CarUIControllerBase : MonoBehaviour
 
             float redZone = data.GetRedZone(tuneLevel);
 
-            _redZoneImage.fillAmount = Mathf.InverseLerp(_meterScale, 0f, redZone) * 0.75f;
+            _redZoneImage.fillAmount = GetMeterAmount(_meterScale, 0f, redZone);
         }
         catch (Exception e)
         {
@@ -254,6 +300,11 @@ public abstract class CarUIControllerBase : MonoBehaviour
         {
             ErrorManager.Instance.AddException(e);
         }
+    }
+
+    float GetMeterAmount(float a, float b, float value)
+    {
+        return Mathf.InverseLerp(a, b, value) * _meterAmountMax;
     }
 
     protected string GetInputString(float value)

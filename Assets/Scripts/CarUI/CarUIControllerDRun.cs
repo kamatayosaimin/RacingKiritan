@@ -8,15 +8,15 @@ public class CarUIControllerDRun : CarUIControllerBase
     [SerializeField] private TMPro.TextMeshProUGUI _steeringText;
     [SerializeField] private CarSlider _steeringSlider;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
+    //// Start is called before the first frame update
+    //void Start()
+    //{
+    //}
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
+    //// Update is called once per frame
+    //void Update()
+    //{
+    //}
 
     public void SetSteeringText(float value)
     {
@@ -40,5 +40,13 @@ public class CarUIControllerDRun : CarUIControllerBase
         {
             ErrorManager.Instance.AddException(e);
         }
+    }
+
+    protected override void StartChild()
+    {
+    }
+
+    protected override void UpdateChild()
+    {
     }
 }

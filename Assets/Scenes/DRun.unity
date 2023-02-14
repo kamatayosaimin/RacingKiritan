@@ -4657,7 +4657,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 614154344}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.15, z: 0.8}
+  m_LocalPosition: {x: 0, y: 0.15, z: 0.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2007744787}
@@ -6824,7 +6824,7 @@ MonoBehaviour:
   _corePrefab: {fileID: 3807631186764386908, guid: 7cb4b80e3d804524db41abd52d940bab, type: 3}
   _cameraOffset: {x: 0, y: 2, z: -10}
   _camera: {fileID: 1687009380}
-  _carController: {fileID: 2007744790}
+  _playerCarController: {fileID: 2007744790}
   _carData: {fileID: 11400000, guid: cf89a935c49a6274a89e33c1e175334b, type: 2}
   _soundContent: {fileID: 11400000, guid: 871c08a398b3e2e4eb1bc05d625f659d, type: 2}
 --- !u!114 &873682295
@@ -7036,6 +7036,9 @@ MonoBehaviour:
   _torqueLineScale: 1.3
   _rpmLineScale: 0.01
   _lineRpmSpan: 100
+  _meterAmountMax: 0.75
+  _reverseValue: R
+  _speedStyle: 0
   _inputStyle: 0.000
   _powerFormat: '{0:#} PS / {1} rpm'
   _torqueFormat: '{0:#.#} kgm / {1} rpm'

@@ -8,7 +8,7 @@ public class DRunScene : SceneBehaviour
 {
     [SerializeField] private Vector3 _cameraOffset;
     [SerializeField] private Camera _camera;
-    [SerializeField] private CarController _carController;
+    [SerializeField] private CarController _playerCarController;
     [SerializeField] private CarData _carData;
     private CarInputDRun _carInput;
     [SerializeField] private CarSoundContent _soundContent;
@@ -27,7 +27,7 @@ public class DRunScene : SceneBehaviour
     void LateUpdate()
     {
         Transform cameraTransform = _camera.transform;
-        Transform carTransform = _carController.transform;
+        Transform carTransform = _playerCarController.transform;
 
         cameraTransform.rotation = carTransform.rotation;
         cameraTransform.position = carTransform.position + cameraTransform.rotation * _cameraOffset;
@@ -183,7 +183,7 @@ public class DRunScene : SceneBehaviour
     {
         try
         {
-            _carInput = _carController.gameObject.AddComponent<CarInputDRun>();
+            _carInput = _playerCarController.gameObject.AddComponent<CarInputDRun>();
             _uiController = GetComponent<CarUIControllerDRun>();
         }
         catch (Exception e)
@@ -200,11 +200,11 @@ public class DRunScene : SceneBehaviour
 
             int tuneLevel = 0;
 
-            _carController.InitData(_carData, tuneLevel);
-            _carController.InitInput(_carInput);
-            _carController.InitSound(_soundContent.PlayerClipData, _soundContent.PitchData);
+            _playerCarController.InitData(_carData, tuneLevel);
+            _playerCarController.InitInput(_carInput);
+            _playerCarController.InitSound(_soundContent.PlayerClipData, _soundContent.PitchData);
 
-            _uiController.Init(_carData, tuneLevel);
+            _uiController.Init(_playerCarController, _carData, tuneLevel);
         }
         catch (Exception e)
         {
