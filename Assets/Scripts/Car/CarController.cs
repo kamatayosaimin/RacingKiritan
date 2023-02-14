@@ -89,93 +89,23 @@ public class CarController : MonoBehaviour
     {
         try
         {
-            if (_input.IsShiftDown && _input.IsShiftUp)
-                _input.IsShiftDown = _input.IsShiftUp = false;
-            else
-            {
-                if (_input.IsShiftDown)
-                {
-                    _input.IsShiftDown = false;
-
-                    if (_shiftIndex > 0)
-                        _shiftIndex--;
-                }
-
-                if (_input.IsShiftUp)
-                {
-                    _input.IsShiftUp = false;
-
-                    if (_shiftIndex >= 0 && _shiftIndex < _gearRatio.Length - 1)
-                        _shiftIndex++;
-                }
-            }
-
             float inputMotor = _input.CurrentMotor;
-            float inputBrake = _input.CurrentBrake;
-            float inputSteering = _input.CurrentSteering;
             float velocity = _rigidbody.velocity.magnitude;
-
-            _speed = velocity * CarCommon.SpeedToKmH;
-
-            if (_speed < _reverseSpeedLimit)
-            {
-                if (_shiftIndex >= 0 && inputMotor < 0f)
-                    _shiftIndex = -1;
-
-                if (_shiftIndex == -1 && inputMotor > 0f)
-                    _shiftIndex = 0;
-            }
-
-            _engineRpm = WheelRpmToEngineRpm();
-
-            float motorTorque = GetMotorTorqueNM(inputMotor);
             WheelCollider[] frontWheelColliders = GetFrontWheelColliders();
             WheelCollider[] rearWheelColliders = GetRearWheelColliders();
 
-            switch (_driveType)
-            {
-                case CarDriveType.Front:
-                    SetWheelMotorTwoWD(motorTorque, frontWheelColliders);
+            ChangeShift();
 
-                    break;
-                case CarDriveType.Rear:
-                    SetWheelMotorTwoWD(motorTorque, rearWheelColliders);
+            _speed = velocity * CarCommon.SpeedToKmH;
 
-                    break;
-                case CarDriveType.FourWheelDrive:
-                    float frontMotorTorque;
-                    float rearMotorTorque = motorTorque * _fourWDBalance;
+            Reverse(inputMotor);
 
-                    frontMotorTorque = motorTorque - rearMotorTorque;
+            _engineRpm = WheelRpmToEngineRpm();
 
-                    float frontTorque = frontMotorTorque / frontWheelColliders.Length;
-                    float rearTorque = rearMotorTorque / rearWheelColliders.Length;
-
-                    foreach (var wc in frontWheelColliders)
-                        wc.motorTorque = frontTorque;
-
-                    foreach (var wc in rearWheelColliders)
-                        wc.motorTorque = rearTorque;
-
-                    break;
-                default:
-                    throw new ArgumentException();
-            }
-
-            float brakeTorque = _brakeTorque * inputBrake;
-            WheelCollider[] allWheelColliders = GetAllWheelColliders();
-
-            foreach (var wc in allWheelColliders)
-                wc.brakeTorque = brakeTorque;
-
-            float steering = _steering * inputSteering;
-
-            foreach (var wc in frontWheelColliders)
-                wc.steerAngle = steering;
-
-            Vector3 downForce = Vector3.down * (_downForce * velocity);
-
-            _rigidbody.AddForce(downForce);
+            SetMotor(inputMotor, frontWheelColliders, rearWheelColliders);
+            SetBrake();
+            SetSteering(frontWheelColliders);
+            SetDownForce(velocity);
         }
         catch (Exception e)
         {
@@ -213,32 +143,7 @@ public class CarController : MonoBehaviour
 
             _rigidbody.mass += carManager.DriverWeight;
 
-            CarSubTune[] subTunes = data.GetSubTunes(tuneLevel);
-
-            _aspirationType = GetAspirationType(data.AspirationType, subTunes);
-
-            WheelCollider[] wheelColliders = GetAllWheelColliders();
-
-            if (IsTuned(subTunes, CarSubTune.Tire))
-                foreach (var wc in wheelColliders)
-                {
-                    wc.forwardFriction = data.TunedForwardFriction;
-                    wc.sidewaysFriction = data.TunedSidewaysFriction;
-                }
-
-            if (IsTuned(subTunes, CarSubTune.Suspension))
-                foreach (var wc in wheelColliders)
-                {
-                    JointSpring spring = wc.suspensionSpring;
-
-                    spring.spring = data.TunedSusupensionSpring;
-                    spring.damper = data.TunedSuspensionDamper;
-
-                    wc.suspensionSpring = spring;
-                }
-
-            if (IsTuned(subTunes, CarSubTune.WeightDown))
-                _rigidbody.mass -= data.WeightDownValue;
+            InitSubTune(data, tuneLevel);
         }
         catch (Exception e)
         {
@@ -275,12 +180,207 @@ public class CarController : MonoBehaviour
         }
     }
 
-    void SetWheelMotorTwoWD(float motorTorque, WheelCollider[] wheelColliders)
+    void InitSubTune(CarData data, int tuneLevel)
     {
-        float torque = motorTorque / wheelColliders.Length;
+        try
+        {
+            CarSubTune[] subTunes = data.GetSubTunes(tuneLevel);
 
-        foreach (var wc in wheelColliders)
-            wc.motorTorque = torque;
+            _aspirationType = GetAspirationType(data.AspirationType, subTunes);
+
+            WheelCollider[] wheelColliders = GetAllWheelColliders();
+
+            if (IsTuned(subTunes, CarSubTune.Tire))
+                foreach (var wc in wheelColliders)
+                {
+                    wc.forwardFriction = data.TunedForwardFriction;
+                    wc.sidewaysFriction = data.TunedSidewaysFriction;
+                }
+
+            if (IsTuned(subTunes, CarSubTune.Suspension))
+                foreach (var wc in wheelColliders)
+                {
+                    JointSpring spring = wc.suspensionSpring;
+
+                    spring.spring = data.TunedSusupensionSpring;
+                    spring.damper = data.TunedSuspensionDamper;
+
+                    wc.suspensionSpring = spring;
+                }
+
+            if (IsTuned(subTunes, CarSubTune.WeightDown))
+                _rigidbody.mass -= data.WeightDownValue;
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
+    }
+
+    void ChangeShift()
+    {
+        try
+        {
+            if (_input.IsShiftDown && _input.IsShiftUp)
+            {
+                _input.IsShiftDown = _input.IsShiftUp = false;
+
+                return;
+            }
+
+            if (_input.IsShiftDown)
+            {
+                _input.IsShiftDown = false;
+
+                if (_shiftIndex > 0)
+                    _shiftIndex--;
+            }
+
+            if (_input.IsShiftUp)
+            {
+                _input.IsShiftUp = false;
+
+                if (_shiftIndex >= 0 && _shiftIndex < _gearRatio.Length - 1)
+                    _shiftIndex++;
+            }
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
+    }
+
+    void Reverse(float inputMotor)
+    {
+        try
+        {
+            if (_speed >= _reverseSpeedLimit)
+                return;
+
+            if (_shiftIndex >= 0 && inputMotor < 0f)
+                _shiftIndex = -1;
+
+            if (_shiftIndex == -1 && inputMotor > 0f)
+                _shiftIndex = 0;
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
+    }
+
+    void SetMotor(float inputMotor, WheelCollider[] frontWheelColliders, WheelCollider[] rearWheelColliders)
+    {
+        try
+        {
+            float motorTorque = GetMotorTorqueNM(inputMotor);
+
+            switch (_driveType)
+            {
+                case CarDriveType.Front:
+                    SetMotorTwoWD(motorTorque, frontWheelColliders);
+
+                    break;
+                case CarDriveType.Rear:
+                    SetMotorTwoWD(motorTorque, rearWheelColliders);
+
+                    break;
+                case CarDriveType.FourWheelDrive:
+                    SetMotorFourWD(motorTorque, frontWheelColliders, rearWheelColliders);
+
+                    break;
+                default:
+                    throw new ArgumentException();
+            }
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
+    }
+
+    void SetMotorTwoWD(float motorTorque, WheelCollider[] wheelColliders)
+    {
+        try
+        {
+            float torque = motorTorque / wheelColliders.Length;
+
+            foreach (var wc in wheelColliders)
+                wc.motorTorque = torque;
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
+    }
+
+    void SetMotorFourWD(float motorTorque, WheelCollider[] frontWheelColliders, WheelCollider[] rearWheelColliders)
+    {
+        try
+        {
+            float frontMotorTorque;
+            float rearMotorTorque = motorTorque * _fourWDBalance;
+
+            frontMotorTorque = motorTorque - rearMotorTorque;
+
+            float frontTorque = frontMotorTorque / frontWheelColliders.Length;
+            float rearTorque = rearMotorTorque / rearWheelColliders.Length;
+
+            foreach (var wc in frontWheelColliders)
+                wc.motorTorque = frontTorque;
+
+            foreach (var wc in rearWheelColliders)
+                wc.motorTorque = rearTorque;
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
+    }
+
+    void SetBrake()
+    {
+        try
+        {
+            float brakeTorque = _brakeTorque * _input.CurrentBrake;
+            WheelCollider[] allWheelColliders = GetAllWheelColliders();
+
+            foreach (var wc in allWheelColliders)
+                wc.brakeTorque = brakeTorque;
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
+    }
+
+    void SetSteering(WheelCollider[] frontWheelColliders)
+    {
+        try
+        {
+            float steering = _steering * _input.CurrentSteering;
+
+            foreach (var wc in frontWheelColliders)
+                wc.steerAngle = steering;
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
+    }
+
+    void SetDownForce(float velocity)
+    {
+        try
+        {
+            Vector3 downForce = Vector3.down * (_downForce * velocity);
+
+            _rigidbody.AddForce(downForce);
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
     }
 
     public float GetTotalMass()
@@ -293,23 +393,23 @@ public class CarController : MonoBehaviour
     }
 
     /// <summary>
+    /// 車速からエンジン rpm を算出
+    /// </summary>
+    /// <returns></returns>
+    public float SpeedToEngineRpm()
+    {
+        float rpm = _speed * GetGearRatio() * _finalGear / _wheelRate;
+
+        return GetEngineRpm(rpm);
+    }
+
+    /// <summary>
     /// WheelCollider の平均 rpm からエンジン rpm を算出
     /// </summary>
     /// <returns></returns>
     float WheelRpmToEngineRpm()
     {
         float rpm = GetWheelRpmAverage() * GetGearRatio() * _finalGear;
-
-        return GetEngineRpm(rpm);
-    }
-
-    /// <summary>
-    /// 車速からエンジン rpm を算出
-    /// </summary>
-    /// <returns></returns>
-    float SpeedToEngineRpm()
-    {
-        float rpm = _speed * GetGearRatio() * _finalGear / _wheelRate;
 
         return GetEngineRpm(rpm);
     }
