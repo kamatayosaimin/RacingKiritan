@@ -14,7 +14,9 @@ public abstract class CarUIControllerBase : MonoBehaviour
     [SerializeField] private float _torqueLineScale = 1f;
     [SerializeField] private float _rpmLineScale = 1f;
     [SerializeField] private float _lineRpmSpan = 100f;
+    [SerializeField] private float _rpmDamper;
     [SerializeField][Range(0f, 1f)] private float _meterAmountMax;
+    private float _engineRpm;
     private float _meterScale;
     [SerializeField] private string _reverseValue = "R";
     [SerializeField] private string _speedStyle = "0";
@@ -81,6 +83,8 @@ public abstract class CarUIControllerBase : MonoBehaviour
     {
         try
         {
+            _engineRpm = MathUtil.Damp(_engineRpm, _playerCarController.EngineRpm, _rpmDamper);
+
             int shiftIndex = _playerCarController.ShiftIndex;
 
             _speedText.text = _playerCarController.Speed.ToString(_speedStyle);
@@ -92,7 +96,7 @@ public abstract class CarUIControllerBase : MonoBehaviour
                 _shiftText.text = shiftIndex >= 0 ? (shiftIndex + 1).ToString() : _reverseValue;
             }
 
-            _meterImage.fillAmount = GetMeterAmount(0f, _meterScale, _playerCarController.EngineRpm);
+            _meterImage.fillAmount = GetMeterAmount(0f, _meterScale, _engineRpm);
 
             UpdateChild();
         }

@@ -7036,6 +7036,7 @@ MonoBehaviour:
   _torqueLineScale: 1.3
   _rpmLineScale: 0.01
   _lineRpmSpan: 100
+  _rpmDamper: 10
   _meterAmountMax: 0.75
   _reverseValue: R
   _speedStyle: 0
