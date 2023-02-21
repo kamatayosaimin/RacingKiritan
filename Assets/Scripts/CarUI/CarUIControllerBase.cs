@@ -96,6 +96,12 @@ public abstract class CarUIControllerBase : MonoBehaviour
                 _shiftText.text = shiftIndex >= 0 ? (shiftIndex + 1).ToString() : _reverseValue;
             }
 
+            Vector3 rpmLinePosition = _rpmLineTransform.anchoredPosition3D;
+
+            rpmLinePosition.x = _engineRpm * _rpmLineScale;
+
+            _rpmLineTransform.anchoredPosition3D = rpmLinePosition;
+
             _meterImage.fillAmount = GetMeterAmount(0f, _meterScale, _engineRpm);
 
             UpdateChild();
