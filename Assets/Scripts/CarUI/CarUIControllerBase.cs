@@ -40,6 +40,7 @@ public abstract class CarUIControllerBase : MonoBehaviour
     [SerializeField] private Image _meterImage;
     [SerializeField] private Image _redZoneImage;
     [SerializeField] private Image _memoriImagePrefab;
+    private Image _speedSliderFill;
     private Image[] _warningLampImages;
     [SerializeField] private Slider _speedSlider;
     [SerializeField] private CarSlider _brakeSlider;
@@ -55,6 +56,7 @@ public abstract class CarUIControllerBase : MonoBehaviour
     {
         try
         {
+            _speedSliderFill = _speedSlider.fillRect.GetComponent<Image>();
             _warningLampImages = _warningLampParent.GetComponentsInChildren<Image>();
 
             AwakeChild();
@@ -103,6 +105,13 @@ public abstract class CarUIControllerBase : MonoBehaviour
             _rpmLineTransform.anchoredPosition3D = rpmLinePosition;
 
             _meterImage.fillAmount = GetMeterAmount(0f, _meterScale, _engineRpm);
+
+            float speed = _playerCarController.Speed;
+            float speedT = Mathf.InverseLerp(0f, _speedSlider.maxValue, speed);
+
+            _speedSliderFill.color = _speedGradient.Evaluate(speedT);
+
+            _speedSlider.value = speed;
 
             UpdateChild();
         }
