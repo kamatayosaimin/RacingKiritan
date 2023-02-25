@@ -22,4 +22,8 @@ public class CarUIController : CarUIControllerBase
     protected override void UpdateChild()
     {
     }
+
+    protected override void InitChild()
+    {
+    }
 }

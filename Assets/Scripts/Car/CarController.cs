@@ -529,14 +529,16 @@ public class CarController : MonoBehaviour
         }
     }
 
-    Dictionary<CarWheelPosition, AudioSource> GetTireSoundDictionary()
+    CarWheelDictionary<AudioSource> GetTireSoundDictionary()
     {
-        return GetWheelColliderDictionary().ToDictionary(p => p.Key, p => p.Value.GetComponent<AudioSource>());
+        return GetWheelColliderDictionary()
+            .SelectDictionary(wc => wc.GetComponent<AudioSource>())
+            .DictionaryCast<CarWheelDictionary<AudioSource>>();
     }
 
-    Dictionary<CarWheelPosition, WheelCollider> GetWheelColliderDictionary()
+    public CarWheelDictionary<WheelCollider> GetWheelColliderDictionary()
     {
-        Dictionary<CarWheelPosition, WheelCollider> dictionary = new Dictionary<CarWheelPosition, WheelCollider>();
+        CarWheelDictionary<WheelCollider> dictionary = new CarWheelDictionary<WheelCollider>();
 
         dictionary.Add(CarWheelPosition.FrontLeft, _wheelColliderFL);
         dictionary.Add(CarWheelPosition.FrontRight, _wheelColliderFR);

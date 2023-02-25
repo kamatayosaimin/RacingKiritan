@@ -26,7 +26,7 @@ public class CarSoundController : MonoBehaviour
     {
     }
 
-    public void InitTireSounds(Dictionary<CarWheelPosition, AudioSource> soundDictionary)
+    public void InitTireSounds(CarWheelDictionary<AudioSource> soundDictionary)
     {
         try
         {

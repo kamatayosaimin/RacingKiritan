@@ -49,8 +49,17 @@ public abstract class CarUIControllerBase : MonoBehaviour
     [SerializeField] private UILine _torqueLine;
     private CarController _playerCarController;
 
+    protected CarController PlayerCarController
+    {
+        get
+        {
+            return _playerCarController;
+        }
+    }
+
     protected abstract void StartChild();
     protected abstract void UpdateChild();
+    protected abstract void InitChild();
 
     void Awake()
     {
@@ -129,6 +138,7 @@ public abstract class CarUIControllerBase : MonoBehaviour
 
             InitMeter(data, tuneLevel);
             InitEngineSpec(data, tuneLevel);
+            InitChild();
         }
         catch (Exception e)
         {
