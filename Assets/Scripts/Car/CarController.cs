@@ -159,9 +159,13 @@ public class CarController : MonoBehaviour
 
             _reverseSpeedLimit = carManager.ReverseSpeedLimit;
 
-            _rigidbody.mass += carManager.DriverWeight;
-
             InitSubTune(data, tuneLevel);
+
+            string log = string.Format("{0} : {1} kg", name, GetTotalMass());
+
+            Debug.Log(log);
+
+            _rigidbody.mass += carManager.DriverWeight;
         }
         catch (Exception e)
         {
