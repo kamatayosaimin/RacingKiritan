@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
-    private int _shiftIndex = 0;
+    private int _shiftIndex = 1;
     private float _speed;
     private float _engineRpm;
     private float _engineRpmMin;
@@ -254,7 +254,7 @@ public class CarController : MonoBehaviour
             {
                 _input.IsShiftDown = false;
 
-                if (_shiftIndex > 0)
+                if (_shiftIndex > 1)
                     _shiftIndex--;
             }
 
@@ -262,7 +262,7 @@ public class CarController : MonoBehaviour
             {
                 _input.IsShiftUp = false;
 
-                if (_shiftIndex >= 0 && _shiftIndex < _gearRatio.Length - 1)
+                if (_shiftIndex >= 1 && _shiftIndex < _gearRatio.Length - 1)
                     _shiftIndex++;
             }
         }
@@ -279,11 +279,11 @@ public class CarController : MonoBehaviour
             if (_speed >= _reverseSpeedLimit)
                 return;
 
-            if (_shiftIndex >= 0 && inputMotor < 0f)
-                _shiftIndex = -1;
-
-            if (_shiftIndex == -1 && inputMotor > 0f)
+            if (_shiftIndex > 0 && inputMotor < 0f)
                 _shiftIndex = 0;
+
+            if (_shiftIndex == 0 && inputMotor > 0f)
+                _shiftIndex = 1;
         }
         catch (Exception e)
         {
@@ -480,7 +480,7 @@ public class CarController : MonoBehaviour
 
     float GetGearRatio()
     {
-        return _shiftIndex >= 0 ? _gearRatio[_shiftIndex] : _gearRatio[0];
+        return _gearRatio[_shiftIndex];
     }
 
     /// <summary>

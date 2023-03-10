@@ -142,7 +142,7 @@ public class CarData : ScriptableObject
     {
         get
         {
-            int[] gearRetio = new int[6];
+            int[] gearRetio = new int[7];
 
             for (int i = 0; i < gearRetio.Length; i++)
                 gearRetio[i] = 3000;

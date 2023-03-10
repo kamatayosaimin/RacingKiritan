@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 95c046d4b7806304484a1e0515e6305e, type: 3}
-  m_Name: TestAE86
+  m_Name: AE86
   m_EditorClassIdentifier: 
   _fourWDBalance: 50
   _finalGear: 4300
-  _gearRatio: c80d0000e607000068050000e80300005d030000
+  _gearRatio: 9c0d0000030e0000e607000068050000e80300005d030000
   _brakeTorque: 500
   _steering: 15
   _downForce: 0
   _weightDownValue: 60
   _tunedSusupensionSpring: 35000
   _tunedSuspensionDamper: 4500
-  _carName: Test_AE86
+  _carName: "\u306F\u3061\u308D\u304F\u53F7"
   _aspirationType: 0
   _driveType: 1
   _tuneDatas:
