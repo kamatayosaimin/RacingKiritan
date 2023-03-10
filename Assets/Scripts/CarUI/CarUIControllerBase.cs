@@ -15,9 +15,11 @@ public abstract class CarUIControllerBase : MonoBehaviour
     [SerializeField] private float _rpmLineScale = 1f;
     [SerializeField] private float _lineRpmSpan = 100f;
     [SerializeField] private float _rpmDamper;
+    [SerializeField] private float _warningLampSpan = 100f;
     [SerializeField][Range(0f, 1f)] private float _meterAmountMax;
     private float _engineRpm;
     private float _meterScale;
+    private float _maxPowerRpm;
     [SerializeField] private string _reverseValue = "R";
     [SerializeField] private string _speedStyle = "0";
     [SerializeField] private string _inputStyle = "0.000";
@@ -96,32 +98,10 @@ public abstract class CarUIControllerBase : MonoBehaviour
         {
             _engineRpm = MathUtil.Damp(_engineRpm, _playerCarController.EngineRpm, _rpmDamper);
 
-            int shiftIndex = _playerCarController.ShiftIndex;
-
-            _speedText.text = _playerCarController.Speed.ToString(_speedStyle);
-
-            if (shiftIndex != _shiftIndex)
-            {
-                _shiftIndex = shiftIndex;
-
-                _shiftText.text = shiftIndex > 0 ? shiftIndex.ToString() : _reverseValue;
-            }
-
-            Vector3 rpmLinePosition = _rpmLineTransform.anchoredPosition3D;
-
-            rpmLinePosition.x = _engineRpm * _rpmLineScale;
-
-            _rpmLineTransform.anchoredPosition3D = rpmLinePosition;
-
-            _meterImage.fillAmount = GetMeterAmount(0f, _meterScale, _engineRpm);
-
-            float speed = _playerCarController.Speed;
-            float speedT = Mathf.InverseLerp(0f, _speedSlider.maxValue, speed);
-
-            _speedSliderFill.color = _speedGradient.Evaluate(speedT);
-
-            _speedSlider.value = speed;
-
+            SetShift();
+            SetRpm();
+            SetWarningLamp();
+            SetSpeed();
             UpdateChild();
         }
         catch (Exception e)
@@ -281,6 +261,8 @@ public abstract class CarUIControllerBase : MonoBehaviour
 
             arg(keys[keys.Length - 1].time);
 
+            _maxPowerRpm = maxPowerRpm;
+
             _powerLine.Positions = powerPositionList.ToArray();
 
             _torqueLine.Positions = torquePositionList.ToArray();
@@ -324,6 +306,82 @@ public abstract class CarUIControllerBase : MonoBehaviour
             instance.name = name;
             instance.text = name;
             instance.rectTransform.anchoredPosition3D = rotation * Vector3.up * _memoriTextOffset;
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
+    }
+
+    void SetShift()
+    {
+        try
+        {
+            int shiftIndex = _playerCarController.ShiftIndex;
+
+            _speedText.text = _playerCarController.Speed.ToString(_speedStyle);
+
+            if (shiftIndex != _shiftIndex)
+            {
+                _shiftIndex = shiftIndex;
+
+                _shiftText.text = shiftIndex > 0 ? shiftIndex.ToString() : _reverseValue;
+            }
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
+    }
+
+    void SetRpm()
+    {
+        try
+        {
+            Vector3 rpmLinePosition = _rpmLineTransform.anchoredPosition3D;
+
+            rpmLinePosition.x = _engineRpm * _rpmLineScale;
+
+            _rpmLineTransform.anchoredPosition3D = rpmLinePosition;
+
+            _meterImage.fillAmount = GetMeterAmount(0f, _meterScale, _engineRpm);
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
+    }
+
+    void SetWarningLamp()
+    {
+        try
+        {
+            int length = _warningLampImages.Length;
+            float rpm = _playerCarController.SpeedToEngineRpm();
+
+            for (int i = 0; i < length; i++)
+            {
+                bool isLamp = rpm >= _maxPowerRpm - _warningLampSpan * (length - (i + 1));
+
+                _warningLampImages[i].color = isLamp ? _warningLampOnColor : _warningLampOffColor;
+            }
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
+    }
+
+    void SetSpeed()
+    {
+        try
+        {
+            float speed = _playerCarController.Speed;
+            float speedT = Mathf.InverseLerp(0f, _speedSlider.maxValue, speed);
+
+            _speedSliderFill.color = _speedGradient.Evaluate(speedT);
+
+            _speedSlider.value = speed;
         }
         catch (Exception e)
         {
