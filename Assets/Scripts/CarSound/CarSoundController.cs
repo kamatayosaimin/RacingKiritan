@@ -47,12 +47,26 @@ public class CarSoundController : MonoBehaviour
         {
             _engineSound.clip = clipData.EngineClip;
 
+            _engineSound.Play();
+
             _turboSound.clip = clipData.TurboClip;
 
             if (_revLimitSound)
+            {
                 _revLimitSound.clip = clipData.RevLimitClip;
 
+                _revLimitSound.Play();
+            }
+
             _tireFLSound.clip = _tireFRSound.clip = _tireRLSound.clip = _tireRRSound.clip = clipData.SquealClip;
+
+            _tireFLSound.Play();
+
+            _tireFRSound.Play();
+
+            _tireRLSound.Play();
+
+            _tireRRSound.Play();
 
             _buppiganPrefab = clipData.BuppiganPrefab;
 
