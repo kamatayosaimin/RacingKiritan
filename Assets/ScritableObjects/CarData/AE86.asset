@@ -24,6 +24,7 @@ MonoBehaviour:
   _carName: "\u306F\u3061\u308D\u304F\u53F7"
   _aspirationType: 0
   _driveType: 1
+  _engineType: 1
   _tuneDatas:
   - _meterMemoriCount: 8
     _redZone: 6500

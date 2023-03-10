@@ -18,6 +18,7 @@ public class CarData : ScriptableObject
     [SerializeField] private string _carName;
     [SerializeField] private CarAspirationType _aspirationType;
     [SerializeField] private CarDriveTypeStatus _driveType;
+    [SerializeField] private CarEngineType _engineType;
     [SerializeField] private CarTuneData[] _tuneDatas = new CarTuneData[21];
     [SerializeField]
     private CarWheelFrictionData _tunedForwardFriction
@@ -119,6 +120,14 @@ public class CarData : ScriptableObject
         get
         {
             return _driveType;
+        }
+    }
+
+    public CarEngineType EngineType
+    {
+        get
+        {
+            return _engineType;
         }
     }
 
