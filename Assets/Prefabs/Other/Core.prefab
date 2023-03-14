@@ -70,3 +70,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ec8e77c6e9da6a4e93f2b9096becf43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _driverWeight: 40
+  _reverseSpeedLimit: 20
+  _engineTypeNames:
+  - _key: 0
+    _value: L3
+  - _key: 1
+    _value: L4
+  - _key: 2
+    _value: L6
+  - _key: 3
+    _value: V6
+  - _key: 4
+    _value: V8
+  - _key: 5
+    _value: V10
+  - _key: 6
+    _value: V12
+  - _key: 7
+    _value: F4
+  - _key: 8
+    _value: F6
+  - _key: 9
+    _value: R2
+  - _key: 10
+    _value: R3
+  - _key: 11
+    _value: L4D

@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CarManager : SingletonBehaviour<CarManager>
 {
     [SerializeField] private float _driverWeight = 40f;
     [SerializeField] private float _reverseSpeedLimit = 20f;
+    [SerializeField] private CarEngineTypeName[] _engineTypeNames = DefaultEngineTypeNames;
 
     protected override CarManager This
     {
@@ -28,6 +30,23 @@ public class CarManager : SingletonBehaviour<CarManager>
         get
         {
             return _reverseSpeedLimit;
+        }
+    }
+
+    static CarEngineTypeName[] DefaultEngineTypeNames
+    {
+        get
+        {
+            System.Func<CarEngineType, CarEngineTypeName> selector = k =>
+            {
+                CarEngineTypeName name = new CarEngineTypeName();
+
+                name.Key = k;
+
+                return name;
+            };
+
+            return EnumUtil.GetValues<CarEngineType>().Select(selector).ToArray();
         }
     }
 
