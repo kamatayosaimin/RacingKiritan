@@ -15,6 +15,7 @@ public class CarData : ScriptableObject
     [SerializeField] private float _weightDownValue;
     [SerializeField] private float _tunedSusupensionSpring = 35000f;
     [SerializeField] private float _tunedSuspensionDamper = 4500f;
+    [SerializeField] private float _displacement;
     [SerializeField] private string _carName;
     [SerializeField] private CarAspirationType _aspirationType;
     [SerializeField] private CarDriveTypeStatus _driveType;
@@ -96,6 +97,14 @@ public class CarData : ScriptableObject
         get
         {
             return _tunedSuspensionDamper;
+        }
+    }
+
+    public float Displacement
+    {
+        get
+        {
+            return _displacement;
         }
     }
 
