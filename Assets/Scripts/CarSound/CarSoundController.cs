@@ -15,7 +15,20 @@ public class CarSoundController : MonoBehaviour
     private AudioSource _tireRRSound;
     private AudioSource _buppiganPrefab;
     [SerializeField] private AudioSource[] _mufflerSounds;
+    private CarController _carController;
     private CarSoundPitchData _pitchData;
+
+    void Awake()
+    {
+        try
+        {
+            _carController = GetComponent<CarController>();
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -25,9 +38,17 @@ public class CarSoundController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        try
+        {
+            _engineSound.pitch = _carController.EngineRpm * _pitchData.EnginePitchMultipler;
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
         try
         {
