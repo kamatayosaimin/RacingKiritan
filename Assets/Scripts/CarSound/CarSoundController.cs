@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CarSoundController : MonoBehaviour
@@ -24,6 +25,22 @@ public class CarSoundController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        try
+        {
+            Vector3[] contactPoints = collision.contacts.Select(c => c.point).ToArray();
+
+            Vector3 position = VectorUtil.Average3(contactPoints);
+
+            Instantiate(_buppiganPrefab, position, Quaternion.identity);
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
     }
 
     public void InitTireSounds(CarWheelDictionary<AudioSource> soundDictionary)
