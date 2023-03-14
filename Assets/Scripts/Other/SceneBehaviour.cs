@@ -5,7 +5,6 @@ using UnityEngine;
 
 public abstract class SceneBehaviour : MonoBehaviour
 {
-    [SerializeField] private bool _commentReset;
     [SerializeField] private Core _corePrefab;
 
     protected virtual string SceneName
