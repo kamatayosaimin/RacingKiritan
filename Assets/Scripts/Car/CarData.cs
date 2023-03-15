@@ -6,26 +6,63 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CarData", menuName = "GOIS/CarData")]
 public class CarData : ScriptableObject
 {
-    [Range(0f, 100f)][SerializeField] private int _fourWDBalance = 50;
-    [Range(1f, 6000f)][SerializeField] private int _finalGear = 3000;
-    [Range(1f, 6000f)][SerializeField] private int[] _gearRatio = DefaultGearRatio;
-    [SerializeField] private float _brakeTorque;
-    [SerializeField] private float _steering;
-    [SerializeField] private float _downForce;
-    [SerializeField] private float _engineTuneWeight;
-    [SerializeField] private float _weightDownValue;
-    [SerializeField] private float _tunedSusupensionSpring = 35000f;
-    [SerializeField] private float _tunedSuspensionDamper = 4500f;
-    [SerializeField] private float _displacement;
-    [SerializeField] private string _carName;
-    [SerializeField] private CarAspirationType _aspirationType;
-    [SerializeField] private CarDriveTypeStatus _driveType;
-    [SerializeField] private CarEngineType _engineType;
-    [SerializeField] private CarTuneData[] _tuneDatas = new CarTuneData[21];
+    [Range(0f, 100f)]
     [SerializeField]
+    [Tooltip("4WD の駆動配分 [0, 100]")]
+    private int _fourWDBalance = 50;
+    [Range(1f, 6000f)]
+    [SerializeField]
+    [Tooltip("ファイナルギア [1, 6000]")]
+    private int _finalGear = 3000;
+    [Range(1f, 6000f)]
+    [SerializeField]
+    [Tooltip("ギア比. 0 番は 後退ギア比 [1, 6000]")]
+    private int[] _gearRatio = DefaultGearRatio;
+    [SerializeField]
+    [Tooltip("ブレーキトルク")]
+    private float _brakeTorque;
+    [SerializeField]
+    [Tooltip("ステアリングの 最大角度")]
+    private float _steering;
+    [SerializeField]
+    [Tooltip("ダウンフォース")]
+    private float _downForce;
+    [SerializeField]
+    [Tooltip("ボルトオンターボ / エンジンスワップ時の 重量変化量")]
+    private float _engineTuneWeight;
+    [SerializeField]
+    [Tooltip("軽量化時の 減少する重量")]
+    private float _weightDownValue;
+    [SerializeField]
+    [Tooltip("サスペンションチューン時の WheelCollider.suspensionSpring.spring")]
+    private float _tunedSusupensionSpring = 35000f;
+    [SerializeField]
+    [Tooltip("サスペンションチューン時の WheelCollider.suspensionSpring.damper")]
+    private float _tunedSuspensionDamper = 4500f;
+    [SerializeField]
+    [Tooltip("排気量")]
+    private float _displacement;
+    [SerializeField]
+    [Tooltip("車種の 名前")]
+    private string _carName;
+    [SerializeField]
+    [Tooltip("初期の 過給形式")]
+    private CarAspirationType _aspirationType;
+    [SerializeField]
+    [Tooltip("駆動方式")]
+    private CarDriveTypeStatus _driveType;
+    [SerializeField]
+    [Tooltip("エンジン形式")]
+    private CarEngineType _engineType;
+    [SerializeField]
+    [Tooltip("チューンレベル毎の チューン情報")]
+    private CarTuneData[] _tuneDatas = new CarTuneData[21];
+    [SerializeField]
+    [Tooltip("タイヤチューン時の WheelCollider.forwardFriction")]
     private CarWheelFrictionData _tunedForwardFriction
         = CarWheelFrictionData.DefaultForwardFriction;
     [SerializeField]
+    [Tooltip("タイヤチューン時の WheelCollider.sidewaysFriction")]
     private CarWheelFrictionData _tunedSidewaysFriction
         = CarWheelFrictionData.DefaultSidewaysFriction;
 

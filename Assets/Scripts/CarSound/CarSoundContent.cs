@@ -5,9 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CarSound", menuName = "GOIS/CarSound")]
 public class CarSoundContent : ScriptableObject
 {
-    [SerializeField] private CarSoundClipData _playerClipData;
-    [SerializeField] private CarSoundClipData _enemyClipData;
-    [SerializeField] private CarSoundPitchData _pitchData;
+    [SerializeField][Tooltip("プレイヤー用 AudioCilp 情報")] private CarSoundClipData _playerClipData;
+    [SerializeField][Tooltip("ライバル用 AudioCilp 情報")] private CarSoundClipData _enemyClipData;
+    [SerializeField][Tooltip("Pitch 情報")] private CarSoundPitchData _pitchData;
 
     public CarSoundClipData PlayerClipData
     {

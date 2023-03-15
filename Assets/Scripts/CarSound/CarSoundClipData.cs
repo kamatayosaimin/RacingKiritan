@@ -2,15 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// クルマの AudioClip
+/// </summary>
 [System.Serializable]
 public class CarSoundClipData
 {
-    [SerializeField] private AudioClip _engineClip;
-    [SerializeField] private AudioClip _turboClip;
-    [SerializeField] private AudioClip _revLimitClip;
-    [SerializeField] private AudioClip _squealClip;
-    [SerializeField] private AudioClip _mufflerClip;
-    [SerializeField] private AudioSource _buppiganPrefab;
+    [SerializeField]
+    [Tooltip("エンジン音")]
+    private AudioClip _engineClip;
+    [SerializeField]
+    [Tooltip("ターボ音")]
+    private AudioClip _turboClip;
+    [SerializeField]
+    [Tooltip("レブリミット音")]
+    private AudioClip _revLimitClip;
+    [SerializeField]
+    [Tooltip("スキール音")]
+    private AudioClip _squealClip;
+    [SerializeField]
+    [Tooltip("マフラー音")]
+    private AudioClip _mufflerClip;
+    [SerializeField]
+    [Tooltip("ブッピガン Prefab")]
+    private AudioSource _buppiganPrefab;
 
     public AudioClip EngineClip
     {

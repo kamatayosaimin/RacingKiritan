@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// WheelFrictionCurve コンバータ
+/// </summary>
 [System.Serializable]
 public class CarWheelFrictionData
 {

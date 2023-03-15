@@ -5,10 +5,19 @@ using UnityEngine;
 [System.Serializable]
 public class CarTuneData
 {
-    [Range(1f, CarCommon.MeterMemoriCount)][SerializeField] private int _meterMemoriCount = CarCommon.MeterMemoriCount;
-    [Range(0f, CarCommon.MaxRpm)][SerializeField] private float _redZone;
-    [SerializeField] private CarSubTune _subTune;
-    [SerializeField][RangeCurve(0f, 0f, CarCommon.MaxRpm, 200f)] private AnimationCurve _engineTorqueCurve;
+    [Range(1f, CarCommon.MeterMemoriCount)]
+    [SerializeField]
+    [Tooltip("メーターの 目盛数")]
+    private int _meterMemoriCount = CarCommon.MeterMemoriCount;
+    [Range(0f, CarCommon.MaxRpm)]
+    [SerializeField]
+    [Tooltip("メーターの レッドゾーン")] private float _redZone;
+    [SerializeField]
+    [Tooltip("特殊チューニング")] private CarSubTune _subTune;
+    [SerializeField]
+    [Tooltip("トルク曲線")]
+    [RangeCurve(0f, 0f, CarCommon.MaxRpm, 200f)]
+    private AnimationCurve _engineTorqueCurve;
 
     public int MeterMemoriCount
     {
