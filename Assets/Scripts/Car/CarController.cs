@@ -208,7 +208,12 @@ public class CarController : MonoBehaviour
         {
             CarSubTune[] subTunes = data.GetSubTunes(tuneLevel);
 
-            _aspirationType = GetAspirationType(data.AspirationType, subTunes);
+            bool isEngineTuned = subTunes.Any(t => t == CarSubTune.Turbo || t == CarSubTune.EngineChange);
+
+            _aspirationType = GetAspirationType(data.AspirationType, isEngineTuned);
+
+            if (isEngineTuned)
+                _rigidbody.mass += data.EngineTuneWeight;
 
             WheelCollider[] wheelColliders = GetAllWheelColliders();
 
@@ -499,13 +504,11 @@ public class CarController : MonoBehaviour
         return subTunes.Any(t => t == target);
     }
 
-    CarAspirationType GetAspirationType(CarAspirationType type, CarSubTune[] subTunes)
+    CarAspirationType GetAspirationType(CarAspirationType type, bool isTuned)
     {
         switch (type)
         {
             case CarAspirationType.NA:
-                bool isTuned = subTunes.Any(t => t == CarSubTune.Turbo || t == CarSubTune.EngineChange);
-
                 return isTuned ? CarAspirationType.Turbo : CarAspirationType.NA;
             case CarAspirationType.Turbo:
                 return CarAspirationType.Turbo;

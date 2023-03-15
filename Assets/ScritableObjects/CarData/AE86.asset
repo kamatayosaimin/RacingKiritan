@@ -18,7 +18,8 @@ MonoBehaviour:
   _brakeTorque: 500
   _steering: 15
   _downForce: 0
-  _weightDownValue: 60
+  _engineTuneWeight: 40
+  _weightDownValue: 100
   _tunedSusupensionSpring: 35000
   _tunedSuspensionDamper: 4500
   _displacement: 1587
