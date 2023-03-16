@@ -102,7 +102,7 @@ MonoBehaviour:
       m_RotationOrder: 4
   - _meterMemoriCount: 15
     _redZone: 0
-    _subTune: 4
+    _subTune: 0
     _engineTorqueCurve:
       serializedVersion: 2
       m_Curve: []
