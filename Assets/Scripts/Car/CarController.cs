@@ -11,7 +11,8 @@ public class CarController : MonoBehaviour
     private float _engineRpm;
     private float _engineRpmMin;
     private float _engineRpmMax;
-    private float _brakeTorque;
+    private float _brakeTorqueFront;
+    private float _brakeTorqueRear;
     private float _steering;
     private float _downForce;
     private float _fourWDBalance;
@@ -103,7 +104,7 @@ public class CarController : MonoBehaviour
             _engineRpm = WheelRpmToEngineRpm();
 
             SetMotor(inputMotor, frontWheelColliders, rearWheelColliders);
-            SetBrake();
+            SetBrake(frontWheelColliders, rearWheelColliders);
             SetSteering(frontWheelColliders);
             SetDownForce(velocity);
         }
@@ -140,7 +141,8 @@ public class CarController : MonoBehaviour
     {
         try
         {
-            _brakeTorque = data.BrakeTorque;
+            _brakeTorqueFront = data.BrakeTorqueFront;
+            _brakeTorqueRear = data.BrakeTorqueRear;
             _steering = data.Steering;
             _downForce = data.DownForce;
             _fourWDBalance = data.FourWDBalance / 100f;
@@ -365,15 +367,19 @@ public class CarController : MonoBehaviour
         }
     }
 
-    void SetBrake()
+    void SetBrake(WheelCollider[] frontWheelColliders, WheelCollider[] rearWheelColliders)
     {
         try
         {
-            float brakeTorque = _brakeTorque * _input.CurrentBrake;
-            WheelCollider[] allWheelColliders = GetAllWheelColliders();
+            float input = _input.CurrentBrake;
+            float front = _brakeTorqueFront * input;
+            float rear = _brakeTorqueRear * input;
 
-            foreach (var wc in allWheelColliders)
-                wc.brakeTorque = brakeTorque;
+            foreach (var wc in frontWheelColliders)
+                wc.brakeTorque = front;
+
+            foreach (var wc in rearWheelColliders)
+                wc.brakeTorque = rear;
         }
         catch (Exception e)
         {

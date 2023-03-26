@@ -15,7 +15,8 @@ MonoBehaviour:
   _fourWDBalance: 50
   _finalGear: 4300
   _gearRatio: 9c0d0000030e0000e607000068050000e80300005d030000
-  _brakeTorque: 500
+  _brakeTorqueFront: 500
+  _brakeTorqueRear: 500
   _steering: 15
   _downForce: 0
   _engineTuneWeight: 40

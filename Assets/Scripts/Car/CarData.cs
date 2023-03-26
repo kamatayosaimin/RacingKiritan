@@ -19,8 +19,11 @@ public class CarData : ScriptableObject
     [Tooltip("ギア比. 0 番は 後退ギア比 [1, 6000]")]
     private int[] _gearRatio = DefaultGearRatio;
     [SerializeField]
-    [Tooltip("ブレーキトルク")]
-    private float _brakeTorque;
+    [Tooltip("ブレーキトルク(フロント)")]
+    private float _brakeTorqueFront;
+    [SerializeField]
+    [Tooltip("ブレーキトルク(リア)")]
+    private float _brakeTorqueRear;
     [SerializeField]
     [Tooltip("ステアリングの 最大角度")]
     private float _steering;
@@ -90,11 +93,19 @@ public class CarData : ScriptableObject
         }
     }
 
-    public float BrakeTorque
+    public float BrakeTorqueFront
     {
         get
         {
-            return _brakeTorque;
+            return _brakeTorqueFront;
+        }
+    }
+
+    public float BrakeTorqueRear
+    {
+        get
+        {
+            return _brakeTorqueRear;
         }
     }
 
