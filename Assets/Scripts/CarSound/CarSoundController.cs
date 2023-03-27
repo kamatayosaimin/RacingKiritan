@@ -151,7 +151,43 @@ public class CarSoundController : MonoBehaviour
     {
         try
         {
+            foreach (var status in wheelStatusDictionary.Values)
+            {
+                List<float> list = new List<float>();
+                Action<float, float, float> arg = (slip, extremum, asymptote) =>
+                {
+                    slip = Mathf.Abs(slip);
 
+                    if (slip < extremum)
+                        return;
+
+                    float t = Mathf.InverseLerp(extremum, asymptote, slip);
+
+                    list.Add(t);
+                };
+
+                WheelHit hit = status.Hit;
+                WheelCollider collider = status.Collider;
+
+                WheelFrictionCurve forwardFriction = collider.forwardFriction;
+                WheelFrictionCurve sidewaysFriction = collider.sidewaysFriction;
+
+                arg(hit.forwardSlip, forwardFriction.extremumSlip, forwardFriction.asymptoteSlip);
+                arg(hit.sidewaysSlip, sidewaysFriction.extremumSlip, sidewaysFriction.asymptoteSlip);
+
+                bool isSlipping = list.Count > 0;
+                AudioSource sound = status.Sound;
+
+                if (sound.mute == isSlipping)
+                    sound.mute = !isSlipping;
+
+                if (!isSlipping)
+                    continue;
+
+                float t = Mathf.Max(list.ToArray());
+
+                sound.pitch = _pitchData.GetSquealPitch(t);
+            }
         }
         catch (Exception e)
         {

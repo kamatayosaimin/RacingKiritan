@@ -30,6 +30,6 @@ MonoBehaviour:
     _revLimitOffset: 200
   _pitchData:
     _enginePitchMultipler: 0.001
-    _squealExtremumPitch: 2
-    _squealAsymptotePitch: 4
+    _squealExtremumPitch: 4
+    _squealAsymptotePitch: 7
     _revLimitPitch: 4
