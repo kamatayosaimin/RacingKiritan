@@ -133,8 +133,8 @@ public class CarController : MonoBehaviour
     {
         try
         {
-            foreach (var kvp in _wheelStatusDictionary)
-                kvp.Value.Update();
+            foreach (var status in _wheelStatusDictionary.Values)
+                status.Update();
 
             if (OnWheelHitUpdated != null)
                 OnWheelHitUpdated(_wheelStatusDictionary);

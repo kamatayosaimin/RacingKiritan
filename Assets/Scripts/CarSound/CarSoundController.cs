@@ -90,9 +90,9 @@ public class CarSoundController : MonoBehaviour
     {
         try
         {
-            foreach (var kvp in wheelStatusDictionary)
+            foreach (var status in wheelStatusDictionary.Values)
             {
-                AudioSource sound = kvp.Value.Sound;
+                AudioSource sound = status.Sound;
 
                 sound.clip = clipData.SquealClip;
 
@@ -149,6 +149,13 @@ public class CarSoundController : MonoBehaviour
 
     void WheelHitUpdated(CarWheelDictionary<CarWheelStatus> wheelStatusDictionary)
     {
+        try
+        {
 
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
     }
 }

@@ -37,12 +37,8 @@ public class CarSoundPitchData
         }
     }
 
-    public float GetSquealPitch(float slip, float extremum, float asymptote)
+    public float GetSquealPitch(float t)
     {
-        slip = Mathf.Abs(slip);
-
-        float t = Mathf.InverseLerp(slip, extremum, asymptote);
-
         return Mathf.Lerp(_squealExtremumPitch, _squealAsymptotePitch, t);
     }
 }
