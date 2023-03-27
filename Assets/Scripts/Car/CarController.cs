@@ -20,6 +20,7 @@ public class CarController : MonoBehaviour
     private float _wheelRate;
     private float _reverseSpeedLimit;
     private float[] _gearRatio;
+    private bool _isRevLimitSound;
     private CarAspirationType _aspirationType;
     private CarDriveType _driveType;
     private AnimationCurve _engineTorqueCurve;
@@ -57,6 +58,14 @@ public class CarController : MonoBehaviour
         get
         {
             return _engineRpm;
+        }
+    }
+
+    public bool IsRevLimitSound
+    {
+        get
+        {
+            return _isRevLimitSound;
         }
     }
 
@@ -149,6 +158,7 @@ public class CarController : MonoBehaviour
             _finalGear = data.FinalGear / 1000f;
             _wheelRate = GetWheelRate();
             _gearRatio = data.GearRatio.Select(r => r / 1000f).ToArray();
+            _isRevLimitSound = data.IsRevLimitSound;
             _driveType = GetDriveType(data.DriveType);
             _engineTorqueCurve = data.GetEngineTorqueCurve(tuneLevel);
 
@@ -187,7 +197,7 @@ public class CarController : MonoBehaviour
         }
     }
 
-    public void InitSound(CarSoundClipData clipData, CarSoundPitchData pitchData)
+    public void InitSound(CarSoundClipData clipData, CarSoundOtherData otherData, CarSoundPitchData pitchData)
     {
         try
         {
@@ -196,6 +206,7 @@ public class CarController : MonoBehaviour
 
             _soundController.InitTireSounds(GetTireSoundDictionary());
             _soundController.InitClipData(clipData);
+            _soundController.InitOtherData(otherData, _engineRpmMax);
             _soundController.InitPitchData(pitchData);
         }
         catch (Exception e)

@@ -26,7 +26,10 @@ MonoBehaviour:
     _squealClip: {fileID: 8300000, guid: 27ea34a6262151c4dae1c6e9af95070e, type: 3}
     _mufflerClip: {fileID: 8300000, guid: a5d99ab010aaa434e9a0278ef43dfd5d, type: 3}
     _buppiganPrefab: {fileID: 614281382460678057, guid: 5a011512038a06f45912b9f1f1d2874a, type: 3}
+  _otherData:
+    _revLimitOffset: 200
   _pitchData:
     _enginePitchMultipler: 0.001
     _squealExtremumPitch: 2
     _squealAsymptotePitch: 4
+    _revLimitPitch: 4

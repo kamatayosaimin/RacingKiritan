@@ -5820,7 +5820,7 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 20
   MaxDistance: 10000
   Pan2D: 0
@@ -6200,13 +6200,13 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
-  m_Pitch: 2
+  m_Pitch: 1
   Loop: 1
   Mute: 1
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 20
   MaxDistance: 10000
   Pan2D: 0
@@ -7943,7 +7943,7 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 20
   MaxDistance: 10000
   Pan2D: 0
@@ -8649,7 +8649,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c5dc93d1c6825641b51d3f5b8b4de6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _commentReset: 0
   _corePrefab: {fileID: 3807631186764386908, guid: 7cb4b80e3d804524db41abd52d940bab, type: 3}
   _cameraOffset: {x: 0, y: 2, z: -10}
   _camera: {fileID: 1687009380}
@@ -13123,7 +13122,7 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 20
   MaxDistance: 10000
   Pan2D: 0
@@ -15212,7 +15211,7 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 20
   MaxDistance: 10000
   Pan2D: 0
@@ -20492,7 +20491,7 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 20
   MaxDistance: 10000
   Pan2D: 0
@@ -21118,7 +21117,7 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 20
   MaxDistance: 10000
   Pan2D: 0

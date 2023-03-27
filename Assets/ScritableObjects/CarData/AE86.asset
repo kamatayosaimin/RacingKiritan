@@ -24,6 +24,7 @@ MonoBehaviour:
   _tunedSusupensionSpring: 35000
   _tunedSuspensionDamper: 4500
   _displacement: 1587
+  _isRevLimitSound: 0
   _carName: "\u306F\u3061\u308D\u304F\u53F7"
   _aspirationType: 0
   _driveType: 1

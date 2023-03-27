@@ -199,10 +199,13 @@ public class DRunScene : SceneBehaviour
             _carInput.InputState = CarInputState.Playing;
 
             int tuneLevel = 0;
+            CarSoundClipData clipData = _soundContent.PlayerClipData;
+            CarSoundOtherData otherData = _soundContent.OtherData;
+            CarSoundPitchData pitchData = _soundContent.PitchData;
 
             _playerCarController.InitData(_carData, tuneLevel);
             _playerCarController.InitInput(_carInput);
-            _playerCarController.InitSound(_soundContent.PlayerClipData, _soundContent.PitchData);
+            _playerCarController.InitSound(clipData, otherData, pitchData);
 
             _uiController.Init(_playerCarController, _carData, tuneLevel);
         }

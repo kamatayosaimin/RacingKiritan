@@ -46,6 +46,9 @@ public class CarData : ScriptableObject
     [Tooltip("排気量")]
     private float _displacement;
     [SerializeField]
+    [Tooltip("レブリミット音声の 設定")]
+    private bool _isRevLimitSound;
+    [SerializeField]
     [Tooltip("車種の 名前")]
     private string _carName;
     [SerializeField]
@@ -162,6 +165,14 @@ public class CarData : ScriptableObject
         get
         {
             return _displacement;
+        }
+    }
+
+    public bool IsRevLimitSound
+    {
+        get
+        {
+            return _isRevLimitSound;
         }
     }
 

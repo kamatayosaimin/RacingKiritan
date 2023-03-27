@@ -17,12 +17,23 @@ public class CarSoundPitchData
     [SerializeField]
     [Tooltip("スキール音 Asymptote 時係数")]
     private float _squealAsymptotePitch;
+    [SerializeField]
+    [Tooltip("レブリミット時 Pitch")]
+    private float _revLimitPitch;
 
     public float EnginePitchMultipler
     {
         get
         {
             return _enginePitchMultipler;
+        }
+    }
+
+    public float RevvLimitPitch
+    {
+        get
+        {
+            return _revLimitPitch;
         }
     }
 

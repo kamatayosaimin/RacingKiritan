@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class CarSoundController : MonoBehaviour
 {
+    private float _revLimitRpm;
     [SerializeField] private AudioSource _engineSound;
     [SerializeField] private AudioSource _turboSound;
     [SerializeField] private AudioSource _revLimitSound;
@@ -40,7 +41,17 @@ public class CarSoundController : MonoBehaviour
     {
         try
         {
-            _engineSound.pitch = _carController.EngineRpm * _pitchData.EnginePitchMultipler;
+            float engineRpm = _carController.EngineRpm;
+
+            _engineSound.pitch = engineRpm * _pitchData.EnginePitchMultipler;
+
+            if (_carController.IsRevLimitSound)
+            {
+                bool isRevLimit = engineRpm >= _revLimitRpm;
+
+                if (_revLimitSound.mute == isRevLimit)
+                    _revLimitSound.mute = !isRevLimit;
+            }
         }
         catch (Exception e)
         {
@@ -89,12 +100,10 @@ public class CarSoundController : MonoBehaviour
 
             _turboSound.clip = clipData.TurboClip;
 
-            if (_revLimitSound)
-            {
-                _revLimitSound.clip = clipData.RevLimitClip;
+            _revLimitSound.clip = clipData.RevLimitClip;
 
+            if (_carController.IsRevLimitSound)
                 _revLimitSound.Play();
-            }
 
             _tireFLSound.clip = _tireFRSound.clip = _tireRLSound.clip = _tireRRSound.clip = clipData.SquealClip;
 
@@ -108,8 +117,20 @@ public class CarSoundController : MonoBehaviour
 
             _buppiganPrefab = clipData.BuppiganPrefab;
 
-            for (int i = 0; i < _mufflerSounds.Length; i++)
-                _mufflerSounds[i].clip = clipData.MufflerClip;
+            foreach (var s in _mufflerSounds)
+                s.clip = clipData.MufflerClip;
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
+    }
+
+    public void InitOtherData(CarSoundOtherData otherData, float engineRpmMax)
+    {
+        try
+        {
+            _revLimitRpm = engineRpmMax - otherData.RevLimitOffset;
         }
         catch (Exception e)
         {
@@ -122,6 +143,8 @@ public class CarSoundController : MonoBehaviour
         try
         {
             _pitchData = pitchData;
+
+            _revLimitSound.pitch = pitchData.RevvLimitPitch;
         }
         catch (Exception e)
         {
