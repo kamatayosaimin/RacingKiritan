@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class CarWheelSlip
 {
-    private WheelCollider _wheelCollider;
     private CarSlip _forwardSlip;
     private CarSlip _sidewaysSlip;
+    private CarWheelStatus _status;
 
-    public CarWheelSlip(WheelCollider wheelCollider, CarSlip forwardSlip, CarSlip sidewaysSlip)
+    public CarWheelSlip(CarWheelStatus status, CarSlip forwardSlip, CarSlip sidewaysSlip)
     {
-        _wheelCollider = wheelCollider;
         _forwardSlip = forwardSlip;
         _sidewaysSlip = sidewaysSlip;
+        _status = status;
     }
 
     public void Init()
     {
-        WheelFrictionCurve forwardFriction = _wheelCollider.forwardFriction;
-        WheelFrictionCurve sidewaysFriction = _wheelCollider.sidewaysFriction;
+        WheelCollider wheelCollider = _status.Collider;
+
+        WheelFrictionCurve forwardFriction = wheelCollider.forwardFriction;
+        WheelFrictionCurve sidewaysFriction = wheelCollider.sidewaysFriction;
 
         _forwardSlip.InitSlip(forwardFriction.extremumSlip, forwardFriction.asymptoteSlip);
 
@@ -27,9 +29,7 @@ public class CarWheelSlip
 
     public void SetSlip()
     {
-        WheelHit hit;
-
-        _wheelCollider.GetGroundHit(out hit);
+        WheelHit hit = _status.Hit;
 
         _forwardSlip.SetSlip(hit.forwardSlip);
 

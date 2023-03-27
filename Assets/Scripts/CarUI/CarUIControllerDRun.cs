@@ -27,6 +27,19 @@ public class CarUIControllerDRun : CarUIControllerBase
     //{
     //}
 
+    void OnDestroy()
+    {
+        try
+        {
+            if (PlayerCarController)
+                PlayerCarController.OnWheelHitUpdated -= WheelHitUpdated;
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
+    }
+
     public void SetSteeringText(float value)
     {
         try
@@ -57,10 +70,14 @@ public class CarUIControllerDRun : CarUIControllerBase
 
     protected override void UpdateChild()
     {
+    }
+
+    protected override void InitChild()
+    {
         try
         {
-            foreach (var ws in _wheelSlipList)
-                ws.SetSlip();
+            PlayerCarController.OnInitialized += PlayerInitialized;
+            PlayerCarController.OnWheelHitUpdated += WheelHitUpdated;
         }
         catch (Exception e)
         {
@@ -68,11 +85,10 @@ public class CarUIControllerDRun : CarUIControllerBase
         }
     }
 
-    protected override void InitChild()
+    void PlayerInitialized(CarWheelDictionary<CarWheelStatus> wheelStatusDictionary)
     {
         try
         {
-            CarWheelDictionary<WheelCollider> wheelColliderDictinary = PlayerCarController.GetWheelColliderDictionary();
             CarWheelDictionary<CarSlip> forwardSlipDictionary = new CarWheelDictionary<CarSlip>();
             CarWheelDictionary<CarSlip> sidewaysSlipDictionary = new CarWheelDictionary<CarSlip>();
 
@@ -90,15 +106,31 @@ public class CarUIControllerDRun : CarUIControllerBase
 
             foreach (var k in EnumUtil.GetValues<CarWheelPosition>())
             {
-                WheelCollider wheelCollider = wheelColliderDictinary[k];
                 CarSlip forwardSlip = forwardSlipDictionary[k];
                 CarSlip sidewaysSlip = sidewaysSlipDictionary[k];
-                CarWheelSlip wheelSlip = new CarWheelSlip(wheelCollider, forwardSlip, sidewaysSlip);
+                CarWheelStatus status = wheelStatusDictionary[k];
+
+                CarWheelSlip wheelSlip = new CarWheelSlip(status, forwardSlip, sidewaysSlip);
 
                 wheelSlip.Init();
 
                 _wheelSlipList.Add(wheelSlip);
             }
+
+            PlayerCarController.OnInitialized -= PlayerInitialized;
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
+    }
+
+    void WheelHitUpdated(CarWheelDictionary<CarWheelStatus> wheelStatusDictionary)
+    {
+        try
+        {
+            foreach (var ws in _wheelSlipList)
+                ws.SetSlip();
         }
         catch (Exception e)
         {

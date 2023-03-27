@@ -36,6 +36,10 @@ public class CarController : MonoBehaviour
     [SerializeField] private WheelCollider _wheelColliderRR;
     private CarInputBase _input;
     private CarSoundController _soundController;
+    CarWheelDictionary<CarWheelStatus> _wheelStatusDictionary;
+
+    public event Action<CarWheelDictionary<CarWheelStatus>> OnInitialized;
+    public event Action<CarWheelDictionary<CarWheelStatus>> OnWheelHitUpdated;
 
     public int ShiftIndex
     {
@@ -75,6 +79,7 @@ public class CarController : MonoBehaviour
         {
             _rigidbody = GetComponent<Rigidbody>();
             _soundController = GetComponent<CarSoundController>();
+            _wheelStatusDictionary = GetWheelStatusDictionary();
         }
         catch (Exception e)
         {
@@ -128,17 +133,24 @@ public class CarController : MonoBehaviour
     {
         try
         {
-            foreach (var wv in GetWheelValues())
-            {
-                Quaternion rotation;
-                Vector3 position;
-                Transform tire = wv.Tire;
+            foreach (var kvp in _wheelStatusDictionary)
+                kvp.Value.Update();
 
-                wv.Collider.GetWorldPose(out position, out rotation);
+            if (OnWheelHitUpdated != null)
+                OnWheelHitUpdated(_wheelStatusDictionary);
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
+    }
 
-                tire.rotation = rotation;
-                tire.position = position;
-            }
+    void OnDestroy()
+    {
+        try
+        {
+            OnInitialized = null;
+            OnWheelHitUpdated = null;
         }
         catch (Exception e)
         {
@@ -204,10 +216,22 @@ public class CarController : MonoBehaviour
             if (!_soundController)
                 return;
 
-            _soundController.InitTireSounds(GetTireSoundDictionary());
-            _soundController.InitClipData(clipData);
+            _soundController.InitClipData(clipData, _wheelStatusDictionary);
             _soundController.InitOtherData(otherData, _engineRpmMax);
             _soundController.InitPitchData(pitchData);
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
+    }
+
+    public void Initialized()
+    {
+        try
+        {
+            if (OnInitialized != null)
+                OnInitialized(_wheelStatusDictionary);
         }
         catch (Exception e)
         {
@@ -553,25 +577,6 @@ public class CarController : MonoBehaviour
         }
     }
 
-    CarWheelDictionary<AudioSource> GetTireSoundDictionary()
-    {
-        return GetWheelColliderDictionary()
-            .SelectDictionary(wc => wc.GetComponent<AudioSource>())
-            .DictionaryCast<CarWheelDictionary<AudioSource>>();
-    }
-
-    public CarWheelDictionary<WheelCollider> GetWheelColliderDictionary()
-    {
-        CarWheelDictionary<WheelCollider> dictionary = new CarWheelDictionary<WheelCollider>();
-
-        dictionary.Add(CarWheelPosition.FrontLeft, _wheelColliderFL);
-        dictionary.Add(CarWheelPosition.FrontRight, _wheelColliderFR);
-        dictionary.Add(CarWheelPosition.RearLeft, _wheelColliderRL);
-        dictionary.Add(CarWheelPosition.RearRight, _wheelColliderRR);
-
-        return dictionary;
-    }
-
     WheelCollider[] GetFrontWheelColliders()
     {
         WheelCollider[] wheelColliders = new[]
@@ -607,15 +612,19 @@ public class CarController : MonoBehaviour
         return wheelColliders;
     }
 
-    CarWheelValue[] GetWheelValues()
+    CarWheelDictionary<CarWheelStatus> GetWheelStatusDictionary()
     {
-        List<CarWheelValue> list = new List<CarWheelValue>();
+        CarWheelDictionary<CarWheelStatus> dictionary = new CarWheelDictionary<CarWheelStatus>();
+        CarWheelStatus fl = new CarWheelStatus(_wheelColliderFL, _tireFL);
+        CarWheelStatus fr = new CarWheelStatus(_wheelColliderFR, _tireFR);
+        CarWheelStatus rl = new CarWheelStatus(_wheelColliderRL, _tireRL);
+        CarWheelStatus rr = new CarWheelStatus(_wheelColliderRR, _tireRR);
 
-        list.Add(new CarWheelValue(_wheelColliderFL, _tireFL));
-        list.Add(new CarWheelValue(_wheelColliderFR, _tireFR));
-        list.Add(new CarWheelValue(_wheelColliderRL, _tireRL));
-        list.Add(new CarWheelValue(_wheelColliderRR, _tireRR));
+        dictionary.Add(CarWheelPosition.FrontLeft, fl);
+        dictionary.Add(CarWheelPosition.FrontRight, fr);
+        dictionary.Add(CarWheelPosition.RearLeft, rl);
+        dictionary.Add(CarWheelPosition.RearRight, rr);
 
-        return list.ToArray();
+        return dictionary;
     }
 }

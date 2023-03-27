@@ -10,10 +10,6 @@ public class CarSoundController : MonoBehaviour
     [SerializeField] private AudioSource _engineSound;
     [SerializeField] private AudioSource _turboSound;
     [SerializeField] private AudioSource _revLimitSound;
-    private AudioSource _tireFLSound;
-    private AudioSource _tireFRSound;
-    private AudioSource _tireRLSound;
-    private AudioSource _tireRRSound;
     private AudioSource _buppiganPrefab;
     [SerializeField] private AudioSource[] _mufflerSounds;
     private CarController _carController;
@@ -24,6 +20,8 @@ public class CarSoundController : MonoBehaviour
         try
         {
             _carController = GetComponent<CarController>();
+
+            _carController.OnWheelHitUpdated += WheelHitUpdated;
         }
         catch (Exception e)
         {
@@ -59,6 +57,19 @@ public class CarSoundController : MonoBehaviour
         }
     }
 
+    void OnDestroy()
+    {
+        try
+        {
+            if (_carController)
+                _carController.OnWheelHitUpdated -= WheelHitUpdated;
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
+    }
+
     void OnCollisionEnter(Collision collision)
     {
         try
@@ -75,25 +86,19 @@ public class CarSoundController : MonoBehaviour
         }
     }
 
-    public void InitTireSounds(CarWheelDictionary<AudioSource> soundDictionary)
+    public void InitClipData(CarSoundClipData clipData, CarWheelDictionary<CarWheelStatus> wheelStatusDictionary)
     {
         try
         {
-            _tireFLSound = soundDictionary[CarWheelPosition.FrontLeft];
-            _tireFRSound = soundDictionary[CarWheelPosition.FrontRight];
-            _tireRLSound = soundDictionary[CarWheelPosition.RearLeft];
-            _tireRRSound = soundDictionary[CarWheelPosition.RearRight];
-        }
-        catch (Exception e)
-        {
-            ErrorManager.Instance.AddException(e);
-        }
-    }
+            foreach (var kvp in wheelStatusDictionary)
+            {
+                AudioSource sound = kvp.Value.Sound;
 
-    public void InitClipData(CarSoundClipData clipData)
-    {
-        try
-        {
+                sound.clip = clipData.SquealClip;
+
+                sound.Play();
+            }
+
             _engineSound.clip = clipData.EngineClip;
 
             _engineSound.Play();
@@ -104,16 +109,6 @@ public class CarSoundController : MonoBehaviour
 
             if (_carController.IsRevLimitSound)
                 _revLimitSound.Play();
-
-            _tireFLSound.clip = _tireFRSound.clip = _tireRLSound.clip = _tireRRSound.clip = clipData.SquealClip;
-
-            _tireFLSound.Play();
-
-            _tireFRSound.Play();
-
-            _tireRLSound.Play();
-
-            _tireRRSound.Play();
 
             _buppiganPrefab = clipData.BuppiganPrefab;
 
@@ -150,5 +145,10 @@ public class CarSoundController : MonoBehaviour
         {
             ErrorManager.Instance.AddException(e);
         }
+    }
+
+    void WheelHitUpdated(CarWheelDictionary<CarWheelStatus> wheelStatusDictionary)
+    {
+
     }
 }

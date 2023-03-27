@@ -208,6 +208,8 @@ public class DRunScene : SceneBehaviour
             _playerCarController.InitSound(clipData, otherData, pitchData);
 
             _uiController.Init(_playerCarController, _carData, tuneLevel);
+
+            _playerCarController.Initialized();
         }
         catch (Exception e)
         {
