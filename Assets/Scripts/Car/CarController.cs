@@ -92,7 +92,7 @@ public class CarController : MonoBehaviour
     {
         try
         {
-            _rigidbody.centerOfMass = _centerOfMass.localPosition;
+            _rigidbody.centerOfMass = transform.InverseTransformPoint(_centerOfMass.position);
         }
         catch (Exception e)
         {
