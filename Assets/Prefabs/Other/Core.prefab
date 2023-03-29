@@ -72,6 +72,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _driverWeight: 40
   _reverseSpeedLimit: 20
+  _accelOnBoder: 0.5
+  _accelOffSpan: 0.5
   _engineTypeNames:
   - _key: 0
     _value: L3

@@ -7,6 +7,8 @@ public class CarManager : SingletonBehaviour<CarManager>
 {
     [SerializeField] private float _driverWeight = 40f;
     [SerializeField] private float _reverseSpeedLimit = 20f;
+    [SerializeField] private float _accelOnBoder;
+    [SerializeField] private float _accelOffSpan;
     [SerializeField] private CarEngineTypeName[] _engineTypeNames = DefaultEngineTypeNames;
 
     protected override CarManager This
@@ -30,6 +32,22 @@ public class CarManager : SingletonBehaviour<CarManager>
         get
         {
             return _reverseSpeedLimit;
+        }
+    }
+
+    public float AccelOnBoder
+    {
+        get
+        {
+            return _accelOnBoder;
+        }
+    }
+
+    public float AccelOffSpan
+    {
+        get
+        {
+            return _accelOffSpan;
         }
     }
 

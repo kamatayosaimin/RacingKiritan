@@ -6,11 +6,21 @@ using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
+
+    enum AccelLevel
+    {
+        Off,
+        Low,
+        High
+    }
+
     private int _shiftIndex = 1;
     private float _speed;
     private float _engineRpm;
     private float _engineRpmMin;
     private float _engineRpmMax;
+    private float _previousAccel;
+    private float _accelOffTime;
     private float _brakeTorqueFront;
     private float _brakeTorqueRear;
     private float _steering;
@@ -19,6 +29,8 @@ public class CarController : MonoBehaviour
     private float _finalGear;
     private float _wheelRate;
     private float _reverseSpeedLimit;
+    private float _accelOnBoder;
+    private float _accelOffSpan;
     private float[] _gearRatio;
     private bool _isRevLimitSound;
     private CarAspirationType _aspirationType;
@@ -38,6 +50,7 @@ public class CarController : MonoBehaviour
     private CarSoundController _soundController;
     CarWheelDictionary<CarWheelStatus> _wheelStatusDictionary;
 
+    public event Action<CarAspirationType> OnAccelOff;
     public event Action<CarWheelDictionary<CarWheelStatus>> OnInitialized;
     public event Action<CarWheelDictionary<CarWheelStatus>> OnWheelHitUpdated;
 
@@ -138,6 +151,37 @@ public class CarController : MonoBehaviour
 
             if (OnWheelHitUpdated != null)
                 OnWheelHitUpdated(_wheelStatusDictionary);
+
+            float accel = Mathf.Abs(_input.CurrentMotor);
+            AccelLevel accelLevel = GetAccelLevel(accel);
+
+            if (_accelOffTime > 0f)
+            {
+                _accelOffTime -= Time.deltaTime;
+
+                if (_accelOffTime <= 0f || accelLevel == AccelLevel.High)
+                    _accelOffTime = 0f;
+                else if (accelLevel == AccelLevel.Off)
+                {
+                    _accelOffTime = 0f;
+
+                    OnAccelOff(_aspirationType);
+                }
+            }
+            else if (_previousAccel >= _accelOnBoder)
+                switch (accelLevel)
+                {
+                    case AccelLevel.Off:
+                        OnAccelOff(_aspirationType);
+
+                        break;
+                    case AccelLevel.Low:
+                        _accelOffTime = _accelOffSpan;
+
+                        break;
+                }
+
+            _previousAccel = accel;
         }
         catch (Exception e)
         {
@@ -149,6 +193,7 @@ public class CarController : MonoBehaviour
     {
         try
         {
+            OnAccelOff = null;
             OnInitialized = null;
             OnWheelHitUpdated = null;
         }
@@ -182,6 +227,8 @@ public class CarController : MonoBehaviour
             CarManager carManager = CarManager.Instance;
 
             _reverseSpeedLimit = carManager.ReverseSpeedLimit;
+            _accelOnBoder = carManager.AccelOnBoder;
+            _accelOffSpan = carManager.AccelOffSpan;
 
             InitSubTune(data, tuneLevel);
 
@@ -292,12 +339,19 @@ public class CarController : MonoBehaviour
                 return;
             }
 
+            bool isAccelOn = _previousAccel >= _accelOnBoder;
+
             if (_input.IsShiftDown)
             {
                 _input.IsShiftDown = false;
 
                 if (_shiftIndex > 1)
+                {
                     _shiftIndex--;
+
+                    if (isAccelOn)
+                        OnAccelOff(_aspirationType);
+                }
             }
 
             if (_input.IsShiftUp)
@@ -305,7 +359,12 @@ public class CarController : MonoBehaviour
                 _input.IsShiftUp = false;
 
                 if (_shiftIndex >= 1 && _shiftIndex < _gearRatio.Length - 1)
+                {
                     _shiftIndex++;
+
+                    if (isAccelOn)
+                        OnAccelOff(_aspirationType);
+                }
             }
         }
         catch (Exception e)
@@ -575,6 +634,14 @@ public class CarController : MonoBehaviour
             default:
                 throw new ArgumentException();
         }
+    }
+
+    AccelLevel GetAccelLevel(float accel)
+    {
+        if (accel > 0f)
+            return accel >= _accelOnBoder ? AccelLevel.High : AccelLevel.Low;
+
+        return AccelLevel.Off;
     }
 
     WheelCollider[] GetFrontWheelColliders()

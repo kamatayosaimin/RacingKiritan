@@ -62,7 +62,10 @@ public class CarSoundController : MonoBehaviour
         try
         {
             if (_carController)
+            {
+                _carController.OnAccelOff -= AccelOff;
                 _carController.OnWheelHitUpdated -= WheelHitUpdated;
+            }
         }
         catch (Exception e)
         {
@@ -114,6 +117,8 @@ public class CarSoundController : MonoBehaviour
 
             foreach (var s in _mufflerSounds)
                 s.clip = clipData.MufflerClip;
+
+            _carController.OnAccelOff += AccelOff;
         }
         catch (Exception e)
         {
@@ -140,6 +145,22 @@ public class CarSoundController : MonoBehaviour
             _pitchData = pitchData;
 
             _revLimitSound.pitch = pitchData.RevvLimitPitch;
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
+    }
+
+    void AccelOff(CarAspirationType aspirationType)
+    {
+        try
+        {
+            if (aspirationType == CarAspirationType.Turbo)
+                _turboSound.Play();
+
+            foreach (var s in _mufflerSounds)
+                s.Play();
         }
         catch (Exception e)
         {
