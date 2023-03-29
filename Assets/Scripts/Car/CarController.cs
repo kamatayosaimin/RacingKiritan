@@ -36,6 +36,7 @@ public class CarController : MonoBehaviour
     private CarAspirationType _aspirationType;
     private CarDriveType _driveType;
     private AnimationCurve _engineTorqueCurve;
+    [SerializeField] private ParticleSystem[] _mufflerParticles;
     private Rigidbody _rigidbody;
     [SerializeField] private Transform _centerOfMass;
     [SerializeField] private Transform _tireFL;
@@ -93,6 +94,8 @@ public class CarController : MonoBehaviour
             _rigidbody = GetComponent<Rigidbody>();
             _soundController = GetComponent<CarSoundController>();
             _wheelStatusDictionary = GetWheelStatusDictionary();
+
+            OnAccelOff += PlayMufflerParticles;
         }
         catch (Exception e)
         {
@@ -503,6 +506,19 @@ public class CarController : MonoBehaviour
             Vector3 downForce = Vector3.down * (_downForce * velocity);
 
             _rigidbody.AddForce(downForce);
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
+    }
+
+    void PlayMufflerParticles(CarAspirationType aspirationType)
+    {
+        try
+        {
+            foreach (var p in _mufflerParticles)
+                p.Play();
         }
         catch (Exception e)
         {
