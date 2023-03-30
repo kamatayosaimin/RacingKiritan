@@ -42,7 +42,11 @@ public class CarWheelStatus
 
     public void Update()
     {
-        _collider.GetGroundHit(out _hit);
+        WheelHit hit;
+
+        _collider.GetGroundHit(out hit);
+
+        _hit = hit;
 
         Quaternion rotation;
         Vector3 position;
