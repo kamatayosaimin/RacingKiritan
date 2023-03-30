@@ -20,5 +20,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DRun.unity
     guid: 16b7bdcbd0955434888e3cd63ab56e17
-  m_configObjects:
-    com.unity.input.settings: {fileID: 11400000, guid: bceecda06e9f3e34c95d150ecb614408, type: 2}
+  m_configObjects: {}
