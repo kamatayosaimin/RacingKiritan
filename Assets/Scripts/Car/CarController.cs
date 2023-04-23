@@ -155,7 +155,10 @@ public class CarController : MonoBehaviour
             if (OnWheelHitUpdated != null)
                 OnWheelHitUpdated(_wheelStatusDictionary);
 
-            float accel = Mathf.Abs(_input.CurrentMotor);
+            float accel = GetClampedInputMotor(_input.CurrentMotor);
+
+            accel = Mathf.Abs(accel);
+
             AccelLevel accelLevel = GetAccelLevel(accel);
 
             if (_accelOffTime > 0f)
@@ -596,7 +599,30 @@ public class CarController : MonoBehaviour
     /// <returns></returns>
     float GetEngineTorque(float inputMotor)
     {
-        return _engineRpm > _engineRpmMax ? 0f : _engineTorqueCurve.Evaluate(_engineRpm) * inputMotor;
+        if (_engineRpm > _engineRpmMax)
+            return 0f;
+
+        return _engineTorqueCurve.Evaluate(_engineRpm) * GetClampedInputMotor(inputMotor);
+    }
+
+    float GetClampedInputMotor(float inputMotor)
+    {
+        float min;
+        float max;
+        bool isReverse = _shiftIndex == 0;
+
+        if (isReverse)
+        {
+            min = -1f;
+            max = 0f;
+        }
+        else
+        {
+            min = 0f;
+            max = 1f;
+        }
+
+        return Mathf.Clamp(inputMotor, min, max);
     }
 
     float GetGearRatio()
