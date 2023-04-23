@@ -55,6 +55,9 @@ public class CarData : ScriptableObject
     [Tooltip("初期の 過給形式")]
     private CarAspirationType _aspirationType;
     [SerializeField]
+    [Tooltip("排気量の クラス")]
+    private CarClassType _classType;
+    [SerializeField]
     [Tooltip("駆動方式")]
     private CarDriveTypeStatus _driveType;
     [SerializeField]
@@ -189,6 +192,14 @@ public class CarData : ScriptableObject
         get
         {
             return _aspirationType;
+        }
+    }
+
+    public CarClassType ClassType
+    {
+        get
+        {
+            return _classType;
         }
     }
 
