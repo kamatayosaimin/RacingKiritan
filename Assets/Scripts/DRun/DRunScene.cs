@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 
 public class DRunScene : SceneBehaviour
 {
+    [Range(0f, 20f)][SerializeField] private int _tuneLevelTest;
+    private int _tuneLevel;
     [SerializeField] private Vector3 _cameraOffset;
     [SerializeField] private Camera _camera;
     [SerializeField] private CarController _playerCarController;
@@ -196,18 +198,18 @@ public class DRunScene : SceneBehaviour
     {
         try
         {
+            _tuneLevel = _tuneLevelTest;
             _carInput.InputState = CarInputState.Playing;
 
-            int tuneLevel = 0;
             CarSoundClipData clipData = _soundContent.PlayerClipData;
             CarSoundOtherData otherData = _soundContent.OtherData;
             CarSoundPitchData pitchData = _soundContent.PitchData;
 
-            _playerCarController.InitData(_carData, tuneLevel);
+            _playerCarController.InitData(_carData, _tuneLevel);
             _playerCarController.InitInput(_carInput);
             _playerCarController.InitSound(clipData, otherData, pitchData);
 
-            _uiController.Init(_playerCarController, _carData, tuneLevel);
+            _uiController.Init(_playerCarController, _carData, _tuneLevel);
 
             _playerCarController.Initialized();
         }

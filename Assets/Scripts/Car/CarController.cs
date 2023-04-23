@@ -238,7 +238,7 @@ public class CarController : MonoBehaviour
 
             InitSubTune(data, tuneLevel);
 
-            string log = string.Format("{0} : {1} kg", name, GetTotalMass());
+            string log = string.Format("{0} : {1:#} kg", name, GetTotalMass());
 
             Debug.Log(log);
 
