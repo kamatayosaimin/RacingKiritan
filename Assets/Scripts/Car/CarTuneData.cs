@@ -13,6 +13,9 @@ public class CarTuneData
     [SerializeField]
     [Tooltip("メーターの レッドゾーン")] private float _redZone;
     [SerializeField]
+    [Tooltip("ワーニングランプの rpm オフセット")]
+    private float _warningLampOffset;
+    [SerializeField]
     [Tooltip("特殊チューニング")] private CarSubTune _subTune;
     [SerializeField]
     [Tooltip("トルク曲線")]
@@ -32,6 +35,14 @@ public class CarTuneData
         get
         {
             return _redZone;
+        }
+    }
+
+    public float WarningLampOffset
+    {
+        get
+        {
+            return _warningLampOffset;
         }
     }
 

@@ -33,6 +33,7 @@ MonoBehaviour:
   _tuneDatas:
   - _meterMemoriCount: 8
     _redZone: 6500
+    _warningLampOffset: 500
     _subTune: 0
     _engineTorqueCurve:
       serializedVersion: 2
@@ -78,6 +79,7 @@ MonoBehaviour:
       m_RotationOrder: 4
   - _meterMemoriCount: 8
     _redZone: 6500
+    _warningLampOffset: 500
     _subTune: 1
     _engineTorqueCurve:
       serializedVersion: 2
@@ -132,6 +134,7 @@ MonoBehaviour:
       m_RotationOrder: 4
   - _meterMemoriCount: 15
     _redZone: 0
+    _warningLampOffset: 0
     _subTune: 3
     _engineTorqueCurve:
       serializedVersion: 2
@@ -141,6 +144,7 @@ MonoBehaviour:
       m_RotationOrder: 4
   - _meterMemoriCount: 15
     _redZone: 0
+    _warningLampOffset: 0
     _subTune: 0
     _engineTorqueCurve:
       serializedVersion: 2
@@ -150,6 +154,7 @@ MonoBehaviour:
       m_RotationOrder: 4
   - _meterMemoriCount: 10
     _redZone: 8000
+    _warningLampOffset: 900
     _subTune: 0
     _engineTorqueCurve:
       serializedVersion: 2
@@ -204,6 +209,7 @@ MonoBehaviour:
       m_RotationOrder: 4
   - _meterMemoriCount: 15
     _redZone: 0
+    _warningLampOffset: 0
     _subTune: 0
     _engineTorqueCurve:
       serializedVersion: 2
@@ -213,6 +219,7 @@ MonoBehaviour:
       m_RotationOrder: 4
   - _meterMemoriCount: 15
     _redZone: 0
+    _warningLampOffset: 0
     _subTune: 0
     _engineTorqueCurve:
       serializedVersion: 2
@@ -222,6 +229,7 @@ MonoBehaviour:
       m_RotationOrder: 4
   - _meterMemoriCount: 12
     _redZone: 9500
+    _warningLampOffset: 1000
     _subTune: 0
     _engineTorqueCurve:
       serializedVersion: 2
@@ -276,6 +284,7 @@ MonoBehaviour:
       m_RotationOrder: 4
   - _meterMemoriCount: 15
     _redZone: 0
+    _warningLampOffset: 0
     _subTune: 0
     _engineTorqueCurve:
       serializedVersion: 2
@@ -285,6 +294,7 @@ MonoBehaviour:
       m_RotationOrder: 4
   - _meterMemoriCount: 15
     _redZone: 0
+    _warningLampOffset: 0
     _subTune: 0
     _engineTorqueCurve:
       serializedVersion: 2
@@ -294,6 +304,7 @@ MonoBehaviour:
       m_RotationOrder: 4
   - _meterMemoriCount: 13
     _redZone: 10500
+    _warningLampOffset: 1300
     _subTune: 5
     _engineTorqueCurve:
       serializedVersion: 2
@@ -348,6 +359,7 @@ MonoBehaviour:
       m_RotationOrder: 4
   - _meterMemoriCount: 15
     _redZone: 0
+    _warningLampOffset: 0
     _subTune: 0
     _engineTorqueCurve:
       serializedVersion: 2
@@ -357,6 +369,7 @@ MonoBehaviour:
       m_RotationOrder: 4
   - _meterMemoriCount: 15
     _redZone: 0
+    _warningLampOffset: 0
     _subTune: 0
     _engineTorqueCurve:
       serializedVersion: 2
@@ -366,6 +379,7 @@ MonoBehaviour:
       m_RotationOrder: 4
   - _meterMemoriCount: 15
     _redZone: 0
+    _warningLampOffset: 0
     _subTune: 0
     _engineTorqueCurve:
       serializedVersion: 2
@@ -375,6 +389,7 @@ MonoBehaviour:
       m_RotationOrder: 4
   - _meterMemoriCount: 15
     _redZone: 0
+    _warningLampOffset: 0
     _subTune: 0
     _engineTorqueCurve:
       serializedVersion: 2
@@ -384,6 +399,7 @@ MonoBehaviour:
       m_RotationOrder: 4
   - _meterMemoriCount: 15
     _redZone: 0
+    _warningLampOffset: 0
     _subTune: 0
     _engineTorqueCurve:
       serializedVersion: 2
@@ -393,6 +409,7 @@ MonoBehaviour:
       m_RotationOrder: 4
   - _meterMemoriCount: 15
     _redZone: 0
+    _warningLampOffset: 0
     _subTune: 0
     _engineTorqueCurve:
       serializedVersion: 2
@@ -402,6 +419,7 @@ MonoBehaviour:
       m_RotationOrder: 4
   - _meterMemoriCount: 15
     _redZone: 0
+    _warningLampOffset: 0
     _subTune: 0
     _engineTorqueCurve:
       serializedVersion: 2
@@ -411,6 +429,7 @@ MonoBehaviour:
       m_RotationOrder: 4
   - _meterMemoriCount: 15
     _redZone: 0
+    _warningLampOffset: 0
     _subTune: 0
     _engineTorqueCurve:
       serializedVersion: 2
@@ -420,6 +439,7 @@ MonoBehaviour:
       m_RotationOrder: 4
   - _meterMemoriCount: 15
     _redZone: 0
+    _warningLampOffset: 0
     _subTune: 0
     _engineTorqueCurve:
       serializedVersion: 2
@@ -429,6 +449,7 @@ MonoBehaviour:
       m_RotationOrder: 4
   - _meterMemoriCount: 15
     _redZone: 0
+    _warningLampOffset: 0
     _subTune: 0
     _engineTorqueCurve:
       serializedVersion: 2

@@ -261,7 +261,7 @@ public abstract class CarUIControllerBase : MonoBehaviour
 
             arg(keys[keys.Length - 1].time);
 
-            _maxPowerRpm = maxPowerRpm;
+            _maxPowerRpm = maxPowerRpm - data.GetWarningLampOffset(tuneLevel);
 
             _powerLine.Positions = powerPositionList.ToArray();
 

@@ -258,6 +258,11 @@ public class CarData : ScriptableObject
         return _tuneDatas[tuneLevel].RedZone;
     }
 
+    public float GetWarningLampOffset(int tuneLevel)
+    {
+        return _tuneDatas[tuneLevel].WarningLampOffset;
+    }
+
     public CarSubTune[] GetSubTunes(int tuneLevel)
     {
         return _tuneDatas.Take(tuneLevel + 1).Select(d => d.SubTune).Where(t => t != CarSubTune.None).ToArray();
