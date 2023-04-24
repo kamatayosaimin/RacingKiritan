@@ -23,8 +23,8 @@ public abstract class CarUIControllerBase : MonoBehaviour
     [SerializeField] private string _reverseValue = "R";
     [SerializeField] private string _speedStyle = "0";
     [SerializeField] private string _inputStyle = "0.000";
-    [SerializeField] private string _powerFormat = "{0:#} PS / {1} rpm";
-    [SerializeField] private string _torqueFormat = "{0:#.#} kgm / {1} rpm";
+    [SerializeField] private string _powerFormat = "{0:#} PS / {1:#} rpm";
+    [SerializeField] private string _torqueFormat = "{0:#.0} kgm / {1:#} rpm";
     [SerializeField] private Color _warningLampOffColor = Color.white;
     [SerializeField] private Color _warningLampOnColor = Color.white;
     [SerializeField] private TextMeshProUGUI _speedText;
