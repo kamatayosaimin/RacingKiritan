@@ -1,0 +1,651 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c046d4b7806304484a1e0515e6305e, type: 3}
+  m_Name: AE86
+  m_EditorClassIdentifier: 
+  _fourWDBalance: 50
+  _finalGear: 4300
+  _gearRatio: 9c0d0000030e0000e607000068050000e80300005d030000
+  _brakeTorqueFront: 650
+  _brakeTorqueRear: 360
+  _steering: 15
+  _downForce: 0
+  _engineTuneWeight: 40
+  _weightDownValue: 100
+  _tunedSusupensionSpring: 35000
+  _tunedSuspensionDamper: 4500
+  _displacement: 1587
+  _isRevLimitSound: 0
+  _carName: "\u306F\u3061\u308D\u304F\u53F7"
+  _aspirationType: 0
+  _classType: 0
+  _driveType: 1
+  _engineType: 1
+  _tuneDatas:
+  - _meterMemoriCount: 8
+    _redZone: 6500
+    _warningLampOffset: 500
+    _subTune: 0
+    _engineTorqueCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 1000
+        value: 10
+        inSlope: 0.0010714285
+        outSlope: 0.0010714285
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 5200
+        value: 14.5
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 6600
+        value: 13
+        inSlope: -0.0018993507
+        outSlope: -0.0018993507
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 7700
+        value: 10
+        inSlope: -0.0027272727
+        outSlope: -0.0027272727
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - _meterMemoriCount: 8
+    _redZone: 6500
+    _warningLampOffset: 500
+    _subTune: 1
+    _engineTorqueCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 1000
+        value: 12
+        inSlope: 0.00039999993
+        outSlope: 0.00039999993
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 4000
+        value: 13.2
+        inSlope: 0.0011428569
+        outSlope: 0.0011428569
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 5200
+        value: 23.8
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 6600
+        value: 21.7
+        inSlope: -0.0033599976
+        outSlope: -0.0033599976
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 7700
+        value: 13.8
+        inSlope: -0.0071818186
+        outSlope: -0.0071818186
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - _meterMemoriCount: 8
+    _redZone: 6500
+    _warningLampOffset: 500
+    _subTune: 3
+    _engineTorqueCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 1000
+        value: 12
+        inSlope: 0.00039999993
+        outSlope: 0.00039999993
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 4000
+        value: 13.2
+        inSlope: 0.001142857
+        outSlope: 0.001142857
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 5200
+        value: 28.6
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 6600
+        value: 26
+        inSlope: -0.004
+        outSlope: -0.004
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 7700
+        value: 18.6
+        inSlope: -0.006727272
+        outSlope: -0.006727272
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - _meterMemoriCount: 8
+    _redZone: 6500
+    _warningLampOffset: 500
+    _subTune: 0
+    _engineTorqueCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 1000
+        value: 12
+        inSlope: 0.00039999993
+        outSlope: 0.00039999993
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 4000
+        value: 13.2
+        inSlope: 0.0011428569
+        outSlope: 0.0011428569
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 5200
+        value: 30.8
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 6600
+        value: 28.2
+        inSlope: -0.004
+        outSlope: -0.004
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 7700
+        value: 20.8
+        inSlope: -0.006727274
+        outSlope: -0.006727274
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - _meterMemoriCount: 10
+    _redZone: 8000
+    _warningLampOffset: 900
+    _subTune: 0
+    _engineTorqueCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 1000
+        value: 12
+        inSlope: 0.00039999993
+        outSlope: 0.00039999993
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 4000
+        value: 13.2
+        inSlope: 0.0008275861
+        outSlope: 0.0008275861
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 6800
+        value: 26.4
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 8200
+        value: 24.45
+        inSlope: -0.0031199984
+        outSlope: -0.0031199984
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 9300
+        value: 16.4
+        inSlope: -0.007318183
+        outSlope: -0.007318183
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - _meterMemoriCount: 10
+    _redZone: 8000
+    _warningLampOffset: 900
+    _subTune: 0
+    _engineTorqueCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 1000
+        value: 12
+        inSlope: 0.00039999993
+        outSlope: 0.00039999993
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 4000
+        value: 13.2
+        inSlope: 0.0008275861
+        outSlope: 0.0008275861
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 6800
+        value: 28
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 8200
+        value: 26.2
+        inSlope: -0.0028799989
+        outSlope: -0.0028799989
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 9300
+        value: 18.2
+        inSlope: -0.0072727273
+        outSlope: -0.0072727273
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - _meterMemoriCount: 10
+    _redZone: 8000
+    _warningLampOffset: 900
+    _subTune: 0
+    _engineTorqueCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 1000
+        value: 12
+        inSlope: 0.00039999993
+        outSlope: 0.00039999993
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 4000
+        value: 13.2
+        inSlope: 0.00082758605
+        outSlope: 0.00082758605
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 6800
+        value: 30
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 8200
+        value: 27.95
+        inSlope: -0.003279999
+        outSlope: -0.003279999
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 9300
+        value: 20
+        inSlope: -0.007227273
+        outSlope: -0.007227273
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - _meterMemoriCount: 12
+    _redZone: 9500
+    _warningLampOffset: 1000
+    _subTune: 0
+    _engineTorqueCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 1000
+        value: 12
+        inSlope: 0.00039999993
+        outSlope: 0.00039999993
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 4000
+        value: 13.2
+        inSlope: 0.00064864854
+        outSlope: 0.00064864854
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 8400
+        value: 25.8
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 9800
+        value: 24.85
+        inSlope: -0.0015199982
+        outSlope: -0.0015199982
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 10900
+        value: 16
+        inSlope: -0.0080454545
+        outSlope: -0.0080454545
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - _meterMemoriCount: 15
+    _redZone: 0
+    _warningLampOffset: 0
+    _subTune: 0
+    _engineTorqueCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - _meterMemoriCount: 15
+    _redZone: 0
+    _warningLampOffset: 0
+    _subTune: 0
+    _engineTorqueCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - _meterMemoriCount: 13
+    _redZone: 10500
+    _warningLampOffset: 1300
+    _subTune: 5
+    _engineTorqueCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 1000
+        value: 12
+        inSlope: 0.00039999993
+        outSlope: 0.00039999993
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 4000
+        value: 13.2
+        inSlope: 0.00055813947
+        outSlope: 0.00055813947
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 9600
+        value: 27.2
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 11000
+        value: 26.05
+        inSlope: -0.0018400025
+        outSlope: -0.0018400025
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 12100
+        value: 17.2
+        inSlope: -0.008045454
+        outSlope: -0.008045454
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - _meterMemoriCount: 15
+    _redZone: 0
+    _warningLampOffset: 0
+    _subTune: 0
+    _engineTorqueCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - _meterMemoriCount: 15
+    _redZone: 0
+    _warningLampOffset: 0
+    _subTune: 0
+    _engineTorqueCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - _meterMemoriCount: 15
+    _redZone: 0
+    _warningLampOffset: 0
+    _subTune: 0
+    _engineTorqueCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - _meterMemoriCount: 15
+    _redZone: 0
+    _warningLampOffset: 0
+    _subTune: 0
+    _engineTorqueCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - _meterMemoriCount: 15
+    _redZone: 0
+    _warningLampOffset: 0
+    _subTune: 0
+    _engineTorqueCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - _meterMemoriCount: 15
+    _redZone: 0
+    _warningLampOffset: 0
+    _subTune: 0
+    _engineTorqueCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - _meterMemoriCount: 15
+    _redZone: 0
+    _warningLampOffset: 0
+    _subTune: 0
+    _engineTorqueCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - _meterMemoriCount: 15
+    _redZone: 0
+    _warningLampOffset: 0
+    _subTune: 0
+    _engineTorqueCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - _meterMemoriCount: 15
+    _redZone: 0
+    _warningLampOffset: 0
+    _subTune: 0
+    _engineTorqueCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - _meterMemoriCount: 15
+    _redZone: 0
+    _warningLampOffset: 0
+    _subTune: 0
+    _engineTorqueCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  _tunedForwardFriction:
+    _extremumSlip: 0.4
+    _extremumValue: 1
+    _asymptoteSlip: 0.8
+    _asymptoteValue: 0.5
+    _stiffness: 1
+  _tunedSidewaysFriction:
+    _extremumSlip: 0.2
+    _extremumValue: 1
+    _asymptoteSlip: 0.5
+    _asymptoteValue: 0.75
+    _stiffness: 1

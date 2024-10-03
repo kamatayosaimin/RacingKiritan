@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef1b830593a1d124497a424058fc81bf, type: 3}
+  m_Name: CarSound
+  m_EditorClassIdentifier: 
+  _playerClipData:
+    _engineClip: {fileID: 8300000, guid: 73ba32ee1c1afef4fb07dc6bddbe60dc, type: 3}
+    _turboClip: {fileID: 8300000, guid: 02d0b34b693ebd340bb2b447239acce9, type: 3}
+    _revLimitClip: {fileID: 8300000, guid: d74e2790fa864f64780aab642793a5c5, type: 3}
+    _squealClip: {fileID: 8300000, guid: 78036d057f6f7944e8f255b33a260817, type: 3}
+    _mufflerClip: {fileID: 8300000, guid: e0a6f616ed41c4d42a73f4de7e72a95a, type: 3}
+    _buppiganPrefab: {fileID: 8616150624613552500, guid: 1c22b66583fa01540944d44f7f6e874a, type: 3}
+  _enemyClipData:
+    _engineClip: {fileID: 8300000, guid: 9157f33ae2549c2498e03d39b184f9a8, type: 3}
+    _turboClip: {fileID: 8300000, guid: 30afa632e1d6df2449ecdfe1102d775d, type: 3}
+    _revLimitClip: {fileID: 8300000, guid: 51eefce89795fda4598cfd460a73979a, type: 3}
+    _squealClip: {fileID: 8300000, guid: 27ea34a6262151c4dae1c6e9af95070e, type: 3}
+    _mufflerClip: {fileID: 8300000, guid: a5d99ab010aaa434e9a0278ef43dfd5d, type: 3}
+    _buppiganPrefab: {fileID: 614281382460678057, guid: 5a011512038a06f45912b9f1f1d2874a, type: 3}
+  _otherData:
+    _revLimitOffset: 200
+  _pitchData:
+    _enginePitchMultipler: 0.001
+    _squealExtremumPitch: 4
+    _squealAsymptotePitch: 7
+    _revLimitPitch: 4
