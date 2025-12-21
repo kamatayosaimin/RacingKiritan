@@ -121,7 +121,7 @@ public class CarController : MonoBehaviour
         try
         {
             float inputMotor = _input.CurrentMotor;
-            float velocity = _rigidbody.velocity.magnitude;
+            float velocity = _rigidbody.linearVelocity.magnitude;
             WheelCollider[] frontWheelColliders = GetFrontWheelColliders();
             WheelCollider[] rearWheelColliders = GetRearWheelColliders();
 
