@@ -240,7 +240,7 @@ public abstract class CarUIControllerBase : MonoBehaviour
                     maxTorqueRpm = t;
                 }
 
-                //Torque * rpm * PowerRate(Mathf.PI * 2 / 4500)
+                //Torque * rpm * PowerRate(Mathf.PI * 2 / (75 kg・m * 60 sec.))
                 float power = torque * t * CarCommon.PowerRate;
                 Vector2 powerPosition = Vector2.zero;
 
