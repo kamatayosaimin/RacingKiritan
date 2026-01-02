@@ -121,7 +121,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 112}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 10084
+  controlID: 1721
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 112}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 10085
+  controlID: 1722
   draggingID: 0
 --- !u!114 &7
 MonoBehaviour:
@@ -1175,9 +1175,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 690, y: 290, z: 0}
+    m_Target: {x: 400, y: 300, z: 0}
     speed: 2
-    m_Value: {x: 690, y: 290, z: 0}
+    m_Value: {x: 400, y: 300, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1223,13 +1223,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
+    m_Target: {x: -0.2568626, y: 0.015942752, z: -0.0042377613, w: -0.9663106}
     speed: 2
-    m_Value: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
+    m_Value: {x: -0.2568626, y: 0.015942752, z: -0.0042377613, w: -0.9663106}
   m_Size:
-    m_Target: 141.42136
+    m_Target: 218.28844
     speed: 2
-    m_Value: 141.42136
+    m_Value: 218.28844
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1311,6 +1311,11 @@ MonoBehaviour:
         m_Data: 50432
       m_ExpandedIDs:
       - m_Data: -1296
+      - m_Data: 46336
+      - m_Data: 46488
+      - m_Data: 50432
+      - m_Data: 55580
+      - m_Data: 57616
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1566,7 +1571,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 756
+  m_LastVerticalScrollValue: 1242
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:

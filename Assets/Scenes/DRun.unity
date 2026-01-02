@@ -26028,7 +26028,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 000.0 kgm / 00000 rpm
+  m_text: 000.0 kgm @ 00000 rpm
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dca5dafbc41566843af45a6da759597e, type: 2}
   m_sharedMaterial: {fileID: -3434430614089190419, guid: dca5dafbc41566843af45a6da759597e,
@@ -52571,8 +52571,8 @@ MonoBehaviour:
   _reverseValue: R
   _speedStyle: 0
   _inputStyle: 0.000
-  _powerFormat: '{0:#} PS / {1:#} rpm'
-  _torqueFormat: '{0:#.0} kgm / {1:#} rpm'
+  _powerFormat: '{0:#} PS @ {1:#} rpm'
+  _torqueFormat: '{0:#.0} kgm @ {1:#} rpm'
   _warningLampOffColor: {r: 0.5, g: 0, b: 0.12549019, a: 1}
   _warningLampOnColor: {r: 1, g: 0, b: 0.2509804, a: 1}
   _speedText: {fileID: 401338110}
@@ -71397,7 +71397,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0000 PS / 00000 rpm
+  m_text: 0000 PS @ 00000 rpm
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dca5dafbc41566843af45a6da759597e, type: 2}
   m_sharedMaterial: {fileID: -3434430614089190419, guid: dca5dafbc41566843af45a6da759597e,
