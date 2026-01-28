@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -319,8 +318,6 @@ public abstract class CarUIControllerBase : MonoBehaviour
         {
             int shiftIndex = _playerCarController.ShiftIndex;
 
-            _speedText.text = _playerCarController.Speed.ToString(_speedStyle);
-
             if (shiftIndex != _shiftIndex)
             {
                 _shiftIndex = shiftIndex;
@@ -378,6 +375,8 @@ public abstract class CarUIControllerBase : MonoBehaviour
         {
             float speed = _playerCarController.Speed;
             float speedT = Mathf.InverseLerp(0f, _speedSlider.maxValue, speed);
+
+            _speedText.text = speed.ToString(_speedStyle);
 
             _speedSliderFill.color = _speedGradient.Evaluate(speedT);
 

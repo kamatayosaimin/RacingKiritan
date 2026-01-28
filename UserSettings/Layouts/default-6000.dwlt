@@ -121,7 +121,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 112}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 580
+  controlID: 2269
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 112}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 581
+  controlID: 2270
   draggingID: 0
 --- !u!114 &7
 MonoBehaviour:
@@ -1175,9 +1175,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 400, y: 300, z: 0}
+    m_Target: {x: 690, y: 323, z: 0}
     speed: 2
-    m_Value: {x: 400, y: 300, z: 0}
+    m_Value: {x: 690, y: 323, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1227,9 +1227,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: -0.2568626, y: 0.015942752, z: -0.0042377613, w: -0.9663106}
   m_Size:
-    m_Target: 173.39938
+    m_Target: 39.40812
     speed: 2
-    m_Value: 173.39938
+    m_Value: 39.40812
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1306,11 +1306,16 @@ MonoBehaviour:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs:
-      - m_Data: 45492
+      - m_Data: 50432
       m_LastClickedID:
-        m_Data: 0
+        m_Data: 50432
       m_ExpandedIDs:
       - m_Data: -1296
+      - m_Data: 46336
+      - m_Data: 48642
+      - m_Data: 50432
+      - m_Data: 52106
+      - m_Data: 57616
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1386,7 +1391,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/ScritableObjects/Other
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1396,7 +1401,7 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets
+  - Assets/ScritableObjects/Other
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\GitGOIS\Unity\RacingKiritan
   m_LockTracker:
@@ -1405,20 +1410,20 @@ MonoBehaviour:
   m_FolderTreeState:
     scrollPos: {x: 0, y: 79}
     m_SelectedIDs:
-    - m_Data: 58728
+    - m_Data: 58878
     m_LastClickedID:
-      m_Data: 58728
+      m_Data: 58878
     m_ExpandedIDs:
     - m_Data: 0
+    - m_Data: 58720
+    - m_Data: 58722
+    - m_Data: 58724
+    - m_Data: 58726
     - m_Data: 58728
     - m_Data: 58730
     - m_Data: 58732
     - m_Data: 58734
     - m_Data: 58736
-    - m_Data: 58738
-    - m_Data: 58740
-    - m_Data: 58742
-    - m_Data: 58744
     - m_Data: 1000000000
     - m_Data: 2147483647
     m_RenameOverlay:
@@ -1453,15 +1458,15 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
+    - m_Data: 58720
+    - m_Data: 58722
+    - m_Data: 58724
+    - m_Data: 58726
     - m_Data: 58728
     - m_Data: 58730
     - m_Data: 58732
     - m_Data: 58734
     - m_Data: 58736
-    - m_Data: 58738
-    - m_Data: 58740
-    - m_Data: 58742
-    - m_Data: 58744
     - m_Data: 1000000000
     - m_Data: 2147483647
     m_RenameOverlay:
@@ -1491,8 +1496,8 @@ MonoBehaviour:
       m_ResourceFile: 
   m_ListAreaState:
     m_SelectedInstanceIDs:
-    - m_Data: 45492
-    m_LastClickedInstanceID: 45492
+    - m_Data: 50432
+    m_LastClickedInstanceID: 50432
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: []
     m_RenameOverlay:
@@ -1520,7 +1525,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 1237.2}
+    m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 64
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 90
