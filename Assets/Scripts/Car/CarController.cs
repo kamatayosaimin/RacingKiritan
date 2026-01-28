@@ -12,7 +12,7 @@ public class CarController : MonoBehaviour
         High
     }
 
-    private int _shiftIndex = 1;
+    private int? _shiftIndex;
     private float _speed;
     private float _engineRpm;
     private float _engineRpmMin;
@@ -23,6 +23,8 @@ public class CarController : MonoBehaviour
     private float _brakeTorqueRear;
     private float _steering;
     private float _downForce;
+    private float _accelerationRate;
+    private float _frictionLossRate;
     private float _fourWDBalance;
     private float _finalGear;
     private float _wheelRate;
@@ -53,7 +55,7 @@ public class CarController : MonoBehaviour
     public event Action<CarWheelDictionary<CarWheelStatus>> OnInitialized;
     public event Action<CarWheelDictionary<CarWheelStatus>> OnWheelHitUpdated;
 
-    public int ShiftIndex
+    public int? ShiftIndex
     {
         get
         {
@@ -128,9 +130,7 @@ public class CarController : MonoBehaviour
             _speed = velocity * CarCommon.SpeedToKmH;
 
             Reverse(inputMotor);
-
-            _engineRpm = WheelRpmToEngineRpm();
-
+            SetEngineRpm(inputMotor);
             SetMotor(inputMotor, frontWheelColliders, rearWheelColliders);
             SetBrake(frontWheelColliders, rearWheelColliders);
             SetSteering(frontWheelColliders);
@@ -215,6 +215,8 @@ public class CarController : MonoBehaviour
             _brakeTorqueRear = data.BrakeTorqueRear;
             _steering = data.Steering;
             _downForce = data.DownForce;
+            _accelerationRate = data.AccelerationRate;
+            _frictionLossRate = data.FrictionLossRate;
             _fourWDBalance = data.FourWDBalance / 100f;
             _finalGear = data.FinalGear / 1000f;
             _wheelRate = GetWheelRate();
@@ -349,26 +351,39 @@ public class CarController : MonoBehaviour
             {
                 _input.IsShiftDown = false;
 
-                if (_shiftIndex > 1)
-                {
-                    _shiftIndex--;
+                if (_shiftIndex.HasValue)
+                    if (_shiftIndex > 1)
+                    {
+                        _shiftIndex--;
 
-                    if (isAccelOn)
-                        OnAccelOff(_aspirationType);
-                }
+                        if (isAccelOn)
+                            OnAccelOff(_aspirationType);
+                    }
+                    else if (_shiftIndex == 1)
+                    {
+                        _shiftIndex = null;
+
+                        if (isAccelOn)
+                            OnAccelOff(_aspirationType);
+                    }
             }
 
             if (_input.IsShiftUp)
             {
                 _input.IsShiftUp = false;
 
-                if (_shiftIndex >= 1 && _shiftIndex < _gearRatio.Length - 1)
+                if (_shiftIndex.HasValue)
                 {
-                    _shiftIndex++;
+                    if (_shiftIndex >= 1 && _shiftIndex < _gearRatio.Length - 1)
+                    {
+                        _shiftIndex++;
 
-                    if (isAccelOn)
-                        OnAccelOff(_aspirationType);
+                        if (isAccelOn)
+                            OnAccelOff(_aspirationType);
+                    }
                 }
+                else
+                    _shiftIndex = 1;
             }
         }
         catch (Exception e)
@@ -384,11 +399,35 @@ public class CarController : MonoBehaviour
             if (_speed >= _reverseSpeedLimit)
                 return;
 
-            if (_shiftIndex > 0 && inputMotor < 0f)
+            if ((!_shiftIndex.HasValue || _shiftIndex > 0) && inputMotor < 0f)
                 _shiftIndex = 0;
 
             if (_shiftIndex == 0 && inputMotor > 0f)
                 _shiftIndex = 1;
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
+    }
+
+    void SetEngineRpm(float inputMotor)
+    {
+        try
+        {
+            if (_shiftIndex.HasValue)
+            {
+                _engineRpm = WheelRpmToEngineRpm();
+
+                return;
+            }
+
+            if (inputMotor > 0f && _engineRpm < _engineRpmMax)
+                _engineRpm += _accelerationRate * inputMotor * Time.deltaTime;
+            else
+                _engineRpm -= _frictionLossRate * Time.deltaTime;
+
+            _engineRpm = GetEngineRpm(_engineRpm);
         }
         catch (Exception e)
         {
@@ -638,7 +677,7 @@ public class CarController : MonoBehaviour
 
     float GetGearRatio()
     {
-        return _gearRatio[_shiftIndex];
+        return _shiftIndex.HasValue ? _gearRatio[_shiftIndex.Value] : 0f;
     }
 
     /// <summary>

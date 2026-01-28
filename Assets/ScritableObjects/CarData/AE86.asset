@@ -19,6 +19,8 @@ MonoBehaviour:
   _brakeTorqueRear: 360
   _steering: 15
   _downForce: 0
+  _accelerationRate: 20000
+  _frictionLossRate: 10000
   _engineTuneWeight: 40
   _weightDownValue: 100
   _tunedSusupensionSpring: 35000

@@ -43199,7 +43199,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: N
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dca5dafbc41566843af45a6da759597e, type: 2}
   m_sharedMaterial: {fileID: -3434430614089190419, guid: dca5dafbc41566843af45a6da759597e,
@@ -52565,9 +52565,10 @@ MonoBehaviour:
   _torqueLineScale: 1.3
   _rpmLineScale: 0.01
   _lineRpmSpan: 50
-  _rpmDamper: 10
+  _rpmDamper: 5
   _warningLampSpan: 100
   _meterAmountMax: 0.75
+  _neutralValue: N
   _reverseValue: R
   _speedStyle: 0
   _inputStyle: 0.000

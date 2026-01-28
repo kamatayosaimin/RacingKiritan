@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public abstract class CarUIControllerBase : MonoBehaviour
 {
-    private int _shiftIndex;
+    private int? _shiftIndex;
     [SerializeField] private float _memoriTextOffset;
     [SerializeField] private float _memoriImageOffset;
     [SerializeField] private float _powerLineScale = 1f;
@@ -19,6 +19,7 @@ public abstract class CarUIControllerBase : MonoBehaviour
     private float _engineRpm;
     private float _meterScale;
     private float _maxPowerRpm;
+    [SerializeField] private string _neutralValue = "N";
     [SerializeField] private string _reverseValue = "R";
     [SerializeField] private string _speedStyle = "0";
     [SerializeField] private string _inputStyle = "0.000";
@@ -316,13 +317,18 @@ public abstract class CarUIControllerBase : MonoBehaviour
     {
         try
         {
-            int shiftIndex = _playerCarController.ShiftIndex;
+            int? shiftIndex = _playerCarController.ShiftIndex;
 
             if (shiftIndex != _shiftIndex)
             {
                 _shiftIndex = shiftIndex;
 
-                _shiftText.text = shiftIndex > 0 ? shiftIndex.ToString() : _reverseValue;
+                string textValue = _neutralValue;
+
+                if (shiftIndex.HasValue)
+                    textValue = shiftIndex > 0 ? shiftIndex.ToString() : _reverseValue;
+
+                _shiftText.text = textValue;
             }
         }
         catch (Exception e)

@@ -26,7 +26,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 112}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 1528
+  controlID: 7692
   draggingID: 0
 --- !u!114 &2
 MonoBehaviour:
@@ -156,7 +156,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 112}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 1466
+  controlID: 7667
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -710,9 +710,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 690, y: 323, z: 0}
+    m_Target: {x: 690, y: 254.5, z: 0}
     speed: 2
-    m_Value: {x: 690, y: 323, z: 0}
+    m_Value: {x: 690, y: 254.5, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -762,9 +762,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: -0.25686175, y: 0.015942698, z: -0.0042377473, w: -0.9663074}
   m_Size:
-    m_Target: 39.40812
+    m_Target: 38.00329
     speed: 2
-    m_Value: 39.40812
+    m_Value: 38.00329
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -843,8 +843,8 @@ MonoBehaviour:
     y: 0
     width: 246.39996
     height: 716.8
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 226}
+  m_MaxSize: {x: 4002, y: 4026}
   m_ActualView: {fileID: 8}
   m_Panes:
   - {fileID: 8}
@@ -904,8 +904,8 @@ MonoBehaviour:
       - m_Data: 57616
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: SpeedText
-        m_OriginalName: SpeedText
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
@@ -913,10 +913,10 @@ MonoBehaviour:
           width: 0
           height: 0
         m_UserData:
-          m_Data: 47886
+          m_Data: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_TrimLeadingAndTrailingWhitespace: 0
         m_ClientGUIView: {fileID: 7}
@@ -946,8 +946,8 @@ MonoBehaviour:
     y: 0
     width: 220.00006
     height: 716.8
-  m_MinSize: {x: 232, y: 276}
-  m_MaxSize: {x: 10002, y: 10026}
+  m_MinSize: {x: 230, y: 250}
+  m_MaxSize: {x: 10000, y: 10000}
   m_ActualView: {fileID: 10}
   m_Panes:
   - {fileID: 10}
@@ -1003,7 +1003,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/ScritableObjects/Other
+    - Assets/ScritableObjects/CarData
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1013,18 +1013,18 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/ScritableObjects/Other
+  - Assets/ScritableObjects/CarData
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\GitGOIS\Unity\RacingKiritan
   m_LockTracker:
     m_IsLocked: 0
   m_LastLocalAssetsSearchArea: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 79}
+    scrollPos: {x: 0, y: 300}
     m_SelectedIDs:
-    - m_Data: 58878
+    - m_Data: 58876
     m_LastClickedID:
-      m_Data: 58878
+      m_Data: 58876
     m_ExpandedIDs:
     - m_Data: 0
     - m_Data: 58720
@@ -1110,7 +1110,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs:
     - m_Data: 50432
     m_LastClickedInstanceID: 50432
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: []
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1213,7 +1213,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: 50432
-  m_LastVerticalScrollValue: 0
+  m_LastVerticalScrollValue: 1026
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:
