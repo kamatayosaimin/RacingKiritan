@@ -38,7 +38,6 @@ public class CarController : MonoBehaviour
     private AnimationCurve _engineTorqueCurve;
     [SerializeField] private ParticleSystem[] _mufflerParticles;
     private Rigidbody _rigidbody;
-    [SerializeField] private Transform _centerOfMass;
     [SerializeField] private Transform _tireFL;
     [SerializeField] private Transform _tireFR;
     [SerializeField] private Transform _tireRL;
@@ -108,7 +107,6 @@ public class CarController : MonoBehaviour
     {
         try
         {
-            _rigidbody.centerOfMass = transform.InverseTransformPoint(_centerOfMass.position);
         }
         catch (Exception e)
         {

@@ -121,7 +121,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 112}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 7951
+  controlID: 20577
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 112}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 7952
+  controlID: 20578
   draggingID: 0
 --- !u!114 &7
 MonoBehaviour:
@@ -1175,9 +1175,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 690, y: 254.5, z: 0}
+    m_Target: {x: 20, y: 0.6675, z: -2.1075}
     speed: 2
-    m_Value: {x: 690, y: 254.5, z: 0}
+    m_Value: {x: 20, y: 0.6675, z: -2.1075}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1223,13 +1223,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.2568626, y: 0.015942752, z: -0.0042377613, w: -0.9663106}
+    m_Target: {x: -0.07400993, y: 0.70427436, z: -0.0742256, w: -0.7021645}
     speed: 2
-    m_Value: {x: -0.2568626, y: 0.015942752, z: -0.0042377613, w: -0.9663106}
+    m_Value: {x: -0.07400993, y: 0.70427436, z: -0.0742256, w: -0.7021645}
   m_Size:
-    m_Target: 38.00329
+    m_Target: 2.3552642
     speed: 2
-    m_Value: 38.00329
+    m_Value: 2.3552642
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1306,16 +1306,17 @@ MonoBehaviour:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs:
-      - m_Data: 50432
+      - m_Data: 45406
       m_LastClickedID:
-        m_Data: 50432
+        m_Data: 0
       m_ExpandedIDs:
       - m_Data: -1296
-      - m_Data: 46336
-      - m_Data: 48642
-      - m_Data: 50432
-      - m_Data: 52106
-      - m_Data: 57616
+      - m_Data: 46236
+      - m_Data: 47384
+      - m_Data: 52590
+      - m_Data: 54444
+      - m_Data: 54760
+      - m_Data: 57242
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1408,7 +1409,7 @@ MonoBehaviour:
     m_IsLocked: 0
   m_LastLocalAssetsSearchArea: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 300}
+    scrollPos: {x: 0, y: 79}
     m_SelectedIDs:
     - m_Data: 58876
     m_LastClickedID:
@@ -1496,8 +1497,8 @@ MonoBehaviour:
       m_ResourceFile: 
   m_ListAreaState:
     m_SelectedInstanceIDs:
-    - m_Data: 50432
-    m_LastClickedInstanceID: 50432
+    - m_Data: 45406
+    m_LastClickedInstanceID: 45406
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: []
     m_RenameOverlay:
@@ -1575,7 +1576,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 1026
+  m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:
