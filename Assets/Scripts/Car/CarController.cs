@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -555,16 +553,29 @@ public class CarController : MonoBehaviour
     /// <returns></returns>
     float WheelRpmToEngineRpm()
     {
-        float rpm = GetWheelRpmAverage() * GetGearRatio() * _finalGear;
+        float rpm = GetDriveShaftRpm() * GetGearRatio() * _finalGear;
 
         return GetEngineRpm(rpm);
     }
 
-    float GetWheelRpmAverage()
+    float GetDriveShaftRpm()
     {
-        Func<WheelCollider, float> selector = wc => Mathf.Abs(wc.rpm);
+        Func<WheelCollider[], float> selector = wcs => wcs.Average(wc => Mathf.Abs(wc.rpm));
 
-        return GetAllWheelColliders().Average(selector);
+        switch (_driveType)
+        {
+            case CarDriveType.Front:
+                return selector(GetFrontWheelColliders());
+            case CarDriveType.Rear:
+                return selector(GetRearWheelColliders());
+            case CarDriveType.FourWheelDrive:
+                float front = selector(GetFrontWheelColliders()) * (1f - _fourWDBalance);
+                float rear = selector(GetRearWheelColliders()) * _fourWDBalance;
+
+                return front + rear;
+            default:
+                throw new ArgumentException();
+        }
     }
 
     float GetEngineRpm(float rpm)

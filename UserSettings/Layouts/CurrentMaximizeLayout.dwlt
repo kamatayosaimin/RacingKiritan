@@ -26,7 +26,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 112}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 236
+  controlID: 2830
   draggingID: 0
 --- !u!114 &2
 MonoBehaviour:
@@ -156,7 +156,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 112}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 211
+  controlID: 2805
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -762,9 +762,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: -0.25686175, y: 0.015942698, z: -0.0042377473, w: -0.9663074}
   m_Size:
-    m_Target: 218.28844
+    m_Target: 173.39938
     speed: 2
-    m_Value: 218.28844
+    m_Value: 173.39938
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -998,7 +998,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/ScritableObjects/CarData
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1008,18 +1008,18 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets
+  - Assets/ScritableObjects/CarData
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\GitGOIS\Unity\RacingKiritan
   m_LockTracker:
     m_IsLocked: 0
   m_LastLocalAssetsSearchArea: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 79}
+    scrollPos: {x: 0, y: 120}
     m_SelectedIDs:
-    - m_Data: 58720
+    - m_Data: 58876
     m_LastClickedID:
-      m_Data: 58720
+      m_Data: 58876
     m_ExpandedIDs:
     - m_Data: 0
     - m_Data: 58720
@@ -1029,6 +1029,8 @@ MonoBehaviour:
     - m_Data: 58728
     - m_Data: 58730
     - m_Data: 58732
+    - m_Data: 58734
+    - m_Data: 58736
     - m_Data: 1000000000
     - m_Data: 2147483647
     m_RenameOverlay:
@@ -1070,6 +1072,8 @@ MonoBehaviour:
     - m_Data: 58728
     - m_Data: 58730
     - m_Data: 58732
+    - m_Data: 58734
+    - m_Data: 58736
     - m_Data: 1000000000
     - m_Data: 2147483647
     m_RenameOverlay:
@@ -1099,9 +1103,9 @@ MonoBehaviour:
       m_ResourceFile: 
   m_ListAreaState:
     m_SelectedInstanceIDs:
-    - m_Data: 58720
-    m_LastClickedInstanceID: 58720
-    m_HadKeyboardFocusLastEvent: 1
+    - m_Data: 45404
+    m_LastClickedInstanceID: 45404
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: []
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1128,7 +1132,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 1237.2}
+    m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 64
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 90
@@ -1203,7 +1207,7 @@ MonoBehaviour:
     m_CachedPref: -160
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: 58720
+  m_LastInspectedObjectInstanceID: 45404
   m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
