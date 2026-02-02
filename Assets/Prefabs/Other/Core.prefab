@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 2667316688940027493}
   - component: {fileID: 6708677140605693040}
   - component: {fileID: 3807631186764386908}
+  - component: {fileID: 3991964150276938352}
   - component: {fileID: 3807631186764386909}
   - component: {fileID: -4563711144800605297}
   m_Layer: 0
@@ -192,6 +193,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd14c277f82967848b2bb84761fbea32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3991964150276938352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3807631186764386910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d588738569df82643b85bf3c3ad9fdef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FpsManager
+  _defaultTargetFrameRate: -1
+  _maxTime: 0.5
+  _style: 0.000 FPS
+  _text: {fileID: 3387442587929564149}
 --- !u!114 &3807631186764386909
 MonoBehaviour:
   m_ObjectHideFlags: 0
