@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 
 public class FullScreenButton : MonoBehaviour, IPointerDownHandler
 {
+    private bool _isFullScreen;
     [SerializeField] private string _messageStyle = "FULLSCREEN {0}";
     [SerializeField] private string _messageOff = "OFF";
     [SerializeField] private string _messageOn = "ON";
@@ -14,27 +15,35 @@ public class FullScreenButton : MonoBehaviour, IPointerDownHandler
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        SetUI(Screen.fullScreen);
+        _isFullScreen = Screen.fullScreen;
+
+        SetUI();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Screen.fullScreen == _isFullScreen)
+            return;
+
+        _isFullScreen = Screen.fullScreen;
+
+        SetUI();
     }
 
-    void SetUI(bool isFullScreen)
+    void SetUI()
     {
-        _text.text = string.Format(_messageStyle, isFullScreen ? _messageOn : _messageOff);
+        _text.text = string.Format(_messageStyle, _isFullScreen ? _messageOn : _messageOff);
 
-        _image.sprite = isFullScreen ? _offSprite : _onSprite;
+        _image.sprite = _isFullScreen ? _offSprite : _onSprite;
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        bool isFullScreen = !Screen.fullScreen;
+        _isFullScreen = !Screen.fullScreen;
 
-        Screen.fullScreen = isFullScreen;
+        Screen.fullScreen = _isFullScreen;
 
-        SetUI(isFullScreen);
+        SetUI();
     }
 }
