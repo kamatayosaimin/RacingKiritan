@@ -627,7 +627,7 @@ public class CarController : MonoBehaviour
     /// <returns></returns>
     float GetMotorTorqueNM(float inputMotor)
     {
-        return GetMotorTorqueKgM(inputMotor) * CarCommon.NMToKgM;
+        return GetMotorTorqueKgM(inputMotor) * CarCommon.KgMToNM;
     }
 
     /// <summary>

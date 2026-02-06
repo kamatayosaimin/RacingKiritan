@@ -9,9 +9,9 @@ public static class CarCommon
     /// </summary>
     public const float SpeedToKmH = 3.6f;
     /// <summary>
-    /// トルクを N・m から kg・m へ変換
+    /// トルクを kg・m から N・m へ変換
     /// </summary>
-    public const float NMToKgM = 9.806652f;
+    public const float KgMToNM = 9.806652f;
     /// <summary>
     /// ホイール直径(2) * 単位調整係数(60 / 1000)
     /// </summary>
