@@ -121,7 +121,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 112}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 762
+  controlID: 25
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 112}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 700
+  controlID: 26
   draggingID: 0
 --- !u!114 &7
 MonoBehaviour:
@@ -1305,17 +1305,11 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: []
+      m_SelectedIDs:
+      - m_Data: 45538
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:
-      - m_Data: -6528
-      - m_Data: -6168
-      - m_Data: -5512
-      - m_Data: -5498
-      - m_Data: -5470
-      - m_Data: -5450
-      - m_Data: -5318
       - m_Data: -1296
       m_RenameOverlay:
         m_UserAcceptedRename: 0
@@ -1392,7 +1386,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/Other
+    - Assets
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1402,7 +1396,7 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/Other
+  - Assets
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\GitGOIS\Unity\RacingKiritan
   m_LockTracker:
@@ -1411,9 +1405,9 @@ MonoBehaviour:
   m_FolderTreeState:
     scrollPos: {x: 0, y: 79}
     m_SelectedIDs:
-    - m_Data: 59026
+    - m_Data: 58862
     m_LastClickedID:
-      m_Data: 59026
+      m_Data: 58862
     m_ExpandedIDs:
     - m_Data: 0
     - m_Data: 58862
@@ -1476,8 +1470,6 @@ MonoBehaviour:
     - m_Data: 58882
     - m_Data: 58884
     - m_Data: 58886
-    - m_Data: 1000000000
-    - m_Data: 2147483647
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1504,8 +1496,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: []
-    m_LastClickedInstanceID: 0
+    m_SelectedInstanceIDs:
+    - m_Data: 45538
+    m_LastClickedInstanceID: 45538
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: []
     m_RenameOverlay:
@@ -1533,7 +1526,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 139.20001}
+    m_ScrollPosition: {x: 0, y: 1330.2}
     m_GridSize: 64
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 90
