@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 /// <summary>
 /// 排気量の クラス
 /// </summary>
@@ -28,7 +24,15 @@ public enum CarClassType
     /// </summary>
     Class30,
     /// <summary>
-    /// 隠し車種用クラス
+    /// 隠し車種用クラス (0)
     /// </summary>
-    Omake
+    Omake0,
+    /// <summary>
+    /// 隠し車種用クラス (1)
+    /// </summary>
+    Omake1,
+    /// <summary>
+    /// 隠し車種用クラス (2)
+    /// </summary>
+    Omake2
 }
