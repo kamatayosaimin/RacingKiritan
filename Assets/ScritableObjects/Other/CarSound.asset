@@ -13,19 +13,21 @@ MonoBehaviour:
   m_Name: CarSound
   m_EditorClassIdentifier: 
   _playerClipData:
-    _engineClip: {fileID: 8300000, guid: 73ba32ee1c1afef4fb07dc6bddbe60dc, type: 3}
-    _turboClip: {fileID: 8300000, guid: 02d0b34b693ebd340bb2b447239acce9, type: 3}
-    _revLimitClip: {fileID: 8300000, guid: d74e2790fa864f64780aab642793a5c5, type: 3}
-    _squealClip: {fileID: 8300000, guid: 78036d057f6f7944e8f255b33a260817, type: 3}
-    _mufflerClip: {fileID: 8300000, guid: e0a6f616ed41c4d42a73f4de7e72a95a, type: 3}
-    _buppiganPrefab: {fileID: 8616150624613552500, guid: 1c22b66583fa01540944d44f7f6e874a, type: 3}
+    _engineClip: {fileID: 8300000, guid: 218188663addcb14cb119b101937099b, type: 3}
+    _turboClip: {fileID: 8300000, guid: cbea8ee3eb856734b83139c4f43408dd, type: 3}
+    _revLimitClip: {fileID: 8300000, guid: 0c910a7b37b28204da3fdc4cc5e2e877, type: 3}
+    _squealClip: {fileID: 8300000, guid: 2d674cd3ceb83ab42930a1476ded61aa, type: 3}
+    _mufflerClip: {fileID: 8300000, guid: dd5de533171e2b348bfa1543b6a3bf62, type: 3}
+    _buppiganPrefab: {fileID: 8616150624613552500, guid: 0cb6b898311c27047a040aba4987ff3a,
+      type: 3}
   _enemyClipData:
-    _engineClip: {fileID: 8300000, guid: 9157f33ae2549c2498e03d39b184f9a8, type: 3}
-    _turboClip: {fileID: 8300000, guid: 30afa632e1d6df2449ecdfe1102d775d, type: 3}
-    _revLimitClip: {fileID: 8300000, guid: 51eefce89795fda4598cfd460a73979a, type: 3}
-    _squealClip: {fileID: 8300000, guid: 27ea34a6262151c4dae1c6e9af95070e, type: 3}
-    _mufflerClip: {fileID: 8300000, guid: a5d99ab010aaa434e9a0278ef43dfd5d, type: 3}
-    _buppiganPrefab: {fileID: 614281382460678057, guid: 5a011512038a06f45912b9f1f1d2874a, type: 3}
+    _engineClip: {fileID: 8300000, guid: 0e87cb3ed3f8f67418c8a7f38540f4e4, type: 3}
+    _turboClip: {fileID: 8300000, guid: b243e330cdd6c284784dae60ce1eca7d, type: 3}
+    _revLimitClip: {fileID: 8300000, guid: e50fadc1735430146949226cfa5f5396, type: 3}
+    _squealClip: {fileID: 8300000, guid: d967011181666524fb04fc2ab99879db, type: 3}
+    _mufflerClip: {fileID: 8300000, guid: ffc50efa4ccc44347b23fe858b5d7e09, type: 3}
+    _buppiganPrefab: {fileID: 8616150624613552500, guid: 5f7266ce1f8211549870079da3eb9138,
+      type: 3}
   _otherData:
     _revLimitOffset: 200
   _pitchData:
