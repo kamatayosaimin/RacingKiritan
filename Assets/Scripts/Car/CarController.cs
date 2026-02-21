@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -14,7 +12,7 @@ public class CarController : MonoBehaviour
         High
     }
 
-    private int _shiftIndex = 1;
+    private int? _shiftIndex;
     private float _speed;
     private float _engineRpm;
     private float _engineRpmMin;
@@ -25,6 +23,8 @@ public class CarController : MonoBehaviour
     private float _brakeTorqueRear;
     private float _steering;
     private float _downForce;
+    private float _accelerationRate;
+    private float _frictionLossRate;
     private float _fourWDBalance;
     private float _finalGear;
     private float _wheelRate;
@@ -38,7 +38,6 @@ public class CarController : MonoBehaviour
     private AnimationCurve _engineTorqueCurve;
     [SerializeField] private ParticleSystem[] _mufflerParticles;
     private Rigidbody _rigidbody;
-    [SerializeField] private Transform _centerOfMass;
     [SerializeField] private Transform _tireFL;
     [SerializeField] private Transform _tireFR;
     [SerializeField] private Transform _tireRL;
@@ -55,7 +54,7 @@ public class CarController : MonoBehaviour
     public event Action<CarWheelDictionary<CarWheelStatus>> OnInitialized;
     public event Action<CarWheelDictionary<CarWheelStatus>> OnWheelHitUpdated;
 
-    public int ShiftIndex
+    public int? ShiftIndex
     {
         get
         {
@@ -108,7 +107,6 @@ public class CarController : MonoBehaviour
     {
         try
         {
-            _rigidbody.centerOfMass = transform.InverseTransformPoint(_centerOfMass.position);
         }
         catch (Exception e)
         {
@@ -121,7 +119,7 @@ public class CarController : MonoBehaviour
         try
         {
             float inputMotor = _input.CurrentMotor;
-            float velocity = _rigidbody.velocity.magnitude;
+            float velocity = _rigidbody.linearVelocity.magnitude;
             WheelCollider[] frontWheelColliders = GetFrontWheelColliders();
             WheelCollider[] rearWheelColliders = GetRearWheelColliders();
 
@@ -130,9 +128,7 @@ public class CarController : MonoBehaviour
             _speed = velocity * CarCommon.SpeedToKmH;
 
             Reverse(inputMotor);
-
-            _engineRpm = WheelRpmToEngineRpm();
-
+            SetEngineRpm(inputMotor);
             SetMotor(inputMotor, frontWheelColliders, rearWheelColliders);
             SetBrake(frontWheelColliders, rearWheelColliders);
             SetSteering(frontWheelColliders);
@@ -217,6 +213,8 @@ public class CarController : MonoBehaviour
             _brakeTorqueRear = data.BrakeTorqueRear;
             _steering = data.Steering;
             _downForce = data.DownForce;
+            _accelerationRate = data.AccelerationRate;
+            _frictionLossRate = data.FrictionLossRate;
             _fourWDBalance = data.FourWDBalance / 100f;
             _finalGear = data.FinalGear / 1000f;
             _wheelRate = GetWheelRate();
@@ -351,26 +349,39 @@ public class CarController : MonoBehaviour
             {
                 _input.IsShiftDown = false;
 
-                if (_shiftIndex > 1)
-                {
-                    _shiftIndex--;
+                if (_shiftIndex.HasValue)
+                    if (_shiftIndex > 1)
+                    {
+                        _shiftIndex--;
 
-                    if (isAccelOn)
-                        OnAccelOff(_aspirationType);
-                }
+                        if (isAccelOn)
+                            OnAccelOff(_aspirationType);
+                    }
+                    else if (_shiftIndex == 1)
+                    {
+                        _shiftIndex = null;
+
+                        if (isAccelOn)
+                            OnAccelOff(_aspirationType);
+                    }
             }
 
             if (_input.IsShiftUp)
             {
                 _input.IsShiftUp = false;
 
-                if (_shiftIndex >= 1 && _shiftIndex < _gearRatio.Length - 1)
+                if (_shiftIndex.HasValue)
                 {
-                    _shiftIndex++;
+                    if (_shiftIndex >= 1 && _shiftIndex < _gearRatio.Length - 1)
+                    {
+                        _shiftIndex++;
 
-                    if (isAccelOn)
-                        OnAccelOff(_aspirationType);
+                        if (isAccelOn)
+                            OnAccelOff(_aspirationType);
+                    }
                 }
+                else
+                    _shiftIndex = 1;
             }
         }
         catch (Exception e)
@@ -386,11 +397,35 @@ public class CarController : MonoBehaviour
             if (_speed >= _reverseSpeedLimit)
                 return;
 
-            if (_shiftIndex > 0 && inputMotor < 0f)
+            if ((!_shiftIndex.HasValue || _shiftIndex > 0) && inputMotor < 0f)
                 _shiftIndex = 0;
 
             if (_shiftIndex == 0 && inputMotor > 0f)
                 _shiftIndex = 1;
+        }
+        catch (Exception e)
+        {
+            ErrorManager.Instance.AddException(e);
+        }
+    }
+
+    void SetEngineRpm(float inputMotor)
+    {
+        try
+        {
+            if (_shiftIndex.HasValue)
+            {
+                _engineRpm = WheelRpmToEngineRpm();
+
+                return;
+            }
+
+            if (inputMotor > 0f && _engineRpm < _engineRpmMax)
+                _engineRpm += _accelerationRate * inputMotor * Time.deltaTime;
+            else
+                _engineRpm -= _frictionLossRate * Time.deltaTime;
+
+            _engineRpm = GetEngineRpm(_engineRpm);
         }
         catch (Exception e)
         {
@@ -555,16 +590,29 @@ public class CarController : MonoBehaviour
     /// <returns></returns>
     float WheelRpmToEngineRpm()
     {
-        float rpm = GetWheelRpmAverage() * GetGearRatio() * _finalGear;
+        float rpm = GetDriveShaftRpm() * GetGearRatio() * _finalGear;
 
         return GetEngineRpm(rpm);
     }
 
-    float GetWheelRpmAverage()
+    float GetDriveShaftRpm()
     {
-        Func<WheelCollider, float> selector = wc => Mathf.Abs(wc.rpm);
+        Func<WheelCollider[], float> selector = wcs => wcs.Average(wc => Mathf.Abs(wc.rpm));
 
-        return GetAllWheelColliders().Average(selector);
+        switch (_driveType)
+        {
+            case CarDriveType.Front:
+                return selector(GetFrontWheelColliders());
+            case CarDriveType.Rear:
+                return selector(GetRearWheelColliders());
+            case CarDriveType.FourWheelDrive:
+                float front = selector(GetFrontWheelColliders()) * (1f - _fourWDBalance);
+                float rear = selector(GetRearWheelColliders()) * _fourWDBalance;
+
+                return front + rear;
+            default:
+                throw new ArgumentException();
+        }
     }
 
     float GetEngineRpm(float rpm)
@@ -579,7 +627,7 @@ public class CarController : MonoBehaviour
     /// <returns></returns>
     float GetMotorTorqueNM(float inputMotor)
     {
-        return GetMotorTorqueKgM(inputMotor) * CarCommon.NMToKgM;
+        return GetMotorTorqueKgM(inputMotor) * CarCommon.KgMToNM;
     }
 
     /// <summary>
@@ -627,7 +675,7 @@ public class CarController : MonoBehaviour
 
     float GetGearRatio()
     {
-        return _gearRatio[_shiftIndex];
+        return _shiftIndex.HasValue ? _gearRatio[_shiftIndex.Value] : 0f;
     }
 
     /// <summary>

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -31,6 +29,12 @@ public class CarData : ScriptableObject
     [Tooltip("ダウンフォース")]
     private float _downForce;
     [SerializeField]
+    [Tooltip("ニュートラル時の rpm 増加量")]
+    private float _accelerationRate;
+    [SerializeField]
+    [Tooltip("ニュートラル時の rpm 減少量")]
+    private float _frictionLossRate;
+    [SerializeField]
     [Tooltip("ボルトオンターボ / エンジンスワップ時の 重量変化量")]
     private float _engineTuneWeight;
     [SerializeField]
@@ -57,6 +61,9 @@ public class CarData : ScriptableObject
     [SerializeField]
     [Tooltip("排気量の クラス")]
     private CarClassType _classType;
+    [SerializeField]
+    [Tooltip("Driver")]
+    private CarDriverType _driverType;
     [SerializeField]
     [Tooltip("駆動方式")]
     private CarDriveTypeStatus _driveType;
@@ -131,6 +138,22 @@ public class CarData : ScriptableObject
         }
     }
 
+    public float AccelerationRate
+    {
+        get
+        {
+            return _accelerationRate;
+        }
+    }
+
+    public float FrictionLossRate
+    {
+        get
+        {
+            return _frictionLossRate;
+        }
+    }
+
     public float EngineTuneWeight
     {
         get
@@ -200,6 +223,14 @@ public class CarData : ScriptableObject
         get
         {
             return _classType;
+        }
+    }
+
+    public CarDriverType DriverType
+    {
+        get
+        {
+            return _driverType;
         }
     }
 

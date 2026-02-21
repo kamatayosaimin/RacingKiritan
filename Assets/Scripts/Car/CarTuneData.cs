@@ -19,7 +19,7 @@ public class CarTuneData
     [Tooltip("特殊チューニング")] private CarSubTune _subTune;
     [SerializeField]
     [Tooltip("トルク曲線")]
-    [RangeCurve(0f, 0f, CarCommon.MaxRpm, 200f)]
+    [EngineCurve(0f, 0f, CarCommon.MaxRpm, 200f)]
     private AnimationCurve _engineTorqueCurve;
 
     public int MeterMemoriCount

@@ -13,23 +13,100 @@ MonoBehaviour:
   m_Name: CarSound
   m_EditorClassIdentifier: 
   _playerClipData:
-    _engineClip: {fileID: 8300000, guid: 73ba32ee1c1afef4fb07dc6bddbe60dc, type: 3}
-    _turboClip: {fileID: 8300000, guid: 02d0b34b693ebd340bb2b447239acce9, type: 3}
-    _revLimitClip: {fileID: 8300000, guid: d74e2790fa864f64780aab642793a5c5, type: 3}
-    _squealClip: {fileID: 8300000, guid: 78036d057f6f7944e8f255b33a260817, type: 3}
-    _mufflerClip: {fileID: 8300000, guid: e0a6f616ed41c4d42a73f4de7e72a95a, type: 3}
-    _buppiganPrefab: {fileID: 8616150624613552500, guid: 1c22b66583fa01540944d44f7f6e874a, type: 3}
+    _driverType: 0
+    _engineClip: {fileID: 8300000, guid: 218188663addcb14cb119b101937099b, type: 3}
+    _turboClip: {fileID: 8300000, guid: cbea8ee3eb856734b83139c4f43408dd, type: 3}
+    _revLimitClip: {fileID: 8300000, guid: 0c910a7b37b28204da3fdc4cc5e2e877, type: 3}
+    _squealClip: {fileID: 8300000, guid: 2d674cd3ceb83ab42930a1476ded61aa, type: 3}
+    _mufflerClip: {fileID: 8300000, guid: dd5de533171e2b348bfa1543b6a3bf62, type: 3}
+    _buppiganPrefab: {fileID: 8616150624613552500, guid: 0cb6b898311c27047a040aba4987ff3a,
+      type: 3}
   _enemyClipData:
-    _engineClip: {fileID: 8300000, guid: 9157f33ae2549c2498e03d39b184f9a8, type: 3}
-    _turboClip: {fileID: 8300000, guid: 30afa632e1d6df2449ecdfe1102d775d, type: 3}
-    _revLimitClip: {fileID: 8300000, guid: 51eefce89795fda4598cfd460a73979a, type: 3}
-    _squealClip: {fileID: 8300000, guid: 27ea34a6262151c4dae1c6e9af95070e, type: 3}
-    _mufflerClip: {fileID: 8300000, guid: a5d99ab010aaa434e9a0278ef43dfd5d, type: 3}
-    _buppiganPrefab: {fileID: 614281382460678057, guid: 5a011512038a06f45912b9f1f1d2874a, type: 3}
+    _driverType: 0
+    _engineClip: {fileID: 8300000, guid: 0e87cb3ed3f8f67418c8a7f38540f4e4, type: 3}
+    _turboClip: {fileID: 8300000, guid: b243e330cdd6c284784dae60ce1eca7d, type: 3}
+    _revLimitClip: {fileID: 8300000, guid: e50fadc1735430146949226cfa5f5396, type: 3}
+    _squealClip: {fileID: 8300000, guid: d967011181666524fb04fc2ab99879db, type: 3}
+    _mufflerClip: {fileID: 8300000, guid: ffc50efa4ccc44347b23fe858b5d7e09, type: 3}
+    _buppiganPrefab: {fileID: 8616150624613552500, guid: 5f7266ce1f8211549870079da3eb9138,
+      type: 3}
+  _clipDatas:
+  - _driverType: 0
+    _engineClip: {fileID: 8300000, guid: 3ca66768f9634404a833a02e1f9a5e45, type: 3}
+    _turboClip: {fileID: 8300000, guid: d89c33abcbcf3224c8b54ba44275df7b, type: 3}
+    _revLimitClip: {fileID: 8300000, guid: cfcb8db6793125445ac6cedb6c2e5f75, type: 3}
+    _squealClip: {fileID: 8300000, guid: c053c017e87888e46b66cd17d6e1a0eb, type: 3}
+    _mufflerClip: {fileID: 8300000, guid: 4beb4b9cf30cb9143884c0548496e114, type: 3}
+    _buppiganPrefab: {fileID: 8616150624613552500, guid: 7799e57ce5fe0c742a636cc2fe53a5a4,
+      type: 3}
+  - _driverType: 1
+    _engineClip: {fileID: 8300000, guid: ded926c7bcfeedb45b98dc2d9817af28, type: 3}
+    _turboClip: {fileID: 8300000, guid: a8a4d9a47a3bd4745b12c1991f6065c7, type: 3}
+    _revLimitClip: {fileID: 8300000, guid: 56cbb4135e00c89468b8686c8e2b0dee, type: 3}
+    _squealClip: {fileID: 8300000, guid: 875cac1388e5e174eb5ba0960a6610cf, type: 3}
+    _mufflerClip: {fileID: 8300000, guid: 6b61a02f9ab7bb34ca24d2c63c120e52, type: 3}
+    _buppiganPrefab: {fileID: 8616150624613552500, guid: 5eabcd4fb398d214bb07696af940a36b,
+      type: 3}
+  - _driverType: 2
+    _engineClip: {fileID: 8300000, guid: 218188663addcb14cb119b101937099b, type: 3}
+    _turboClip: {fileID: 8300000, guid: cbea8ee3eb856734b83139c4f43408dd, type: 3}
+    _revLimitClip: {fileID: 8300000, guid: 0c910a7b37b28204da3fdc4cc5e2e877, type: 3}
+    _squealClip: {fileID: 8300000, guid: 2d674cd3ceb83ab42930a1476ded61aa, type: 3}
+    _mufflerClip: {fileID: 8300000, guid: dd5de533171e2b348bfa1543b6a3bf62, type: 3}
+    _buppiganPrefab: {fileID: 8616150624613552500, guid: 0cb6b898311c27047a040aba4987ff3a,
+      type: 3}
+  - _driverType: 3
+    _engineClip: {fileID: 8300000, guid: 0e87cb3ed3f8f67418c8a7f38540f4e4, type: 3}
+    _turboClip: {fileID: 8300000, guid: b243e330cdd6c284784dae60ce1eca7d, type: 3}
+    _revLimitClip: {fileID: 8300000, guid: e50fadc1735430146949226cfa5f5396, type: 3}
+    _squealClip: {fileID: 8300000, guid: d967011181666524fb04fc2ab99879db, type: 3}
+    _mufflerClip: {fileID: 8300000, guid: ffc50efa4ccc44347b23fe858b5d7e09, type: 3}
+    _buppiganPrefab: {fileID: 8616150624613552500, guid: 5f7266ce1f8211549870079da3eb9138,
+      type: 3}
+  - _driverType: 4
+    _engineClip: {fileID: 8300000, guid: 23bc3ee2102d63f46bd8e7945bb61269, type: 3}
+    _turboClip: {fileID: 8300000, guid: 9e691ef14cc576c4cadaef5a73d7e1e3, type: 3}
+    _revLimitClip: {fileID: 8300000, guid: 49400f64ed496e946a4d76a737dfcf42, type: 3}
+    _squealClip: {fileID: 8300000, guid: a9c4155aa5b6ba442bd0044431bf5db1, type: 3}
+    _mufflerClip: {fileID: 8300000, guid: 291c539963d480740bcef89659525493, type: 3}
+    _buppiganPrefab: {fileID: 8616150624613552500, guid: 903da73326f2bf6409cbe1508eb75653,
+      type: 3}
+  - _driverType: 5
+    _engineClip: {fileID: 8300000, guid: c1b6b29a4626765469b91d368b4ce7d3, type: 3}
+    _turboClip: {fileID: 8300000, guid: f39ad0582b50d2f4bbf61ee95cc76807, type: 3}
+    _revLimitClip: {fileID: 8300000, guid: fc08cb4df7089bd44990a1a294d05bad, type: 3}
+    _squealClip: {fileID: 8300000, guid: 5807a690327fc244b848877d3bad5881, type: 3}
+    _mufflerClip: {fileID: 8300000, guid: 30b2f82cfeda1114c86ea3a17c8db960, type: 3}
+    _buppiganPrefab: {fileID: 8616150624613552500, guid: f941b74366b979541b922be379c3868b,
+      type: 3}
+  - _driverType: 6
+    _engineClip: {fileID: 8300000, guid: 29f2150a01b2537498939e6323a4cf65, type: 3}
+    _turboClip: {fileID: 8300000, guid: d786b20d687347f4090cec201f1a4885, type: 3}
+    _revLimitClip: {fileID: 8300000, guid: 8417cdda28fa0564ead2428c588d062e, type: 3}
+    _squealClip: {fileID: 8300000, guid: 322207e7988652041b92e6dfe897ef9b, type: 3}
+    _mufflerClip: {fileID: 8300000, guid: 499b515fa75cbbe46973e8b1a756d4d8, type: 3}
+    _buppiganPrefab: {fileID: 8616150624613552500, guid: 9a27ecb8423868940a636c5e857aca7e,
+      type: 3}
+  - _driverType: 7
+    _engineClip: {fileID: 8300000, guid: 5964e4a7200c8c74999b3a1546e75a54, type: 3}
+    _turboClip: {fileID: 8300000, guid: 4705d1f76b49fea4ca392e683ffd4725, type: 3}
+    _revLimitClip: {fileID: 8300000, guid: fb166f6dac2bf7c4186db175e7a739ed, type: 3}
+    _squealClip: {fileID: 8300000, guid: d4937a191bdacbc4a8dc38c3159401f6, type: 3}
+    _mufflerClip: {fileID: 8300000, guid: 31effa5ee60ae7540a16cb63f11b9481, type: 3}
+    _buppiganPrefab: {fileID: 8616150624613552500, guid: 061b83e715c699740ade80eefc69d084,
+      type: 3}
+  - _driverType: 8
+    _engineClip: {fileID: 8300000, guid: 96beb85c7049179469c6a1e7ec3c35c2, type: 3}
+    _turboClip: {fileID: 8300000, guid: 12b08eff8150c0a4fa4ddf6ff8505e88, type: 3}
+    _revLimitClip: {fileID: 8300000, guid: d40024d9bb50e2040addd67d2290311f, type: 3}
+    _squealClip: {fileID: 8300000, guid: 21e90dac14fdef142abe0b3f11ea96b7, type: 3}
+    _mufflerClip: {fileID: 8300000, guid: 05e852772f050064ca514b6d9cd6c213, type: 3}
+    _buppiganPrefab: {fileID: 8616150624613552500, guid: 380e386322b8ca4499e4c4494a065c97,
+      type: 3}
   _otherData:
     _revLimitOffset: 200
   _pitchData:
     _enginePitchMultipler: 0.001
-    _squealExtremumPitch: 4
-    _squealAsymptotePitch: 7
-    _revLimitPitch: 4
+    _squealExtremumPitch: 5
+    _squealAsymptotePitch: 8
+    _revLimitPitch: 5
