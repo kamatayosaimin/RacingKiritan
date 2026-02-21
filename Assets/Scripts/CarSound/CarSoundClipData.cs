@@ -9,6 +9,9 @@ using UnityEngine;
 public class CarSoundClipData
 {
     [SerializeField]
+    [Tooltip("Driver")]
+    private CarDriverType _driverType;
+    [SerializeField]
     [Tooltip("エンジン音")]
     private AudioClip _engineClip;
     [SerializeField]
@@ -26,6 +29,14 @@ public class CarSoundClipData
     [SerializeField]
     [Tooltip("ブッピガン Prefab")]
     private AudioSource _buppiganPrefab;
+
+    public CarDriverType DriverType
+    {
+        get
+        {
+            return _driverType;
+        }
+    }
 
     public AudioClip EngineClip
     {

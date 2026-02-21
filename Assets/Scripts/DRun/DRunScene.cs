@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -201,7 +199,7 @@ public class DRunScene : SceneBehaviour
             _tuneLevel = _tuneLevelTest;
             _carInput.InputState = CarInputState.Playing;
 
-            CarSoundClipData clipData = _soundContent.PlayerClipData;
+            CarSoundClipData clipData = _soundContent.GetClipData(_carData.DriverType);
             CarSoundOtherData otherData = _soundContent.OtherData;
             CarSoundPitchData pitchData = _soundContent.PitchData;
 

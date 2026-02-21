@@ -30,6 +30,7 @@ MonoBehaviour:
   _carName: "\u306F\u3061\u308D\u304F\u53F7"
   _aspirationType: 0
   _classType: 0
+  _driverType: 2
   _driveType: 1
   _engineType: 1
   _tuneDatas:

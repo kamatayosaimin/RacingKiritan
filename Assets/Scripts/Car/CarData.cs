@@ -62,6 +62,9 @@ public class CarData : ScriptableObject
     [Tooltip("排気量の クラス")]
     private CarClassType _classType;
     [SerializeField]
+    [Tooltip("Driver")]
+    private CarDriverType _driverType;
+    [SerializeField]
     [Tooltip("駆動方式")]
     private CarDriveTypeStatus _driveType;
     [SerializeField]
@@ -220,6 +223,14 @@ public class CarData : ScriptableObject
         get
         {
             return _classType;
+        }
+    }
+
+    public CarDriverType DriverType
+    {
+        get
+        {
+            return _driverType;
         }
     }
 
